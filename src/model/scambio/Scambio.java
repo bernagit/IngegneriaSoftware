@@ -49,6 +49,23 @@ public class Scambio {
         return intervalliOrari;
     }
 
+     public ArrayList<String> getOrariScambio(){
+        ArrayList<String> orari = new ArrayList<>();
+        LocalTime oraTempInizio;
+        LocalTime oraTempFine;
+
+        for (IntervalloOrario intervallo: intervalliOrari){
+            oraTempInizio = intervallo.getOraInizio();
+            oraTempFine = intervallo.getOraFine();
+            do {
+                orari.add(oraTempInizio.toString());
+                oraTempInizio = oraTempInizio.plusMinutes(30);
+            }while(oraTempInizio.getHour() != oraTempFine.getHour() && oraTempInizio.getMinute() != oraTempFine.getMinute());
+        }
+        return orari;
+    }
+
+    /*
     public ArrayList<String> getOrariScambio(){
         ArrayList<String> orari = new ArrayList<>();
         LocalTime oraTemp;
@@ -61,4 +78,5 @@ public class Scambio {
         }
         return orari;
     }
+    */
 }
