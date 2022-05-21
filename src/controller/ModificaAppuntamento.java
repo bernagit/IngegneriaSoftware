@@ -23,6 +23,11 @@ public class ModificaAppuntamento implements Action {
 
     private void visualizzaAppuntamento(Utente utente) {
         List<Baratto> barattoList = JsonUtil.readBarattoInScambio(utente.getUsername());
+        if (barattoList.size() == 0) {
+            System.out.println("Non sono presenti Appuntamenti per le offerte inserite");
+            return;
+        }
+
         MyMenu menu = new MyMenu("Scegli offerta");
         ArrayList<String> voci = new ArrayList<>();
         StringBuilder voce = new StringBuilder();
@@ -30,10 +35,7 @@ public class ModificaAppuntamento implements Action {
             voce.append(baratto.getOffertaA().getTitolo()).append(" per: ").append(baratto.getOffertaB().getTitolo());
             voci.add(voce.toString());
         }
-        if (voci.size() == 0) {
-            System.out.println("errore, lista vuota");
-            return;
-        }
+
         menu.setVoci(voci);
         //rispondi all'offerta
         this.accettaORispondi(barattoList.get(menu.scegli()), utente);

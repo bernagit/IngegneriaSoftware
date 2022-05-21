@@ -11,6 +11,7 @@ import utility.JsonUtil;
 import utility.MyMenu;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,9 @@ public class AccettaBaratto implements Action {
     }
 
     private void accettaBaratto(Utente utente) {
-
+        Scambio scambio = JsonUtil.readScambio();
         //selezione offerta da accettare
-        Baratto baratto = selezionaBaratto(utente);
+        Baratto baratto = selezionaBaratto(utente, scambio);
         if (baratto == null)
             return;
 
@@ -34,12 +35,17 @@ public class AccettaBaratto implements Action {
         System.out.println(offertaBaratto);
         boolean accetta = InputDati.yesOrNo("sei sicuro di voler accettare l'offerta: " + offertaBaratto.getTitolo() + " ? ");
 
-        Scambio scambio = JsonUtil.readScambio();
 
         if (!accetta)
             return;
-        Appuntamento appuntamento = this.inserisciAppuntamento(scambio);
-        baratto.setAppuntamento(appuntamento);
+
+        baratto.setAppuntamento(this.inserisciAppuntamento(scambio));
+        //conferma prima del salvataggio
+        boolean save = InputDati.yesOrNo("sei sicuro di voler salvare l'appuntamento? ");
+        if(!save) {
+            System.out.println("Appuntamento non salvato!");
+            return;
+        }
         //cambio stato offerta
         Offerta offertaA = baratto.getOffertaA();
         Offerta offertaB = baratto.getOffertaB();
@@ -49,16 +55,20 @@ public class AccettaBaratto implements Action {
         baratto.setOffertaB(offertaB);
         baratto.setDecisore(offertaA.getAutore());
         //salvataggio dati
+        /*
+        si potrebbe archiviarla in una sottocartella al posto che salavarla sempre nello stesso posto
+        per evitare di cercare ogni volta in tutte le offerte, anche quelle chiuse
+         */
         JsonUtil.writeOfferta(offertaA);
         JsonUtil.writeOfferta(offertaB);
         JsonUtil.writeBaratto(baratto);
     }
 
-    private Baratto selezionaBaratto(Utente utente) {
+    private Baratto selezionaBaratto(Utente utente, Scambio scambio) {
         List<Baratto> barattoList = JsonUtil.readBarattoByUtente(utente.getUsername());
         //se non ci sono offerte
         if (barattoList.size() == 0){
-            System.out.println("errore, lista vuota");
+            System.out.println("Non sono presenti baratti da accettare");
             return null;
         }
 

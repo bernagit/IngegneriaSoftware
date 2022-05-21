@@ -6,10 +6,7 @@ import model.user.Utente;
 import utility.JsonUtil;
 import utility.MyMenu;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class VisualizzaOfferteProprietario implements Action {
     @Override
@@ -31,11 +28,11 @@ public class VisualizzaOfferteProprietario implements Action {
                     menu.addVoce(offerta.getTitolo() + ": " + offerta.getStatoCorrente());
                 //modifica o uscita dal metodo
                 scelta = menu.scegli();
-                if(scelta != 0)
-                    this.scegliOpzione(offerte.get(scelta-1));
+                if (scelta != 0)
+                    this.scegliOpzione(offerte.get(scelta - 1));
             } while (scelta != 0);
 
-            for(Offerta offerta: offerte)
+            for (Offerta offerta : offerte)
                 JsonUtil.writeOfferta(offerta);
 
         } else
@@ -46,8 +43,9 @@ public class VisualizzaOfferteProprietario implements Action {
     private void scegliOpzione(Offerta offerta) {
         if (offerta.getStatoCorrente().equals(StatoOfferta.APERTA) || offerta.getStatoCorrente().equals(StatoOfferta.RITIRATA))
             this.modificaOfferta(offerta);
-        else
-            return;
+        else if (offerta.getStatoCorrente().equals(StatoOfferta.IN_SCAMBIO)) {
+            this.visualizzaStato(offerta);
+        }
     }
 
     private void modificaOfferta(Offerta offerta) {
@@ -61,6 +59,10 @@ public class VisualizzaOfferteProprietario implements Action {
         if (!offerta.getStatoCorrente().equals(newState)) {
             offerta.setStatoCorrente(newState);
         }
+    }
+
+    private void visualizzaStato(Offerta offerta) {
+        System.out.println("Offerta in scambio, impossibile modificare");
     }
 }
 

@@ -23,13 +23,15 @@ public class BarattaOfferta implements Action {
     private void barattaOfferta(Utente utente) {
         List<Offerta> offerteAperte = JsonUtil.readOffertaByAutoreAndState(utente.getUsername(), StatoOfferta.APERTA);
         MyMenu menu = new MyMenu("Scegli oggetto da barattare");
-        if (offerteAperte != null && offerteAperte.size() >= 1) {
-            for (Offerta offerta : offerteAperte) {
-                menu.addVoce(offerta.getTitolo());
-            }
-            menu.addVoce("Esci senza barattare");
-        } else
+        if (offerteAperte.size() < 1) {
             System.out.println("Non sono presenti Offerte nello stato Aperto");
+            return;
+        }
+        //creazione menu
+        for (Offerta offerta : offerteAperte) {
+            menu.addVoce(offerta.getTitolo());
+        }
+        menu.addVoce("Esci senza barattare");
         //scelta dell'offerta da barattare
         int scelta = menu.scegli();
         //esci
@@ -40,13 +42,13 @@ public class BarattaOfferta implements Action {
         Offerta offertaScelta = this.scegliOffertaAltroAutore(utente, offertaDaBarattare.getCategoria());
         if (offertaScelta == null)
             return;
-
+        System.out.println("Dettagli offerta:\n" + offertaScelta);
         boolean conferma = InputDati.yesOrNo("Sei sicuro di voler scambiare " + offertaDaBarattare.getTitolo()
                 + " con: " + offertaScelta.getTitolo());
         if (!conferma) {
             return;
         }
-
+        System.out.println("Baratto avviato");
         Baratto baratto = this.inserisciBaratto(offertaDaBarattare, offertaScelta);
         JsonUtil.writeBaratto(baratto);
     }
@@ -58,7 +60,7 @@ public class BarattaOfferta implements Action {
             System.out.println("Non sono presenti offerte aperte della stessa categoria");
         } else {
             for (Offerta offerta : offerte) {
-                menu.addVoce(offerta.getTitolo() + "\t\tutente: " + offerta.getAutore());
+                menu.addVoce(offerta.getTitolo());
             }
             menu.addVoce("Esci senza barattare");
             int scelta = menu.scegli();
@@ -76,6 +78,6 @@ public class BarattaOfferta implements Action {
         offertaScelta.setStatoCorrente(StatoOfferta.SELEZIONATA);
         JsonUtil.writeOfferta(offertaScelta);
         //creo baratto
-        return new Baratto(offertaDaBarattare, offertaScelta, LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).toString());
+        return new Baratto(offertaDaBarattare, offertaScelta, LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS).toString());
     }
 }
