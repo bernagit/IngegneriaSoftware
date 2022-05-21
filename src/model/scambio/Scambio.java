@@ -54,7 +54,7 @@ public class Scambio {
         LocalTime oraTempInizio;
         LocalTime oraTempFine;
 
-        for (IntervalloOrario intervallo: intervalliOrari){
+        for (IntervallOrario intervallo: intervalliOrari){
             oraTempInizio = intervallo.getOraInizio();
             oraTempFine = intervallo.getOraFine();
             do {
