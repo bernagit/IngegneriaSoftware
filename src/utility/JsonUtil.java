@@ -108,6 +108,8 @@ public class JsonUtil {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         String nomeFile = directoryScambi + "scambio.json";
+
+
         try (
                 FileWriter writer = new FileWriter(nomeFile)
         ) {

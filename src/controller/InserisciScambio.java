@@ -1,6 +1,7 @@
 package controller;
 
 import model.gerarchia.Gerarchia;
+import model.scambio.IntervallOrario;
 import model.scambio.IntervalloOrario;
 import model.scambio.Scambio;
 import model.user.Utente;
@@ -10,6 +11,8 @@ import utility.MyMenu;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,11 +91,11 @@ public class InserisciScambio implements Action {
         return days;
     }
 
-    private List<IntervalloOrario> inserisciIntervalli() {
+    private List<IntervallOrario> inserisciIntervalli() {
         boolean esci;
-        List<IntervalloOrario> intervals = new ArrayList<>();
+        List<IntervallOrario> intervals = new ArrayList<>();
         do {
-            IntervalloOrario interval = inserisciIntervallo();
+            IntervallOrario interval = inserisciIntervallo();
             boolean ok = intervals.stream().anyMatch(interval::isIntersected);
             if (ok)
                 System.out.println("Attenzione: l'intervallo inserito interseca altri intervalli.");
@@ -103,7 +106,7 @@ public class InserisciScambio implements Action {
         return intervals;
     }
 
-    private IntervalloOrario inserisciIntervallo() {
+    private IntervallOrario inserisciIntervallo() {
         System.out.println("Orario iniziale");
         LocalTime oraInizio = inserisciOrario();
         boolean intervalloOk;
@@ -115,8 +118,9 @@ public class InserisciScambio implements Action {
             if (intervalloOk)
                 System.out.println("Attenzione: l'orario finale non può essere minore di quello iniziale");
         } while (intervalloOk);
+
         //controllo se ora iniziale è precedente a ora finale altrimenti richiedo il secondo orario
-        return new IntervalloOrario(oraInizio, oraFine);
+        return new IntervallOrario(oraInizio.truncatedTo(ChronoUnit.MINUTES).toString(), oraFine.truncatedTo(ChronoUnit.MINUTES).toString());
     }
 
     private LocalTime inserisciOrario() {

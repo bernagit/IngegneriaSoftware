@@ -9,9 +9,7 @@ import java.time.temporal.TemporalUnit;
 public class Baratto {
     private Offerta offertaA;
     private Offerta offertaB;
-
     private LocalDateTime dataOraBaratto;
-
     private String decisore;
     private Appuntamento appuntamento;
 

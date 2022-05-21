@@ -10,7 +10,7 @@ public class Scambio {
     private String piazza;
     private List<String> luoghi;
     private List<DayOfWeek> giorni;
-    private List<IntervalloOrario> intervalliOrari;
+    private List<IntervallOrario> intervalliOrari;
     private int scadenzaProposta;
 
     public Scambio(String piazza) {
@@ -25,7 +25,7 @@ public class Scambio {
         this.giorni = giorni;
     }
 
-    public void setIntervalliOrari(List<IntervalloOrario> intervalliOrari) {
+    public void setIntervalliOrari(List<IntervallOrario> intervalliOrari) {
         this.intervalliOrari = intervalliOrari;
     }
 
@@ -45,14 +45,14 @@ public class Scambio {
         return giorni;
     }
 
-    public List<IntervalloOrario> getIntervalliOrari() {
+    public List<IntervallOrario> getIntervalliOrari() {
         return intervalliOrari;
     }
 
     public ArrayList<String> getOrariScambio(){
         ArrayList<String> orari = new ArrayList<>();
         LocalTime oraTemp;
-        for (IntervalloOrario intervallo: intervalliOrari){
+        for (IntervallOrario intervallo: intervalliOrari){
             oraTemp = intervallo.getOraInizio();
             while(oraTemp.isBefore(intervallo.getOraFine())) {
                 orari.add(oraTemp.toString());
