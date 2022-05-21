@@ -5,10 +5,10 @@ import java.time.LocalTime;
 
 public class Appuntamento {
     private String luogo;
-    private LocalTime dataOra;
+    private String dataOra;
     private DayOfWeek giorno;
 
-    public Appuntamento(String luogo, LocalTime dataOra, DayOfWeek giorno) {
+    public Appuntamento(String luogo, String dataOra, DayOfWeek giorno) {
         this.luogo = luogo;
         this.dataOra = dataOra;
         this.giorno = giorno;
@@ -27,14 +27,14 @@ public class Appuntamento {
     }
 
     public LocalTime getDataOra() {
-        return dataOra;
+        return LocalTime.parse(dataOra);
     }
 
     public DayOfWeek getGiorno() {
         return giorno;
     }
     public boolean equals(Appuntamento appuntamento){
-        return this.dataOra.equals(appuntamento.getDataOra())
+        return this.getDataOra().equals(appuntamento.getDataOra())
                 && this.giorno.equals(appuntamento.getGiorno())
                 && this.luogo.equals(appuntamento.getLuogo());
     }

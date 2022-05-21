@@ -104,8 +104,7 @@ public class AccettaBaratto implements Action {
         MyMenu menuOrari = new MyMenu("scegli orario");
         ArrayList<String> orari = scambio.getOrariScambio();
         menuOrari.setVoci(orari);
-        String strOrario = orari.get(menuOrari.scegli());
-        LocalTime orario = LocalTime.parse(strOrario);
+        String orario = orari.get(menuOrari.scegli());
 
         System.out.println("Orario: " + orario);
 

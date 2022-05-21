@@ -2,7 +2,6 @@ package model.scambio;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,7 @@ public class Scambio {
     private String piazza;
     private List<String> luoghi;
     private List<DayOfWeek> giorni;
-    private List<IntervallOrario> intervalliOrari;
+    private List<IntervalloOrario> intervalliOrari;
     private int scadenzaProposta;
 
     public Scambio(String piazza) {
@@ -25,7 +24,7 @@ public class Scambio {
         this.giorni = giorni;
     }
 
-    public void setIntervalliOrari(List<IntervallOrario> intervalliOrari) {
+    public void setIntervalliOrari(List<IntervalloOrario> intervalliOrari) {
         this.intervalliOrari = intervalliOrari;
     }
 
@@ -45,7 +44,7 @@ public class Scambio {
         return giorni;
     }
 
-    public List<IntervallOrario> getIntervalliOrari() {
+    public List<IntervalloOrario> getIntervalliOrari() {
         return intervalliOrari;
     }
 
@@ -54,7 +53,7 @@ public class Scambio {
         LocalTime oraTempInizio;
         LocalTime oraTempFine;
 
-        for (IntervallOrario intervallo: intervalliOrari){
+        for (IntervalloOrario intervallo: intervalliOrari){
             oraTempInizio = intervallo.getOraInizio();
             oraTempFine = intervallo.getOraFine();
             do {
@@ -64,19 +63,4 @@ public class Scambio {
         }
         return orari;
     }
-
-    /*
-    public ArrayList<String> getOrariScambio(){
-        ArrayList<String> orari = new ArrayList<>();
-        LocalTime oraTemp;
-        for (IntervallOrario intervallo: intervalliOrari){
-            oraTemp = intervallo.getOraInizio();
-            while(oraTemp.isBefore(intervallo.getOraFine())) {
-                orari.add(oraTemp.toString());
-                oraTemp = oraTemp.plusMinutes(30);
-            }
-        }
-        return orari;
-    }
-    */
 }

@@ -9,11 +9,11 @@ import java.time.temporal.TemporalUnit;
 public class Baratto {
     private Offerta offertaA;
     private Offerta offertaB;
-    private LocalDateTime dataOraBaratto;
+    private String dataOraBaratto;
     private String decisore;
     private Appuntamento appuntamento;
 
-    public Baratto(Offerta offertaA, Offerta offertaB, LocalDateTime dataOraBaratto) {
+    public Baratto(Offerta offertaA, Offerta offertaB, String dataOraBaratto) {
         this.offertaA = offertaA;
         this.offertaB = offertaB;
         this.dataOraBaratto = dataOraBaratto;
@@ -28,7 +28,7 @@ public class Baratto {
     }
 
     public LocalDateTime getDataOraBaratto() {
-        return dataOraBaratto.truncatedTo(ChronoUnit.SECONDS);
+        return LocalDateTime.parse(dataOraBaratto);
     }
 
     public void setAppuntamento(Appuntamento appuntamento) {

@@ -1,7 +1,6 @@
 package controller;
 
 import model.gerarchia.Gerarchia;
-import model.scambio.IntervallOrario;
 import model.scambio.IntervalloOrario;
 import model.scambio.Scambio;
 import model.user.Utente;
@@ -37,7 +36,7 @@ public class VisualizzaScambi implements Action {
             for (DayOfWeek giorno: scambio.getGiorni())
                 stringBuilder.append("\n\t").append(giorno.getDisplayName(TextStyle.FULL, Locale.getDefault()));
             stringBuilder.append("\nIntervalli orari:");
-            for (IntervallOrario interval: scambio.getIntervalliOrari()) {
+            for (IntervalloOrario interval: scambio.getIntervalliOrari()) {
                 stringBuilder.append("\n\tOra inizio: ").append(interval.getOraInizio())
                         .append("\tOra fine: ").append(interval.getOraFine());
             }

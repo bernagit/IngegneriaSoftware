@@ -10,6 +10,7 @@ import utility.JsonUtil;
 import utility.MyMenu;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class BarattaOfferta implements Action {
@@ -75,6 +76,6 @@ public class BarattaOfferta implements Action {
         offertaScelta.setStatoCorrente(StatoOfferta.SELEZIONATA);
         JsonUtil.writeOfferta(offertaScelta);
         //creo baratto
-        return new Baratto(offertaDaBarattare, offertaScelta, LocalDateTime.now());
+        return new Baratto(offertaDaBarattare, offertaScelta, LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).toString());
     }
 }
