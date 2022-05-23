@@ -10,6 +10,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class InserisciScambio implements Action {
@@ -70,7 +71,7 @@ public class InserisciScambio implements Action {
                 else System.out.println("Giorno già inserito");
             else System.out.println("Inserire un intero compreso tra 1 e 7");
         } while (!end);
-
+        Collections.sort(days);
         return days;
     }
 

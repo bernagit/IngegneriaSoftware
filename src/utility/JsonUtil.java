@@ -8,7 +8,6 @@ import model.gerarchia.Gerarchia;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.scambio.Scambio;
-import model.user.Utente;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,8 +16,6 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -98,7 +95,7 @@ public class JsonUtil {
 
         } catch (
                 IOException ex) {
-            System.out.println("Errore apertura file Gerarchie");
+            System.out.println("Errore apertura file Scambi");
         }
         return scambio;
     }
@@ -135,7 +132,7 @@ public class JsonUtil {
         }
     }
 
-    public static List<Offerta> readOfferteByCategoria(String nomeCategoria) {
+    public static List<Offerta> readOfferteAperteByCategoria(String nomeCategoria) {
         List<Offerta> offertaList = new ArrayList<>();
         Offerta offerta;
         try {
@@ -148,7 +145,7 @@ public class JsonUtil {
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
                 offerta = gson.fromJson(reader, Offerta.class);
-                if (nomeCategoria.equals(offerta.getCategoriaName()))
+                if (nomeCategoria.equals(offerta.getCategoriaName()) && offerta.getStatoCorrente().equals(StatoOfferta.APERTA))
                     offertaList.add(offerta);
             }
         } catch (Exception ex) {
@@ -264,7 +261,7 @@ public class JsonUtil {
                 }
             }
         } catch (IOException ex) {
-            System.out.println("Errore apertura file Offerte");
+            System.out.println("Errore apertura file Baratti");
         }
         return barattoList;
     }
@@ -290,7 +287,7 @@ public class JsonUtil {
                 }
             }
         } catch (IOException ex) {
-            System.out.println("Errore apertura file Offerte");
+            System.out.println("Errore apertura file Baratti");
         }
         return barattoList;
     }

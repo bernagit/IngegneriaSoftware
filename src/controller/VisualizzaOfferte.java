@@ -3,7 +3,6 @@ package controller;
 import model.gerarchia.Categoria;
 import model.gerarchia.Gerarchia;
 import model.offerta.Offerta;
-import model.offerta.StatoOfferta;
 import model.user.Utente;
 import utility.JsonUtil;
 import utility.MyMenu;
@@ -44,15 +43,12 @@ public class VisualizzaOfferte implements Action {
     }
 
     private void visualizzaOfferteAperte(Categoria categoria) {
-        List<Offerta> offerte = JsonUtil.readOfferteByCategoria(categoria.getNome());
+        List<Offerta> offerte = JsonUtil.readOfferteAperteByCategoria(categoria.getNome());
         if (offerte != null && offerte.size() >= 1) {
             for (Offerta offerta : offerte) {
-                if (offerta.getStatoCorrente().equals(StatoOfferta.APERTA))
-                    System.out.println(offerta);
-                else
-                    System.out.println("\nNon sono presenti offerte APERTE per questa categoria");
+                System.out.println(offerta);
             }
         } else
-            System.out.println("\nNon sono presenti offerte per questa categoria");
+            System.out.println("\nNon sono presenti offerte Aperte per questa categoria");
     }
 }

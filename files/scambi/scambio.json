@@ -1,43 +1,23 @@
 {
   "piazza": "brescia",
   "luoghi": [
-    "piazzale kossuth",
-    "area nord del parcheggio"
+    "via branze",
+    "via san rocchino",
+    "via oberdan"
   ],
   "giorni": [
     "MONDAY",
-    "SATURDAY",
     "WEDNESDAY",
-    "SUNDAY"
+    "FRIDAY"
   ],
   "intervalliOrari": [
     {
-      "oraInizio": {
-        "hour": 22,
-        "minute": 30,
-        "second": 0,
-        "nano": 0
-      },
-      "oraFine": {
-        "hour": 23,
-        "minute": 30,
-        "second": 0,
-        "nano": 0
-      }
+      "oraInizio": "10:00",
+      "oraFine": "12:00"
     },
     {
-      "oraInizio": {
-        "hour": 21,
-        "minute": 30,
-        "second": 0,
-        "nano": 0
-      },
-      "oraFine": {
-        "hour": 22,
-        "minute": 0,
-        "second": 0,
-        "nano": 0
-      }
+      "oraInizio": "14:30",
+      "oraFine": "18:00"
     }
   ],
   "scadenzaProposta": 10

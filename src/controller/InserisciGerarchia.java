@@ -49,8 +49,10 @@ public class InserisciGerarchia implements Action {
         boolean save = InputDati.yesOrNo("");
         if (save) {
             JsonUtil.writeGerarchia(gerarchia);
-            System.out.println("salvato");
+            System.out.println("Gerarchia salvata");
         }
+        else
+            System.out.println("Gerarchia non salvata");
     }
     private String inserisciNome() {
         boolean nomeRipetuto = true;
