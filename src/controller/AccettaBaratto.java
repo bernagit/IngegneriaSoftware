@@ -12,7 +12,6 @@ import utility.MyMenu;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +41,7 @@ public class AccettaBaratto implements Action {
         baratto.setAppuntamento(this.inserisciAppuntamento(scambio));
         //conferma prima del salvataggio
         boolean save = InputDati.yesOrNo("sei sicuro di voler salvare l'appuntamento? ");
-        if(!save) {
+        if (!save) {
             System.out.println("Appuntamento non salvato!");
             return;
         }
@@ -67,19 +66,16 @@ public class AccettaBaratto implements Action {
     private Baratto selezionaBaratto(Utente utente, Scambio scambio) {
         List<Baratto> barattoList = JsonUtil.readBarattoByUtente(utente.getUsername());
         //se non ci sono offerte
-        if (barattoList.size() == 0){
+        if (barattoList.size() == 0) {
             System.out.println("Non sono presenti baratti da accettare");
             return null;
         }
 
-        MyMenu menu = new MyMenu("Accetta Baratto o Esci");
-        if (barattoList != null && barattoList.size() >= 1) {
-            for (Baratto baratto : barattoList) {
-                menu.addVoce(baratto.getOffertaA().getTitolo());
-            }
-            menu.addVoce("Esci senza accettare baratti");
-        } else
-            System.out.println("Non sono presenti Offerte nello stato Selezionato");
+        MyMenu menu = new MyMenu("Seleziona offerta");
+        for (Baratto baratto : barattoList)
+            menu.addVoce(baratto.getOffertaA().getTitolo() + " \t " + this.calcolaScadenze(baratto, scambio));
+
+        menu.addVoce("Esci senza accettare baratti");
 
         //scelta dell'offerta da accettare
         int scelta = menu.scegli();
@@ -119,5 +115,15 @@ public class AccettaBaratto implements Action {
         System.out.println("Orario: " + orario);
 
         return new Appuntamento(luogo, orario, giorno);
+    }
+
+    private String calcolaScadenze(Baratto baratto, Scambio scambio) {
+        LocalDateTime oggi = LocalDateTime.now();
+        int giorniRisposta = scambio.getScadenzaProposta();
+        LocalDateTime scadenza;
+        scadenza = baratto.getDataOraBaratto().plusDays(giorniRisposta);
+        if (scadenza.isAfter(oggi))
+            return String.format("%d giorni rimanenti",scadenza.getDayOfYear() - oggi.getDayOfYear());
+        return "scaduta";
     }
 }
