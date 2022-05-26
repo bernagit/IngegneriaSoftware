@@ -67,4 +67,8 @@ public class Offerta {
     public Categoria getCategoria() {
         return this.categoria;
     }
+
+    public boolean equals(Offerta offerta){
+        return this.autore.equals(offerta.getAutore()) && this.titolo.equals(offerta.getTitolo());
+    }
 }

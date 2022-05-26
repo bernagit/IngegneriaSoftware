@@ -4,6 +4,7 @@ import controller.Action;
 import controller.ExitException;
 import model.OptionList;
 import model.user.Fruitore;
+import utility.JsonUtil;
 import utility.MyMenu;
 
 public class MainFruitore {
@@ -13,6 +14,9 @@ public class MainFruitore {
         Fruitore fruitore = null;
         String titolo;
         do {
+            // eliminazione dei
+            JsonUtil.eliminaBarattiScaduti();
+
             menu.setVoci(option.getFruitOptionList(fruitore));
             if (fruitore != null) titolo = "Utente "+fruitore.getUsername()+" loggato";
             else titolo = "Programma fruitore";

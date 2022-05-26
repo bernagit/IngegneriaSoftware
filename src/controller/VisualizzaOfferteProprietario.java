@@ -1,5 +1,6 @@
 package controller;
 
+import model.baratto.Baratto;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
@@ -62,7 +63,12 @@ public class VisualizzaOfferteProprietario implements Action {
     }
 
     private void visualizzaStato(Offerta offerta) {
-        System.out.println("Offerta in scambio, impossibile modificare");
+        System.out.println("Offerta in scambio, Ultima risposta ricevuta:");
+        Baratto baratto = JsonUtil.readBarattobyOfferta(offerta);
+        StringBuilder str = new StringBuilder();
+        str.append("Ultima risposta da: ").append(baratto.getDecisore())
+                .append(baratto.getAppuntamento());
+        System.out.println(str);
     }
 }
 
