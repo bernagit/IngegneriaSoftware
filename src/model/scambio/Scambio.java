@@ -63,7 +63,7 @@ public class Scambio {
             do {
                 orari.add(oraTempInizio.toString());
                 oraTempInizio = oraTempInizio.plusMinutes(30);
-            } while (oraTempInizio.getHour() != oraTempFine.getHour() && oraTempInizio.getMinute() != oraTempFine.getMinute());
+            } while (!oraTempInizio.toString().equals(oraTempFine.plusMinutes(30).toString()));
         }
         return orari;
     }
