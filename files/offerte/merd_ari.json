@@ -1,8 +1,8 @@
 {
-  "titolo": "acer aspire",
+  "titolo": "merd",
   "categoria": {
-    "nome": "notebook",
-    "descrizione": "computer portatile",
+    "nome": "desktop",
+    "descrizione": "computer fisso",
     "campi": [
       {
         "nomeCampo": "Stato di conservazione",
@@ -21,7 +21,7 @@
         "required": false
       },
       {
-        "nomeCampo": "pollici schermo",
+        "nomeCampo": "alimentatore",
         "required": false
       }
     ],
@@ -33,41 +33,22 @@
         "nomeCampo": "Stato di conservazione",
         "required": true
       },
-      "contenuto": "ottimo"
+      "contenuto": "asdm"
     },
     {
       "campo": {
         "nomeCampo": "ram",
         "required": true
       },
-      "contenuto": "16gb"
-    },
-    {
-      "campo": {
-        "nomeCampo": "Descrizione libera",
-        "required": false
-      },
-      "contenuto": "bel pc ma piccolo"
-    },
-    {
-      "campo": {
-        "nomeCampo": "hard disk",
-        "required": false
-      },
-      "contenuto": "256gb"
-    },
-    {
-      "campo": {
-        "nomeCampo": "pollici schermo",
-        "required": false
-      },
-      "contenuto": "14\""
+      "contenuto": "asdasd"
     }
   ],
   "autore": "ari",
   "stati": [
     null,
+    "APERTA",
+    "SELEZIONATA",
     "APERTA"
   ],
-  "statoCorrente": "ACCOPPIATA"
+  "statoCorrente": "CHIUSA"
 }
