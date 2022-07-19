@@ -1,9 +1,8 @@
 package controller;
 
-import data.DbConnect;
-import model.Action;
-import mylib.InputDati;
-import structure.Utente;
+import utility.DbConnect;
+import utility.InputDati;
+import model.user.Utente;
 
 public class Login implements Action {
     DbConnect db = new DbConnect();

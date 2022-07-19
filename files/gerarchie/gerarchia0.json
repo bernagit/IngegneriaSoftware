@@ -1,1 +1,0 @@
-{"categoriaRadice":{"nome":"Libri","descrizione":"opera cartacea","campi":[{"nomeCampo":"Stato di conservazione","required":true},{"nomeCampo":"Descrizione libera","required":false},{"nomeCampo":"Titolo","required":true},{"nomeCampo":"Autore","required":true},{"nomeCampo":"Casa editrice","required":false}]}}

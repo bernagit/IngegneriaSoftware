@@ -1,4 +1,4 @@
-package structure;
+package model.user;
 
 public class Configuratore extends Utente{
 

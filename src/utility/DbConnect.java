@@ -1,10 +1,13 @@
-package data;
+package utility;
 
-import structure.*;
+import model.user.Configuratore;
+import model.user.Utente;
+
 import java.sql.*;
 
 public class DbConnect {
     String url = "jdbc:sqlite:./Data.db";
+
     public Connection connect() {
         Connection conn = null;
         try {
@@ -34,19 +37,36 @@ public class DbConnect {
         }
     }
 
-    public void insert(String username, String password, boolean firstLogin, boolean userType) {
+    public Utente insertUser(String username, String password, boolean firstLogin, boolean userType) {
         String sql = "INSERT INTO utenti(username,password,firstlogin,usertype) VALUES(?,?,?,?)";
-
+        String sql2 = "SELECT id FROM utenti WHERE username = ?";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, username);
             pstmt.setString(2, password);
-            pstmt.setBoolean(3, true);
+            //se primo login TRUE, altrimenti FALSE
+            pstmt.setBoolean(3, firstLogin);
             //se l'utente è un configuratore TRUE, se è un fruitore FALSE
-            pstmt.setBoolean(4, true);
+            pstmt.setBoolean(4, userType);
             pstmt.executeUpdate();
+            int id = getId(username);
+            return new Configuratore(id, username, password);
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    private int getId(String username) {
+        String sql = "SELECT id FROM utenti WHERE username = ?";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            return rs.getInt("id");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,7 +85,7 @@ public class DbConnect {
             String user = rs.getString("username");
             String pass = rs.getString("password");
             boolean firstLogin = rs.getBoolean("firstlogin");
-            //conn.close();
+            boolean userType = rs.getBoolean("usertype");
             Configuratore c = new Configuratore(id, user, pass);
             c.setFirstLogin(firstLogin);
             return c;
@@ -99,14 +119,16 @@ public class DbConnect {
     }
 
     public boolean checkNewUser(String newUser) {
-        String sql = "SELECT username FROM utenti"
+        String sql = "SELECT username, firstlogin FROM utenti"
                 + " WHERE username = ?";
         try (Connection conn = this.connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, newUser);
             ResultSet rs = pstmt.executeQuery();
-            rs.getString("username");
-            return false;
+            boolean firstlogin = rs.getBoolean("firstlogin");
+            String username = rs.getString("username");
+            //se user esiste e fa il primo login
+            return (username != null && firstlogin);
         } catch (SQLException e) {
             return true;
         }

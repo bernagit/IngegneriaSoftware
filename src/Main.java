@@ -1,12 +1,11 @@
 import controller.Logout;
-import model.ExitException;
+import controller.ExitException;
 import controller.Login;
 import model.OptionList;
-import mylib.MyMenu;
+import utility.MyMenu;
 
-public class MainProva {
+public class Main {
     public static void main(String[] args) {
-        Login login = new Login();
         OptionList option = new OptionList();
         MyMenu menu = new MyMenu("Programma Configuratore");
         boolean logged = false;

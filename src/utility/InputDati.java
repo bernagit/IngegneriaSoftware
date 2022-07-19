@@ -1,4 +1,4 @@
-package mylib;
+package utility;
 
 import java.util.*;
 
@@ -158,12 +158,9 @@ public class InputDati {
 
 	public static boolean yesOrNo(String messaggio) {
 		String mioMessaggio = messaggio + "(" + RISPOSTA_SI + "/" + RISPOSTA_NO + "): ";
-		char valoreLetto = leggiUpperChar(mioMessaggio, String.valueOf(RISPOSTA_SI) + String.valueOf(RISPOSTA_NO));
+		char valoreLetto = leggiUpperChar(mioMessaggio, String.valueOf(RISPOSTA_SI) + RISPOSTA_NO);
 
-		if (valoreLetto == RISPOSTA_SI)
-			return true;
-		else
-			return false;
+        return valoreLetto == RISPOSTA_SI;
 	}
 
 }

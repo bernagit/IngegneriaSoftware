@@ -1,8 +1,9 @@
 package controller;
 
-import data.JsonUtil;
-import model.Action;
-import structure.Gerarchia;
+import model.gerarchia.Categoria;
+import model.gerarchia.Gerarchia;
+import utility.JsonUtil;
+import utility.MyMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +11,39 @@ import java.util.List;
 public class VisualizzaGerarchie implements Action {
     private void visualizza() {
         List<Gerarchia> gerarchiaList = JsonUtil.readGerarchie();
-        if (gerarchiaList != null) {
+        if (gerarchiaList != null && gerarchiaList.size() != 0) {
+            ArrayList<String> voci = new ArrayList<>();
             for (Gerarchia gerarchia : gerarchiaList)
-                System.out.println(gerarchia);
-        } else
-            System.out.println("Non sono presenti gerarchie.");
+                voci.add(gerarchia.getNomeRadice());
+            MyMenu menu = new MyMenu("Gerarchia da visualizzare");
+            menu.setVoci(voci);
+            //visualizzazione gerarchia
+            Gerarchia gerarchia = gerarchiaList.get(menu.scegli());
+            System.out.println("\nGerarchia: " + gerarchia.getNomeRadice());
+            Categoria radice = gerarchia.getRadice();
+            System.out.println("Descrizione: " + radice.getDescrizione());
+            System.out.println("Campi:");
+            radice.getCampi().forEach(System.out::println);
+            //visualizzazione sottocategorie della gerarchia selezionata
+            boolean end = false;
+            ArrayList<Categoria> sottocategorie = radice.getFigli();
+            do {
+                ArrayList<Categoria> sottocategorieFoglia = new ArrayList<>();
+                for (Categoria categoria : sottocategorie) {
+                    System.out.println("\nSottocategoria di " + categoria.getPadre());
+                    System.out.println("Categoria: " + categoria.getNome());
+                    System.out.println("Descrizione: " + categoria.getDescrizione());
+                    System.out.println("Campi:");
+                    categoria.getCampi().forEach(System.out::println);
+                    if (categoria.getFigli() != null) if (sottocategorieFoglia != null) {
+                        sottocategorieFoglia.addAll(categoria.getFigli());
+                    }
+                    sottocategorie = sottocategorieFoglia;
+                    sottocategorieFoglia = null;
+                }
+                if (sottocategorie == null) end = true;
+            } while (!end);
+        } else System.out.println("\nNessuna gerarchia Inserita");
     }
 
     @Override

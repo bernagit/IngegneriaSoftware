@@ -1,7 +1,7 @@
-package structure;
+package model.user;
 
 public abstract class Utente {
-    private int id;
+    private final int id;
     private String username;
     private String password;
     private boolean firstLogin;

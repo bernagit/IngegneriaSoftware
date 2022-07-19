@@ -1,7 +1,7 @@
-import mylib.*;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import data.DbConnect;
+import utility.DbConnect;
+import utility.InputDati;
 
 public class Administrator {
     public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class Administrator {
         String utente = InputDati.leggiStringaNonVuota("Inserisci nome Utente da creare: ");
         System.out.println("password dell'utente "+ utente+ ": " + password);
         writePasswordToFile(utente, password);
-        db.insert(utente, password, true, true);
+        db.insertUser(utente, password, true, true);
     }
 
     public static String getNewPassword(int passwordSize) {
