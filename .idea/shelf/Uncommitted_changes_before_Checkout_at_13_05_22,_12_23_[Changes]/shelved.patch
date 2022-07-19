@@ -1,0 +1,55 @@
+Index: files/scambio/scambio.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\n  \"piazza\": \"brescia\",\n  \"luoghi\": [\n    \"piazzale kossuth\",\n    \"area nord del parcheggio\"\n  ],\n  \"giorni\": [\n    \"MONDAY\",\n    \"SATURDAY\",\n    \"WEDNESDAY\",\n    \"SUNDAY\"\n  ],\n  \"intervalliOrari\": [\n    {\n      \"oraInizio\": {\n        \"hour\": 22,\n        \"minute\": 30,\n        \"second\": 0,\n        \"nano\": 0\n      },\n      \"oraFine\": {\n        \"hour\": 23,\n        \"minute\": 30,\n        \"second\": 0,\n        \"nano\": 0\n      }\n    },\n    {\n      \"oraInizio\": {\n        \"hour\": 21,\n        \"minute\": 30,\n        \"second\": 0,\n        \"nano\": 0\n      },\n      \"oraFine\": {\n        \"hour\": 22,\n        \"minute\": 0,\n        \"second\": 0,\n        \"nano\": 0\n      }\n    }\n  ],\n  \"scadenzaProposta\": 10\n}
+===================================================================
+diff --git a/files/scambio/scambio.json b/files/scambio/scambio.json
+--- a/files/scambio/scambio.json	
++++ b/files/scambio/scambio.json	
+@@ -1,39 +1,23 @@
+ {
+   "piazza": "brescia",
+   "luoghi": [
+-    "piazzale kossuth",
+-    "area nord del parcheggio"
++    "via oberdan"
+   ],
+   "giorni": [
+-    "MONDAY",
+-    "SATURDAY",
+-    "WEDNESDAY",
+-    "SUNDAY"
++    "TUESDAY",
++    "THURSDAY",
++    "FRIDAY"
+   ],
+   "intervalliOrari": [
+     {
+       "oraInizio": {
+-        "hour": 22,
+-        "minute": 30,
+-        "second": 0,
+-        "nano": 0
+-      },
+-      "oraFine": {
+-        "hour": 23,
+-        "minute": 30,
+-        "second": 0,
+-        "nano": 0
+-      }
+-    },
+-    {
+-      "oraInizio": {
+-        "hour": 21,
+-        "minute": 30,
++        "hour": 12,
++        "minute": 0,
+         "second": 0,
+         "nano": 0
+       },
+       "oraFine": {
+-        "hour": 22,
++        "hour": 14,
+         "minute": 0,
+         "second": 0,
+         "nano": 0

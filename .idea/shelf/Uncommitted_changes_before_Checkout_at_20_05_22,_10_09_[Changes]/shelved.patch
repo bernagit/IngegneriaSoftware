@@ -1,0 +1,51 @@
+Index: src/model/scambio/Scambio.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model.scambio;\n\nimport java.time.DayOfWeek;\nimport java.time.LocalTime;\nimport java.time.format.DateTimeFormatter;\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class Scambio {\n    private String piazza;\n    private List<String> luoghi;\n    private List<DayOfWeek> giorni;\n    private List<IntervalloOrario> intervalliOrari;\n    private int scadenzaProposta;\n\n    public Scambio(String piazza) {\n        this.piazza = piazza;\n    }\n\n    public void setLuoghi(List<String> luoghi) {\n        this.luoghi = luoghi;\n    }\n\n    public void setGiorni(List<DayOfWeek> giorni) {\n        this.giorni = giorni;\n    }\n\n    public void setIntervalliOrari(List<IntervalloOrario> intervalliOrari) {\n        this.intervalliOrari = intervalliOrari;\n    }\n\n    public void setScadenzaProposta(int scadenzaProposta) {\n        this.scadenzaProposta = scadenzaProposta;\n    }\n\n    public String getPiazza() {\n        return piazza;\n    }\n\n    public List<String> getLuoghi() {\n        return luoghi;\n    }\n\n    public List<DayOfWeek> getGiorni() {\n        return giorni;\n    }\n\n    public List<IntervalloOrario> getIntervalliOrari() {\n        return intervalliOrari;\n    }\n\n    public ArrayList<String> getOrariScambio(){\n        ArrayList<String> orari = new ArrayList<>();\n        LocalTime oraTemp;\n        for (IntervalloOrario intervallo: intervalliOrari){\n            oraTemp = intervallo.getOraInizio();\n            while(oraTemp.isBefore(intervallo.getOraFine())) {\n                orari.add(oraTemp.toString());\n                oraTemp = oraTemp.plusMinutes(30);\n            }\n        }\n        return orari;\n    }\n}\n
+===================================================================
+diff --git a/src/model/scambio/Scambio.java b/src/model/scambio/Scambio.java
+--- a/src/model/scambio/Scambio.java	
++++ b/src/model/scambio/Scambio.java	
+@@ -61,4 +61,8 @@
+         }
+         return orari;
+     }
++
++    public int getScadenzaProposta() {
++        return scadenzaProposta;
++    }
+ }
+Index: src/controller/ModificaAppuntamento.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport model.baratto.Appuntamento;\nimport model.baratto.Baratto;\nimport model.offerta.StatoOfferta;\nimport model.scambio.Scambio;\nimport model.user.Utente;\nimport utility.InputDati;\nimport utility.JsonUtil;\nimport utility.MyMenu;\n\nimport java.time.DayOfWeek;\nimport java.time.LocalTime;\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class ModificaAppuntamento implements Action {\n    @Override\n    public Utente execute(Utente utente) throws ExitException {\n        this.visualizzaAppuntamento(utente);\n        return null;\n    }\n\n    private void visualizzaAppuntamento(Utente utente) {\n        List<Baratto> barattoList = JsonUtil.readBarattoInScambio(utente.getUsername());\n        MyMenu menu = new MyMenu(\"Scegli offerta\");\n        ArrayList<String> voci = new ArrayList<>();\n        StringBuilder voce = new StringBuilder();\n        for (Baratto baratto : barattoList) {\n            voce.append(baratto.getOffertaA().getTitolo()).append(\" per: \").append(baratto.getOffertaB().getTitolo());\n            voci.add(voce.toString());\n        }\n        if (voci.size() == 0) {\n            System.out.println(\"errore, lista vuota\");\n            return;\n        }\n        menu.setVoci(voci);\n        //rispondi all'offerta\n        this.accettaORispondi(barattoList.get(menu.scegli()), utente);\n    }\n\n    private void accettaORispondi(Baratto baratto, Utente utente) {\n        if (baratto.getDecisore() != null && !baratto.getDecisore().equals(utente.getUsername())) {\n            System.out.println(\"l'appuntamento deve essere confermato dall'altro utente\");\n            return;\n        }\n        System.out.println(\"\\nDettagli appuntamento:\" + baratto.getAppuntamento());\n        Boolean accetta = InputDati.yesOrNo(\"Vuoi accettare l'appuntamento? \");\n        if (accetta)\n            this.accettaBaratto(baratto, utente);\n        else\n            this.nuovoAppuntamento(baratto, utente);\n\n    }\n\n    private void nuovoAppuntamento(Baratto baratto, Utente utente) {\n        Scambio scambio = JsonUtil.readScambio();\n        Appuntamento appuntamento = this.cambiaAppuntamento(scambio, baratto);\n        if (appuntamento == null) {\n            System.out.println(\"Appuntamento inserito uguale a quello deciso dall'altro utente\");\n            boolean accetta = InputDati.yesOrNo(\"Vuoi accettare dunque? \");\n            if (accetta)\n                this.accettaBaratto(baratto, utente);\n            return;\n        }\n\n        baratto.setAppuntamento(appuntamento);\n        //cambio risposta utente\n        if (baratto.getDecisore().equals(baratto.getUtenteA())) {\n            baratto.setDecisore(baratto.getUtenteB());\n        } else {\n            baratto.setDecisore(baratto.getUtenteA());\n        }\n\n        //scrivo baratto\n        JsonUtil.writeBaratto(baratto);\n    }\n\n    private void accettaBaratto(Baratto baratto, Utente utente) {\n        baratto.getOffertaA().setStatoCorrente(StatoOfferta.CHIUSA);\n        baratto.getOffertaB().setStatoCorrente(StatoOfferta.CHIUSA);\n        JsonUtil.writeOfferta(baratto.getOffertaA());\n        JsonUtil.writeOfferta(baratto.getOffertaB());\n        //elimino il baratto ??\n        JsonUtil.deleteBaratto(baratto);\n    }\n\n    private Appuntamento cambiaAppuntamento(Scambio scambio, Baratto baratto) {\n        //mostro luoghi disponibili e scelgo\n        MyMenu menuLuoghi = new MyMenu(\"scegli luogo\");\n        menuLuoghi.setVoci((ArrayList<String>) scambio.getLuoghi());\n        String luogo = scambio.getLuoghi().get(menuLuoghi.scegli());\n\n        System.out.println(\"luogo: \" + luogo);\n\n        //mostro giorni disponibili e scelgo\n        MyMenu menuGiorni = new MyMenu(\"scegli giorno\");\n        ArrayList<String> giorni = new ArrayList<>();\n        for (DayOfWeek giorno : scambio.getGiorni()) {\n            giorni.add(giorno.name());\n        }\n        menuGiorni.setVoci(giorni);\n        DayOfWeek giorno = DayOfWeek.valueOf(giorni.get(menuGiorni.scegli()));\n\n        System.out.println(\"Giorno: \" + giorno);\n\n        //mostro orari disponibili e scelgo\n        //da mettere a posto\n        MyMenu menuOrari = new MyMenu(\"scegli orario\");\n        ArrayList<String> orari = scambio.getOrariScambio();\n        menuOrari.setVoci(orari);\n        String strOrario = orari.get(menuOrari.scegli());\n        LocalTime orario = LocalTime.parse(strOrario);\n\n        System.out.println(\"Orario: \" + orario);\n\n        Appuntamento nuovoAppuntamento = new Appuntamento(luogo, orario, giorno);\n\n        if (nuovoAppuntamento.equals(baratto.getAppuntamento()))\n            return null;\n        else\n            return nuovoAppuntamento;\n    }\n}\n
+===================================================================
+diff --git a/src/controller/ModificaAppuntamento.java b/src/controller/ModificaAppuntamento.java
+--- a/src/controller/ModificaAppuntamento.java	
++++ b/src/controller/ModificaAppuntamento.java	
+@@ -45,16 +45,22 @@
+             return;
+         }
+         System.out.println("\nDettagli appuntamento:" + baratto.getAppuntamento());
++        Scambio scambio = JsonUtil.readScambio();
++        //calcolo giorni rimanenti
++        /*
++
++         */
++
++
+         Boolean accetta = InputDati.yesOrNo("Vuoi accettare l'appuntamento? ");
+         if (accetta)
+             this.accettaBaratto(baratto, utente);
+         else
+-            this.nuovoAppuntamento(baratto, utente);
++            this.nuovoAppuntamento(baratto, utente, scambio);
+ 
+     }
+ 
+-    private void nuovoAppuntamento(Baratto baratto, Utente utente) {
+-        Scambio scambio = JsonUtil.readScambio();
++    private void nuovoAppuntamento(Baratto baratto, Utente utente, Scambio scambio) {
+         Appuntamento appuntamento = this.cambiaAppuntamento(scambio, baratto);
+         if (appuntamento == null) {
+             System.out.println("Appuntamento inserito uguale a quello deciso dall'altro utente");

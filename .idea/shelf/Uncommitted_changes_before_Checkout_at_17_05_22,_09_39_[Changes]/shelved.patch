@@ -1,0 +1,102 @@
+Index: src/controller/VisualizzaOfferteProprietario.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport model.offerta.Offerta;\nimport model.offerta.StatoOfferta;\nimport model.user.Utente;\nimport utility.JsonUtil;\nimport utility.MyMenu;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.List;\nimport java.util.stream.Collectors;\n\npublic class VisualizzaOfferteProprietario implements Action {\n    @Override\n    public Utente execute(Utente utente) throws ExitException {\n        this.visualizzaEModifica(utente);\n        return null;\n    }\n\n    private void visualizzaEModifica(Utente utente) {\n        List<Offerta> offerte = JsonUtil.readOffertaByAutore(utente.getUsername());\n        MyMenu menu = new MyMenu(\"Modifica stato o Esci\");\n        if (offerte != null && offerte.size() >= 1) {\n            int scelta;\n            do {\n                //aggiunta voce esci\n                menu.clearVoci();\n                menu.addVoce(\"Salva ed Esci\");\n                for (Offerta offerta : offerte)\n                    menu.addVoce(offerta.getTitolo() + \": \" + offerta.getStatoCorrente());\n                //modifica o uscita dal metodo\n                scelta = menu.scegli();\n                if(scelta != 0)\n                    this.modificaOfferta(offerte.get(scelta-1));\n            } while (scelta != 0);\n\n            for(Offerta offerta: offerte)\n                JsonUtil.writeOfferta(offerta);\n        } else\n            System.out.println(\"Non sei autore di nessuna offerta.\");\n\n    }\n\n    private void modificaOfferta(Offerta offerta) {\n        System.out.println(\"Offerta da modificare: \" + offerta.getTitolo());\n        MyMenu menu = new MyMenu(\"Scegli stato Offerta\");\n        List<StatoOfferta> stati = Arrays.stream(StatoOfferta.values()).collect(Collectors.toList());\n        for (StatoOfferta stato : stati)\n            menu.addVoce(stato.name());\n        //scelta nuovo stato dal menu\n        StatoOfferta newState = stati.get(menu.scegli());\n        if (!offerta.getStatoCorrente().equals(newState)) {\n            offerta.archiviaStato();\n            offerta.setStatoCorrente(newState);\n        }\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/controller/VisualizzaOfferteProprietario.java b/src/controller/VisualizzaOfferteProprietario.java
+--- a/src/controller/VisualizzaOfferteProprietario.java	
++++ b/src/controller/VisualizzaOfferteProprietario.java	
+@@ -51,7 +51,6 @@
+         //scelta nuovo stato dal menu
+         StatoOfferta newState = stati.get(menu.scegli());
+         if (!offerta.getStatoCorrente().equals(newState)) {
+-            offerta.archiviaStato();
+             offerta.setStatoCorrente(newState);
+         }
+     }
+Index: src/controller/LoginFruit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport model.user.Fruitore;\nimport utility.DbConnect;\nimport utility.InputDati;\nimport model.user.Utente;\n\npublic class LoginFruit implements Action {\n\n    DbConnect db = new DbConnect();\n\n    @Override\n    public Utente execute(Utente utente) {\n        return doLogin();\n    }\n\n    private Utente doLogin() {\n        boolean firstLogin = InputDati.yesOrNo(\"Primo Login? \");\n        if (firstLogin)\n            return this.firstLogin();\n        else\n            return this.normalLogin();\n    }\n\n    private Fruitore normalLogin() {\n\n        String user = InputDati.leggiStringaNonVuota(\"Inserisci username: \");\n        String pass = InputDati.leggiStringaNonVuota(\"Inserisci password: \");\n        Utente fruitore = db.checkLogin(user, pass);\n        if (fruitore != null) {\n            if (user.equals(fruitore.getUsername()) && pass.equals(fruitore.getPassword()) && !fruitore.getUserType())\n                return (Fruitore) fruitore;\n            else {\n                System.out.println(\"Login Errato, profilo Configuratore...\");\n                return null;\n            }\n        }\n        return null;\n    }\n\n    private Fruitore firstLogin() {\n        boolean userOk;\n        String user;\n        String password;\n        do {\n            user = InputDati.leggiStringaNonVuota(\"Inserisci username: \");\n            userOk = db.checkNewUser(user);\n            if (!userOk)\n                System.out.println(\"Username già presente\");\n            else\n                userOk = true;\n        } while (!userOk);\n        boolean passOk = false;\n        do {\n            password = InputDati.leggiStringaNonVuota(\"Inserisci password: \");\n            String ripeti = InputDati.leggiStringaNonVuota(\"Ripeti password: \");\n            if (password.equals(ripeti))\n                passOk = true;\n            else\n                System.out.println(\"Passowrd diverse...\");\n        } while (!passOk);\n        return (Fruitore) db.insertUser(user, password, false, false);\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/controller/LoginFruit.java b/src/controller/LoginFruit.java
+--- a/src/controller/LoginFruit.java	
++++ b/src/controller/LoginFruit.java	
+@@ -29,6 +29,7 @@
+         Utente fruitore = db.checkLogin(user, pass);
+         if (fruitore != null) {
+             if (user.equals(fruitore.getUsername()) && pass.equals(fruitore.getPassword()) && !fruitore.getUserType())
++                
+                 return (Fruitore) fruitore;
+             else {
+                 System.out.println("Login Errato, profilo Configuratore...");
+Index: src/model/offerta/AggiornaOfferte.java
+===================================================================
+diff --git a/src/model/offerta/AggiornaOfferte.java b/src/model/offerta/AggiornaOfferte.java
+new file mode 100644
+--- /dev/null	
++++ b/src/model/offerta/AggiornaOfferte.java	
+@@ -0,0 +1,7 @@
++package model.offerta;
++
++public class AggiornaOfferte {
++    public static void updateOfferte() {
++        //controllo sui giorni passati
++    }
++}
+Index: src/model/baratto/Appuntamento.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model.baratto;\n\npublic class Appuntamento {\n\n}\n
+===================================================================
+diff --git a/src/model/baratto/Appuntamento.java b/src/model/baratto/Appuntamento.java
+--- a/src/model/baratto/Appuntamento.java	
++++ b/src/model/baratto/Appuntamento.java	
+@@ -1,5 +1,8 @@
+ package model.baratto;
+ 
++import java.time.LocalDateTime;
++
+ public class Appuntamento {
+-
++    private String luogo;
++    private LocalDateTime dataOra;
+ }
+Index: src/model/baratto/Baratto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model.baratto;\n\nimport model.offerta.Offerta;\n\nimport java.time.LocalDateTime;\nimport java.time.temporal.ChronoUnit;\nimport java.time.temporal.TemporalUnit;\n\npublic class Baratto {\n    private Offerta offertaA;\n    private Offerta offertaB;\n\n    private LocalDateTime dataOraBaratto;\n\n    private String utenteA;\n    private String utenteB;\n\n    private Appuntamento appuntamento;\n\n    public Baratto(Offerta offertaA, Offerta offertaB, LocalDateTime dataOraBaratto) {\n        this.offertaA = offertaA;\n        this.offertaB = offertaB;\n        this.dataOraBaratto = dataOraBaratto;\n        this.utenteA = offertaA.getAutore();\n        this.utenteB = offertaB.getAutore();\n    }\n\n    public Offerta getOffertaA() {\n        return offertaA;\n    }\n\n    public Offerta getOffertaB() {\n        return offertaB;\n    }\n\n    public LocalDateTime getDataOraBaratto() {\n        return dataOraBaratto.truncatedTo(ChronoUnit.SECONDS);\n    }\n\n}\n
+===================================================================
+diff --git a/src/model/baratto/Baratto.java b/src/model/baratto/Baratto.java
+--- a/src/model/baratto/Baratto.java	
++++ b/src/model/baratto/Baratto.java	
+@@ -9,9 +9,7 @@
+ public class Baratto {
+     private Offerta offertaA;
+     private Offerta offertaB;
+-
+     private LocalDateTime dataOraBaratto;
+-
+     private String utenteA;
+     private String utenteB;
+ 
+Index: src/controller/BarattaOfferta.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package controller;\n\nimport model.baratto.Baratto;\nimport model.gerarchia.Categoria;\nimport model.offerta.Offerta;\nimport model.offerta.StatoOfferta;\nimport model.user.Utente;\nimport utility.InputDati;\nimport utility.JsonUtil;\nimport utility.MyMenu;\n\nimport java.time.LocalDateTime;\nimport java.util.List;\n\npublic class BarattaOfferta implements Action {\n    @Override\n    public Utente execute(Utente utente) throws ExitException {\n        this.barattaOfferta(utente);\n        return null;\n    }\n\n    private void barattaOfferta(Utente utente) {\n        List<Offerta> offerteAperte = JsonUtil.readOffertaByAutoreAndState(utente.getUsername(), StatoOfferta.APERTA);\n        MyMenu menu = new MyMenu(\"Scegli oggetto da barattare\");\n        if (offerteAperte != null && offerteAperte.size() >= 1) {\n            for (Offerta offerta : offerteAperte) {\n                menu.addVoce(offerta.getTitolo());\n            }\n            menu.addVoce(\"Esci senza barattare\");\n        } else\n            System.out.println(\"Non sono presenti Offerte nello stato Aperto\");\n        //scelta dell'offerta da barattare\n        int scelta = menu.scegli();\n        //esci\n        if (scelta == offerteAperte.size())\n            return;\n\n        Offerta offertaDaBarattare = offerteAperte.get(scelta);\n        Offerta offertaScelta = this.scegliOffertaAltroAutore(utente, offertaDaBarattare.getCategoria());\n        if (offertaScelta == null)\n            return;\n\n        boolean conferma = InputDati.yesOrNo(\"Sei sicuro di voler scambiare \" + offertaDaBarattare.getTitolo()\n                + \" con: \" + offertaScelta.getTitolo());\n        if (!conferma) {\n            return;\n        }\n\n        Baratto baratto = this.inserisciBaratto(offertaDaBarattare, offertaScelta);\n        JsonUtil.writeBaratto(baratto);\n    }\n\n    private Offerta scegliOffertaAltroAutore(Utente utente, Categoria categoria) {\n        List<Offerta> offerte = JsonUtil.readOfferteApertebyCategoria(utente.getUsername(), categoria);\n        MyMenu menu = new MyMenu(\"Scegli oggetto che vorresti\");\n        if (offerte.size() < 1) {\n            System.out.println(\"Non sono presenti offerte aperte della stessa categoria\");\n        } else {\n            for (Offerta offerta : offerte) {\n                menu.addVoce(offerta.getTitolo() + \"\\t\\tutente: \" + offerta.getAutore());\n            }\n            menu.addVoce(\"Esci senza barattare\");\n            int scelta = menu.scegli();\n            if (scelta == offerte.size())\n                return null;\n            return offerte.get(scelta);\n        }\n        return null;\n    }\n\n    private Baratto inserisciBaratto(Offerta offertaDaBarattare, Offerta offertaScelta) {\n        //cambio di stato delle offerte\n        offertaDaBarattare.setStatoCorrente(StatoOfferta.ACCOPPIATA);\n        JsonUtil.writeOfferta(offertaDaBarattare);\n        offertaScelta.setStatoCorrente(StatoOfferta.SELEZIONATA);\n        JsonUtil.writeOfferta(offertaScelta);\n        //creo baratto\n        return new Baratto(offertaDaBarattare, offertaScelta, LocalDateTime.now());\n    }\n}\n
+===================================================================
+diff --git a/src/controller/BarattaOfferta.java b/src/controller/BarattaOfferta.java
+--- a/src/controller/BarattaOfferta.java	
++++ b/src/controller/BarattaOfferta.java	
+@@ -9,6 +9,7 @@
+ import utility.JsonUtil;
+ import utility.MyMenu;
+ 
++import java.time.Duration;
+ import java.time.LocalDateTime;
+ import java.util.List;
+ 

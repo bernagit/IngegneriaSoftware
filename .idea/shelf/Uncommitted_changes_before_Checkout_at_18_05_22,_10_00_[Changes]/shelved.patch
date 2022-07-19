@@ -1,0 +1,17 @@
+Index: src/model/OptionList.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package model;\nimport controller.*;\nimport model.user.Configuratore;\nimport model.user.Fruitore;\n\nimport java.util.ArrayList;\nimport java.util.List;\n\npublic class OptionList {\n    final private List<Option> voci = new ArrayList<>();\n    public OptionList(){}\n    public Option getOption(int n){\n        return voci.get(n);\n    }\n    public ArrayList<String> getConfOptionList(Configuratore conf){\n        if(conf != null){\n            this.setLoggedOptionConf();\n        }\n        else{\n            this.setOptionConf();\n        }\n        ArrayList<String> temp = new ArrayList<>();\n        for (Option opt: voci){\n            temp.add(opt.getLabel());\n        }\n        return temp;\n    }\n    public ArrayList<String> getFruitOptionList(Fruitore fruitore) {\n        if (fruitore != null)\n            this.setLoggedOptionFruit();\n        else\n            this.setOptionFruit();\n        ArrayList<String> temp = new ArrayList<>();\n        for (Option opt: voci){\n            temp.add(opt.getLabel());\n        }\n        return temp;\n    }\n    private void setOptionConf(){\n        voci.clear();\n        voci.add(new Option(\"Esci\", new Exit()));\n        voci.add(new Option(\"Login\", new LoginConf()));\n        voci.add(new Option(\"Visualizza Gerarchie\", new VisualizzaGerarchie()));\n    }\n    private void setLoggedOptionConf(){\n        voci.clear();\n        voci.add(new Option(\"Esci\", new Exit()));\n        voci.add(new Option(\"Logout\", new Logout()));\n        voci.add(new Option(\"Visualizza Gerarchie\", new VisualizzaGerarchie()));\n        voci.add(new Option(\"Inserisci Gerarchia\", new InserisciGerarchia()));\n        voci.add(new Option(\"Aggiungi Scambio\", new InserisciScambio()));\n        voci.add(new Option(\"Visualizza Offerte Aperte\", new VisualizzaOfferte()));\n    }\n    private void setOptionFruit() {\n        voci.clear();\n        voci.add(new Option(\"Esci\", new Exit()));\n        voci.add(new Option(\"Login\", new LoginFruit()));\n    }\n    private void setLoggedOptionFruit() {\n        voci.clear();\n        voci.add(new Option(\"Esci\", new Exit()));\n        voci.add(new Option(\"Logout\", new Logout()));\n        voci.add(new Option(\"Visualizza Scambi\", new VisualizzaScambi()));\n        voci.add(new Option(\"Pubblica Offerta\", new PubblicaOfferta()));\n        voci.add(new Option(\"Visualizza Offerte Aperte\", new VisualizzaOfferte()));\n        voci.add(new Option(\"Visualizza o Modifica Offerte Inserite\", new VisualizzaOfferteProprietario()));\n        voci.add(new Option(\"Baratta Oggetto\", new BarattaOfferta()));\n        voci.add(new Option(\"Accetta Baratto\", new AccettaBaratto()));\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/model/OptionList.java b/src/model/OptionList.java
+--- a/src/model/OptionList.java	
++++ b/src/model/OptionList.java	
+@@ -66,5 +66,6 @@
+         voci.add(new Option("Visualizza o Modifica Offerte Inserite", new VisualizzaOfferteProprietario()));
+         voci.add(new Option("Baratta Oggetto", new BarattaOfferta()));
+         voci.add(new Option("Accetta Baratto", new AccettaBaratto()));
++        voci.add(new Option("Visualizza e/o accetta Appuntamento", new ModificaAppuntamento()));
+     }
+ }
