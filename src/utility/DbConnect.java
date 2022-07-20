@@ -6,7 +6,7 @@ import model.user.Utente;
 import java.sql.*;
 
 public class DbConnect {
-    String url = "jdbc:sqlite:./Data.db";
+    private String url = "jdbc:sqlite:./Data.db";
 
     public Connection connect() {
         Connection conn = null;

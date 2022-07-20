@@ -34,17 +34,6 @@ public class OptionList {
         }
         return temp;
     }
-    /*
-    public ArrayList<String> getOptionList(){
-        ArrayList<String> temp = new ArrayList<>();
-        for(Option opt: voci){
-            if(!opt.isRequireLogin()){
-                temp.add(opt.getLabel());
-            }
-        }
-        return temp;
-    }
-    */
     public Option getOption(int n){
         return voci.get(n);
     }
