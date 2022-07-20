@@ -1,0 +1,26 @@
+@startuml package
+
+package controller{
+    interface Action{}
+    class Option{}
+    class OptionList{}
+    Option <--o OptionList
+    Option ..> Action
+}
+
+package model{
+    package user {}
+    package gerarchia{}
+}
+package utility{
+    class DbConnect {}
+    class JsonUtil{}
+    class MyMenu{}
+    class InputDati{}
+}
+
+controller ..> model: use
+controller ..> utility: use
+
+
+@enduml

@@ -1,5 +1,4 @@
-@startuml
-
+@startuml ver1
 
 :Configuratore: as conf
 :Utente: as user

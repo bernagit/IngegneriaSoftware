@@ -1,0 +1,70 @@
+@startuml controller
+
+interface Action{
+    +execute()
+}
+
+class Option{
+    -label: String
+    -action: Action
+    +Option(label: String, action: Action)
+    +getLabel(): String
+    +getAction(): Action
+}
+
+class OptionList{
+    -voci: ArrayList<Option>
+    +OptionList()
+    +setOption()
+    +setLoggedOption()
+    +getOption(n: int): Option
+    +getOptionList(logged: boolean): ArrayList<Option>
+}
+
+Option <--* OptionList
+Option o-- Action
+
+class ExitException extends Exception{
+    +ExitException(message: String)
+}
+class Exit implements Action{
+    +execute()
+}
+
+Exit --> ExitException
+
+class Login implements Action{
+    -db: DbConnect
+    +execute()
+    +doLogin():  boolean
+    +firstLogin(utente: Utente): boolean
+}
+
+class Logout implements Action{
+    +execute()
+}
+
+class InserisciGerarchia implements Action{
+    +execute()
+    +inserisciGerarchia(): void
+    +inserisciNome(): String
+    +aggiungiCampi(radice: Categoria, categoria: Categoria): void
+    +scegliPadre(categoria: Categoria): Categoria
+    +inserisciFiglio(num: int, padre: Categoria, radice: Categoria): void
+
+}
+
+class VisualizzaGerarchie implements Action{
+    +execute()
+    +visualizza(): void
+}
+
+Login ..> model.user.Utente: use
+Login ..> utility.DbConnect: use
+InserisciGerarchia ..> model.gerarchia.Categoria: use
+VisualizzaGerarchie ..> model.gerarchia.Categoria: use
+InserisciGerarchia ..> utility.JsonUtil: use
+VisualizzaGerarchie ..> utility.JsonUtil: use
+
+
+@enduml
