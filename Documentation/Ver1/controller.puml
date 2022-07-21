@@ -36,8 +36,8 @@ Exit --> ExitException
 class Login implements Action{
     -db: DbConnect
     +execute()
-    +doLogin():  boolean
-    +firstLogin(utente: Utente): boolean
+    -doLogin():  boolean
+    -firstLogin(utente: Utente): boolean
 }
 
 class Logout implements Action{
@@ -46,17 +46,17 @@ class Logout implements Action{
 
 class InserisciGerarchia implements Action{
     +execute()
-    +inserisciGerarchia(): void
-    +inserisciNome(): String
-    +aggiungiCampi(radice: Categoria, categoria: Categoria): void
-    +scegliPadre(categoria: Categoria): Categoria
-    +inserisciFiglio(num: int, padre: Categoria, radice: Categoria): void
+    -inserisciGerarchia(): void
+    -inserisciNome(): String
+    -aggiungiCampi(radice: Categoria, categoria: Categoria): void
+    -scegliPadre(categoria: Categoria): Categoria
+    -inserisciFiglio(num: int, padre: Categoria, radice: Categoria): void
 
 }
 
 class VisualizzaGerarchie implements Action{
     +execute()
-    +visualizza(): void
+    -visualizza(): void
 }
 
 Login ..> model.user.Utente: use

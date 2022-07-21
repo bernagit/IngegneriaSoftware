@@ -1,0 +1,26 @@
+@startuml main
+class Administrator {
+    +{static} main(args: String[]): void
+    +{static} getNewPassword (pwSize: int): String
+    +{static} writePasswordToFile (user: String, pass: String): void
+
+}
+
+class MainConfiguratore {
+    +{static} main(args: String[]): void
+}
+
+class MainFruitore {
+    +{static} main(args: String[]): void
+}
+
+
+MainConfiguratore o--> controller.OptionList
+MainConfiguratore o--> utility.MyMenu
+
+MainFruitore o--> controller.OptionList
+MainFruitore o--> utility.MyMenu
+
+Administrator ..> utility.DbConnect: use
+
+@enduml

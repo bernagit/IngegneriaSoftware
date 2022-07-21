@@ -1,0 +1,57 @@
+@startuml ver1
+
+:Configuratore: as conf
+:Utente: as user
+:Amministratore: as admin
+conf -up-> user
+
+conf -- (Login Configuratore)
+conf -- (Visualizza Gerarchia)
+conf -- (Creazione Gerarchia)
+conf -- (Registrazione Configuratore)
+
+admin -- (Registrazione Configuratore)
+
+(Creazione Gerarchia) ..> (Login Configuratore): <<include>>
+(Login Configuratore) ..> (Login Utente): <<extends>>
+
+'Versione 2'
+
+:Fruitore: as fruit
+fruit -up-> user
+
+(Aggiungi Scambio)
+(Login Fruitore)
+(Registrazione Fruitore)
+(Visualizza Scambi)
+
+conf --(Aggiungi Scambio)
+fruit -- (Visualizza Scambi)
+fruit -- (Registrazione Fruitore)
+fruit -- (Login Fruitore)
+
+(Login Fruitore) ..> (Login Utente): <<extends>>
+(Visualizza Scambi) ..> (Login Fruitore): <<include>>
+(Aggiungi Scambio) ..> (Login Configuratore): <<include>>
+
+'versione 3'
+(Visualizza Offerte per categoria) #Pink
+(Pubblica Articolo) #Pink
+(Ritira Offerta) #Pink
+(Visualizza Offerte Pubblicate) #Pink
+
+fruit -- (Visualizza Offerte per categoria)
+fruit -- (Pubblica Articolo)
+fruit -- (Ritira Offerta)
+fruit -- (Visualizza Offerte Pubblicate)
+conf -- (Visualizza Offerte per categoria)
+
+(Visualizza Offerte per categoria) ..> (Login Fruitore): <<include>>
+(Pubblica Articolo) ..> (Login Fruitore): <<include>>
+(Ritira Offerta) ..> (Login Fruitore): <<include>>
+(Visualizza Offerte Pubblicate) ..> (Login Fruitore): <<include>>
+(Visualizza Offerte per categoria) ..> (Login Configuratore): <<include>>
+
+
+
+@enduml

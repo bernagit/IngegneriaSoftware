@@ -1,0 +1,67 @@
+@startuml controller
+
+
+
+interface Action{
+    +execute(utente: Utente): Utente
+}
+
+note left of Action
+    Per questioni di spazio le classi dei casi d'uso delle versioni
+    precedenti rimangono ma senza dettagli
+endnote
+
+class Option{
+    -label: String
+    -action: Action
+    +Option(label: String, action: Action)
+    +getLabel(): String
+    +getAction(): Action
+}
+
+class OptionList{
+    -voci: ArrayList<Option>
+    +OptionList()
+    +setOption()
+    +setLoggedOption()
+    +getOption(n: int): Option
+    +getOptionList(logged: boolean): ArrayList<Option>
+}
+
+Option <--* OptionList
+Option o-- Action
+
+class Exit implements Action{}
+
+class LoginConf implements Action{}
+
+class Logout implements Action{}
+
+class InserisciGerarchia implements Action{}
+
+class VisualizzaGerarchie implements Action{}
+
+class InserisciScambio implements Action{
+    +execute(utente: Utente): Utente
+    -inserisciScambio():void
+    -inserisciLuoghi():List<String>
+    -inserisciGiorni():List<DayOfWeek>
+    -inserisciIntervalli():List<IntervalloOrario>
+    -inserisciIntervallo():IntervalloOrario
+    -inserisciOrario():LocalTime
+
+}
+
+class VisualizzaScambi implements Action{
+    +execute(utente: Utente): Utente
+    -visualizzaScambio():void
+}
+
+class LoginFruit implements Action{
+    +execute(utente: Utente): Utente
+    -doLogin():Utente
+    -normalLogin():Fruitore
+    -firstLogin():Fruitore
+}
+
+@enduml
