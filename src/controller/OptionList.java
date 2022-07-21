@@ -1,5 +1,4 @@
-package model;
-import controller.*;
+package controller;
 import model.user.Configuratore;
 import model.user.Fruitore;
 

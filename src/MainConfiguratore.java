@@ -2,7 +2,7 @@ import controller.Logout;
 import controller.Action;
 import controller.ExitException;
 import controller.LoginConf;
-import model.OptionList;
+import controller.OptionList;
 import model.user.Configuratore;
 import utility.MyMenu;
 

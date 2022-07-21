@@ -48,7 +48,8 @@
     null,
     "APERTA",
     "SELEZIONATA",
-    "APERTA"
+    "APERTA",
+    "SELEZIONATA"
   ],
-  "statoCorrente": "CHIUSA"
+  "statoCorrente": "APERTA"
 }
