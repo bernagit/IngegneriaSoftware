@@ -1,4 +1,4 @@
-@startuml model_user
+@startuml model.user
 
 package model.user{
 

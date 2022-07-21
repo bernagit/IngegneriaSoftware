@@ -1,4 +1,4 @@
-@startuml model_user
+@startuml model.scambio
 
 package model.scambio{
     class Scambio{
@@ -30,6 +30,6 @@ package model.scambio{
         +getOraFine(): LocalTime
     }
 
-    IntervalloOrario "n" <--* "1" Scambio
+    IntervalloOrario "1..n" <--* "1" Scambio
 }
 @enduml

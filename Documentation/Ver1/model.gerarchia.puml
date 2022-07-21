@@ -43,7 +43,7 @@ package model.gerarchia{
         +toString(): String
     }
 
-    CampoNativo "n" <--* "1" Categoria : contains
+    CampoNativo "2..n" <--* "1" Categoria : contains
     Categoria "1" <--* "1" Gerarchia  : contains
     Categoria <--* "*" Categoria : children
 }

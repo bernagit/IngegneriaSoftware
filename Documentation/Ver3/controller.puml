@@ -1,0 +1,39 @@
+@startuml controller
+
+interface Action{
+    +execute(utente: Utente): Utente
+}
+
+note left of Action
+    Per questioni di spazio le classi dei casi d'uso delle versioni
+    precedenti rimangono ma senza dettagli
+endnote
+
+class InserisciScambio implements Action{}
+
+class VisualizzaScambi implements Action{}
+
+class LoginFruit implements Action{}
+
+class PubblicaOfferta implements Action{
+    +execute(utente: Utente): Utente
+    -inserisciOfferta(utente: Utente): void
+    -scegliCategoriaFoglia(gerarchiaScelta: Gerarchia): Categoria
+    -inserisciDatiOfferta(categoriaFoglia: Categoria, utente: Utente): Offerta
+    -compilaCampi(categoriaFoglia: Categoria, obbligatori: boolean): List<CampoCompilato>
+}
+
+class VisualizzaOfferte implements Action{
+    +execute(utente: Utente): Utente
+    -sceltaGerarchia():void
+    -scegliCategoriaFoglia(gerarchiaScelta: Gerarchia): Categoria
+    -visualizzaOfferteAperte(categoriaFoglia: Categoria): void
+}
+
+class VisualizzaOfferteProprietario implements Action{
+    +execute(utente: Utente): Utente
+    -visualizzaEModifica(utente: Utente): void
+    -modificaOfferta(offerta: Offerta): void
+}
+
+@enduml

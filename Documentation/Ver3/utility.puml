@@ -1,10 +1,12 @@
-@startuml utility
+@startuml class_diagram
 
 package com.google.gson #EEEEEE{}
 
 package model.gerarchia #EEEEEE{}
 
 package model.scambio #EEEEEE{}
+
+package model.offerta #EEEEEE{}
 
 package "utility" #DDDDDD{
     
@@ -15,17 +17,22 @@ package "utility" #DDDDDD{
         +{static} checkNomeGerarchiaRipetuto(nome: String): boolean
         +{static} writeScambio(scambio: Scambio): void
         +{static} readScambio(): List<Scambio>
+        +{static} writeOfferta(offerta: Offerta): void
+        +{static} readOffertaByCategoria(nomeCategoria: String): List<Offerta>
+        +{static} readOffertaByAutore(autore: String): List<Offerta>
     }
 
     JsonUtil -up..> com.google.gson: use
     JsonUtil -up..> model.gerarchia: use
     JsonUtil -up..> model.scambio: use
+    JsonUtil -up..> model.offerta: use
 
 }
 note right of JsonUtil
 nuovi metodi: 
-    -writeScambio
-    -readScambio
+    - writeOfferta
+    - readOffertaByCategoria
+    - readOffertaByAutore
 end note
 
 
