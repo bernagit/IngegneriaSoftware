@@ -2,7 +2,7 @@ import controller.LoginFruit;
 import controller.Logout;
 import controller.Action;
 import controller.ExitException;
-import model.OptionList;
+import controller.OptionList;
 import model.user.Fruitore;
 import utility.MyMenu;
 
