@@ -6,13 +6,13 @@
 conf -up-> user
 
 conf -- (Login\nConfiguratore)
-conf -- (Visualizza\nGerarchia)
-conf -- (Creazione\nGerarchia)
+'conf -- (Visualizza\nGerarchia)
+'conf -- (Creazione\nGerarchia)
 'conf -- (Registrazione\nConfiguratore)
 
 'admin -- (Registrazione\nConfiguratore)
 
-(Creazione\nGerarchia) ..> (Login\nConfiguratore): <<include>>
+'(Creazione\nGerarchia) ..> (Login\nConfiguratore): <<include>>
 (Login\nConfiguratore) ..> (Login Utente): <<extends>>
 
 'Versione 2'
@@ -20,34 +20,34 @@ conf -- (Creazione\nGerarchia)
 :Fruitore: as fruit
 fruit -up-> user
 
-(Aggiungi\nScambio)
+'(Aggiungi\nScambio)
 (Login\nFruitore)
-(Registrazione\nFruitore)
-(Visualizza\nScambi)
+'(Registrazione\nFruitore)
+'(Visualizza\nScambi)
 
-conf --(Aggiungi\nScambio)
-fruit -- (Visualizza\nScambi)
-fruit -- (Registrazione\nFruitore)
+'conf --(Aggiungi\nScambio)
+'fruit -- (Visualizza\nScambi)
+'fruit -- (Registrazione\nFruitore)
 'fruit -- (Login\nFruitore)
 
 (Login\nFruitore) ..> (Login Utente): <<extends>>
-(Visualizza\nScambi) ..> (Login\nFruitore): <<include>>
-(Aggiungi\nScambio) ..> (Login\nConfiguratore): <<include>>
+'(Visualizza\nScambi) ..> (Login\nFruitore): <<include>>
+'(Aggiungi\nScambio) ..> (Login\nConfiguratore): <<include>>
 
 'versione 3'
-(Visualizza\nOfferte\nper categoria)
-(Pubblica\nArticolo)
+'(Visualizza\nOfferte\nper categoria)
+'(Pubblica\nArticolo)
 '(Ritira\nOfferta)
 '(Visualizza\nOfferte\nPubblicate)
 
-fruit -- (Visualizza\nOfferte\nper categoria)
-fruit -- (Pubblica\nArticolo)
+'fruit -- (Visualizza\nOfferte\nper categoria)
+'fruit -- (Pubblica\nArticolo)
 'fruit -- (Ritira\nOfferta)
 'fruit -- (Visualizza\nOfferte\nPubblicate)
 'conf -- (Visualizza\nOfferte\nper categoria)
 
-(Visualizza\nOfferte\nper categoria) ..> (Login\nFruitore): <<include>>
-(Pubblica\nArticolo) ..> (Login\nFruitore): <<include>>
+'(Visualizza\nOfferte\nper categoria) ..> (Login\nFruitore): <<include>>
+'(Pubblica\nArticolo) ..> (Login\nFruitore): <<include>>
 '(Ritira\nOfferta) ..> (Login\nFruitore): <<include>>
 '(Visualizza\nOfferte\nPubblicate) ..> (Login\nFruitore): <<include>>
 '(Visualizza\nOfferte\nper categoria) ..> (Login\nConfiguratore): <<include>>

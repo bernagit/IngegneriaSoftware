@@ -1,18 +1,23 @@
 @startuml use_case
 
+note as n1
+    Si evidenziano in rosa i nuovi casi d'uso.
+    alcuni casi d'uso della versione precedente sono stati eliminati.
+endnote
+
 :Configuratore: as conf
 :Utente: as user
-:Amministratore: as admin
+':Amministratore: as admin
 conf -up-> user
 
 conf -- (Login Configuratore)
-conf -- (Visualizza Gerarchia)
-conf -- (Creazione Gerarchia)
-conf -- (Registrazione Configuratore)
+'conf -- (Visualizza Gerarchia)
+'conf -- (Creazione Gerarchia)
+'conf -- (Registrazione Configuratore)
 
-admin -- (Registrazione Configuratore)
+'admin -- (Registrazione Configuratore)
 
-(Creazione Gerarchia) ..> (Login Configuratore): <<include>>
+'(Creazione Gerarchia) ..> (Login Configuratore): <<include>>
 (Login Configuratore) ..> (Login Utente): <<extends>>
 
 'Versione 2'

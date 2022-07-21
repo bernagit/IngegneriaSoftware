@@ -12,17 +12,17 @@ endnote
 class AccettaBaratto implements Action{
     +execute(utente: Utente): Utente
     -accettaBaratto(utente: Utente): void
-    -selezionaBaratto(utente: Utente, scambio: Scambio): Baratto
-    -inserisciAppuntamento(scambio: Scambio): Appuntamento
-    -calcolaScadenze(baratto: Baratto, scambio: Scambio): String
+    -selezionaBaratto(u: Utente, sc: Scambio): Baratto
+    -inserisciAppuntamento(sc: Scambio): Appuntamento
+    -calcolaScadenze(brt: Baratto, scmb: Scambio): String
 }
 
 
 class BarattaOfferta implements Action{
     +execute(utente: Utente): Utente
     -barattaOfferta(utente: Utente): void
-    -scegliOffertaAltroAutore(utente: Utente, categoria: Categoria): Offerta
-    -inserisciBaratto(offertaDaBarattare: Offerta, offertaScelta: Offerta): Baratto
+    -scegliOffertaAltroAutore(u: Utente, cat: Categoria): Offerta
+    -inserisciBaratto(daBarattare: Offerta, scelta: Offerta): Baratto
 }
 
 
@@ -32,10 +32,26 @@ class ModificaAppuntamento implements Action{
     -accettaORispondi(baratto: Baratto, utente: Utente): void
     -nuovoAppuntamento(baratto: Baratto, utente: Utente): void
     -accettaBaratto(baratto: Baratto, utente: Utente): void
-    -cambiaAppuntamento(scambio: Scambio, baratto: Baratto): Appuntamento
+    -cambiaAppuntamento(scmb: Scambio, brt: Baratto): Appuntamento
 }
 
 class VisualizzaOfferteConf implements Action{
     +execute(utente: Utente): Utente
 }
+
+
+AccettaBaratto --> model.user.Utente
+AccettaBaratto --> model.scambio.Scambio
+AccettaBaratto --> model.baratto.Baratto
+AccettaBaratto --> model.baratto.Appuntamento
+BarattaOfferta --> model.user.Utente
+BarattaOfferta --> model.offerta.Offerta
+BarattaOfferta --> model.baratto.Baratto
+ModificaAppuntamento --> model.user.Utente
+ModificaAppuntamento --> model.baratto.Baratto
+ModificaAppuntamento --> model.scambio.Scambio
+
+
+
+
 @enduml

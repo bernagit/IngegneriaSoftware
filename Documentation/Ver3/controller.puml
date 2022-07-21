@@ -30,4 +30,15 @@ class VisualizzaOfferteProprietario implements Action{
     -modificaOfferta(offerta: Offerta): void
 }
 
+PubblicaOfferta --> model.offerta.Offerta
+PubblicaOfferta --> model.gerarchia.Categoria
+PubblicaOfferta --> model.gerarchia.Gerarchia
+PubblicaOfferta --> model.user.Utente
+PubblicaOfferta --> model.offerta.CampoCompilato
+VisualizzaOfferteProprietario --> model.offerta.Offerta
+VisualizzaOfferteProprietario --> model.user.Utente
+VisualizzaOfferte --> model.gerarchia.Categoria
+VisualizzaOfferte --> model.gerarchia.Gerarchia
+
+
 @enduml
