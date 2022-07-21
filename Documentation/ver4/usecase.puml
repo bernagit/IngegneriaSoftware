@@ -35,10 +35,10 @@ fruit -- (Login\nFruitore)
 (Aggiungi\nScambio) ..> (Login\nConfiguratore): <<include>>
 
 'versione 3'
-(Visualizza Offerte\nper categoria) #Pink
-(Pubblica\nArticolo) #Pink
-(Ritira\nOfferta) #Pink
-(Visualizza Offerte\nPubblicate) #Pink
+(Visualizza Offerte\nper categoria)
+(Pubblica\nArticolo)
+(Ritira\nOfferta)
+(Visualizza Offerte\nPubblicate)
 
 fruit -- (Visualizza Offerte\nper categoria)
 fruit -- (Pubblica\nArticolo)
@@ -52,6 +52,10 @@ conf -- (Visualizza Offerte\nper categoria)
 (Visualizza Offerte\nPubblicate) ..> (Login\nFruitore): <<include>>
 (Visualizza Offerte\nper categoria) ..> (Login\nConfiguratore): <<include>>
 
+'Versione 4'
+(Baratta\nOggetti) #Pink
+(Accetta\nBaratto) #Pink
+(Modifica\nAppuntamento) #Pink
 
 
 @enduml
