@@ -6,14 +6,8 @@ interface Action{
 
 note left of Action
     Per questioni di spazio le classi dei casi d'uso delle versioni
-    precedenti rimangono ma senza dettagli
+    precedenti non vengono rappresentate.
 endnote
-
-class InserisciScambio implements Action{}
-
-class VisualizzaScambi implements Action{}
-
-class LoginFruit implements Action{}
 
 class PubblicaOfferta implements Action{
     +execute(utente: Utente): Utente

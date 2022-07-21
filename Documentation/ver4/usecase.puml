@@ -2,15 +2,15 @@
 
 :Configuratore: as conf
 :Utente: as user
-:Amministratore: as admin
+':Amministratore: as admin
 conf -up-> user
 
 conf -- (Login\nConfiguratore)
 conf -- (Visualizza\nGerarchia)
 conf -- (Creazione\nGerarchia)
-conf -- (Registrazione\nConfiguratore)
+'conf -- (Registrazione\nConfiguratore)
 
-admin -- (Registrazione\nConfiguratore)
+'admin -- (Registrazione\nConfiguratore)
 
 (Creazione\nGerarchia) ..> (Login\nConfiguratore): <<include>>
 (Login\nConfiguratore) ..> (Login Utente): <<extends>>
@@ -28,34 +28,48 @@ fruit -up-> user
 conf --(Aggiungi\nScambio)
 fruit -- (Visualizza\nScambi)
 fruit -- (Registrazione\nFruitore)
-fruit -- (Login\nFruitore)
+'fruit -- (Login\nFruitore)
 
 (Login\nFruitore) ..> (Login Utente): <<extends>>
 (Visualizza\nScambi) ..> (Login\nFruitore): <<include>>
 (Aggiungi\nScambio) ..> (Login\nConfiguratore): <<include>>
 
 'versione 3'
-(Visualizza Offerte\nper categoria)
+(Visualizza\nOfferte\nper categoria)
 (Pubblica\nArticolo)
-(Ritira\nOfferta)
-(Visualizza Offerte\nPubblicate)
+'(Ritira\nOfferta)
+'(Visualizza\nOfferte\nPubblicate)
 
-fruit -- (Visualizza Offerte\nper categoria)
+fruit -- (Visualizza\nOfferte\nper categoria)
 fruit -- (Pubblica\nArticolo)
-fruit -- (Ritira\nOfferta)
-fruit -- (Visualizza Offerte\nPubblicate)
-conf -- (Visualizza Offerte\nper categoria)
+'fruit -- (Ritira\nOfferta)
+'fruit -- (Visualizza\nOfferte\nPubblicate)
+'conf -- (Visualizza\nOfferte\nper categoria)
 
-(Visualizza Offerte\nper categoria) ..> (Login\nFruitore): <<include>>
+(Visualizza\nOfferte\nper categoria) ..> (Login\nFruitore): <<include>>
 (Pubblica\nArticolo) ..> (Login\nFruitore): <<include>>
-(Ritira\nOfferta) ..> (Login\nFruitore): <<include>>
-(Visualizza Offerte\nPubblicate) ..> (Login\nFruitore): <<include>>
-(Visualizza Offerte\nper categoria) ..> (Login\nConfiguratore): <<include>>
+'(Ritira\nOfferta) ..> (Login\nFruitore): <<include>>
+'(Visualizza\nOfferte\nPubblicate) ..> (Login\nFruitore): <<include>>
+'(Visualizza\nOfferte\nper categoria) ..> (Login\nConfiguratore): <<include>>
 
 'Versione 4'
 (Baratta\nOggetti) #Pink
 (Accetta\nBaratto) #Pink
-(Modifica\nAppuntamento) #Pink
+(Visualizza\ne/o Accetta\nAppuntamento) #Pink
+(Visualizza\nofferte\nAperte) #Pink
+(Visualizza offerte\nChiuse o In scambio) #Pink
+
+fruit -- (Baratta\nOggetti)
+fruit -- (Accetta\nBaratto)
+fruit -- (Visualizza\ne/o Accetta\nAppuntamento)
+conf -- (Visualizza\nofferte\nAperte)
+conf -- (Visualizza offerte\nChiuse o In scambio)
+
+(Baratta\nOggetti) ..> (Login\nFruitore): <<include>>
+(Accetta\nBaratto) ..> (Login\nFruitore): <<include>>
+(Visualizza\ne/o Accetta\nAppuntamento) ..> (Login\nFruitore): <<include>>
+(Visualizza\nofferte\nAperte) ..> (Login\nConfiguratore): <<include>>
+(Visualizza offerte\nChiuse o In scambio) ..> (Login\nConfiguratore): <<include>>
 
 
 @enduml

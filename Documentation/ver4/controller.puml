@@ -1,0 +1,41 @@
+@startuml controller
+
+interface Action{
+    +execute(utente: Utente): Utente
+}
+
+note left of Action
+    Per questioni di spazio le classi dei casi d'uso delle versioni
+    precedenti non vengono rappresentate.
+endnote
+
+class AccettaBaratto implements Action{
+    +execute(utente: Utente): Utente
+    -accettaBaratto(utente: Utente): void
+    -selezionaBaratto(utente: Utente, scambio: Scambio): Baratto
+    -inserisciAppuntamento(scambio: Scambio): Appuntamento
+    -calcolaScadenze(baratto: Baratto, scambio: Scambio): String
+}
+
+
+class BarattaOfferta implements Action{
+    +execute(utente: Utente): Utente
+    -barattaOfferta(utente: Utente): void
+    -scegliOffertaAltroAutore(utente: Utente, categoria: Categoria): Offerta
+    -inserisciBaratto(offertaDaBarattare: Offerta, offertaScelta: Offerta): Baratto
+}
+
+
+class ModificaAppuntamento implements Action{
+    +execute(utente: Utente): Utente
+    -visualizzaAppuntamento(utente: Utente): void
+    -accettaORispondi(baratto: Baratto, utente: Utente): void
+    -nuovoAppuntamento(baratto: Baratto, utente: Utente): void
+    -accettaBaratto(baratto: Baratto, utente: Utente): void
+    -cambiaAppuntamento(scambio: Scambio, baratto: Baratto): Appuntamento
+}
+
+class VisualizzaOfferteConf implements Action{
+    +execute(utente: Utente): Utente
+}
+@enduml

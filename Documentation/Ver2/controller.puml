@@ -8,38 +8,8 @@ interface Action{
 
 note left of Action
     Per questioni di spazio le classi dei casi d'uso delle versioni
-    precedenti rimangono ma senza dettagli
+    precedenti non vengono rappresentate.
 endnote
-
-class Option{
-    -label: String
-    -action: Action
-    +Option(label: String, action: Action)
-    +getLabel(): String
-    +getAction(): Action
-}
-
-class OptionList{
-    -voci: ArrayList<Option>
-    +OptionList()
-    +setOption()
-    +setLoggedOption()
-    +getOption(n: int): Option
-    +getOptionList(logged: boolean): ArrayList<Option>
-}
-
-Option <--* OptionList
-Option o-- Action
-
-class Exit implements Action{}
-
-class LoginConf implements Action{}
-
-class Logout implements Action{}
-
-class InserisciGerarchia implements Action{}
-
-class VisualizzaGerarchie implements Action{}
 
 class InserisciScambio implements Action{
     +execute(utente: Utente): Utente
