@@ -3,6 +3,7 @@ package controller;
 import model.gerarchia.Categoria;
 import model.gerarchia.Gerarchia;
 import model.offerta.Offerta;
+import model.offerta.StatoOfferta;
 import model.user.Utente;
 import utility.JsonUtil;
 import utility.MyMenu;
@@ -43,7 +44,7 @@ public class VisualizzaOfferte implements Action {
     }
 
     private void visualizzaOfferteAperte(Categoria categoria) {
-        List<Offerta> offerte = JsonUtil.readOfferteAperteByCategoria(categoria.getNome());
+        List<Offerta> offerte = JsonUtil.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.APERTA);
         if (offerte != null && offerte.size() >= 1) {
             for (Offerta offerta : offerte) {
                 System.out.println(offerta);

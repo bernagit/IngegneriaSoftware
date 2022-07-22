@@ -58,6 +58,7 @@ public class Offerta {
             stringBuilder.append("\n\t").append(campoCompilato.getCampo().getNome())
                     .append(": ").append(campoCompilato.getContenuto());
         }
+        stringBuilder.append("\nStatoOfferta: ").append(statoCorrente.toString());
         return stringBuilder.toString();
     }
 

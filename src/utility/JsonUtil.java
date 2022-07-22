@@ -133,7 +133,7 @@ public class JsonUtil {
         }
     }
 
-    public static List<Offerta> readOfferteAperteByCategoria(String nomeCategoria) {
+    public static List<Offerta> readOfferteByCategoriaAndState(String nomeCategoria, StatoOfferta stato) {
         List<Offerta> offertaList = new ArrayList<>();
         Offerta offerta;
         try {
@@ -146,7 +146,7 @@ public class JsonUtil {
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
                 offerta = gson.fromJson(reader, Offerta.class);
-                if (nomeCategoria.equals(offerta.getCategoriaName()) && offerta.getStatoCorrente().equals(StatoOfferta.APERTA))
+                if (nomeCategoria.equals(offerta.getCategoriaName()) && offerta.getStatoCorrente().equals(stato))
                     offertaList.add(offerta);
             }
         } catch (Exception ex) {
