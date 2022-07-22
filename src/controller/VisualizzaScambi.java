@@ -25,9 +25,9 @@ public class VisualizzaScambi implements Action {
         if (gerarchie != null) {
             stringBuilder.append("Gerarchie:");
             for (Gerarchia gerarchia : gerarchie)
-                stringBuilder.append("\nNome: ").append(gerarchia.getNomeRadice())
-                        .append("\nDescrizione: ").append(gerarchia.getRadice().getDescrizione())
-                            .append("\n\n");
+                stringBuilder.append("\n\tNome: ").append(gerarchia.getNomeRadice())
+                        .append("\n\tDescrizione: ").append(gerarchia.getRadice().getDescrizione())
+                            .append("\n");
         }
         else
             System.out.println("Impossibile visualizzare luoghi di scambio: gerarchie nulle!");

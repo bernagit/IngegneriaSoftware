@@ -1,12 +1,10 @@
 package controller;
 
-import model.gerarchia.Gerarchia;
 import model.scambio.IntervalloOrario;
 import model.scambio.Scambio;
 import model.user.Utente;
 import utility.InputDati;
 import utility.JsonUtil;
-import utility.MyMenu;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -21,33 +19,34 @@ public class InserisciScambio implements Action {
     }
 
     private void inserisciScambio() {
-        /*MyMenu menu = new MyMenu("Inserisci scambio");
-        List<Gerarchia> gerarchiaList = JsonUtil.getGerarchieLibere();
-        ArrayList<String> voci = new ArrayList<>();
-        if (gerarchiaList.size() >= 1) {
-            for (Gerarchia gerarchia : gerarchiaList) {
-                voci.add(gerarchia.getNomeRadice());
-            }
-            menu.setVoci(voci);
-            Gerarchia scelta = gerarchiaList.get(menu.scegli());*/
+        Scambio scambio = JsonUtil.readScambio();
+        boolean modifica = true;
+        //se scambio esiste chiedo di modificarlo altrimente lo creo chiedendo la città di scambio
+        if (scambio != null) {
+            modifica = InputDati.yesOrNo("\nScambio già presente, si vuole modificare? ");
+            System.out.println("Città di scambio: " + scambio.getPiazza());
+        }
+        else{
             String piazza = InputDati.leggiStringaNonVuota("Inserisci piazza di scambio (Citta): ");
             //creazione scambio
-            Scambio scambio = new Scambio(piazza);
+            scambio = new Scambio(piazza);
+        }
+        if (!modifica)
+            return;
+        //inserimento luoghi
+        scambio.setLuoghi(this.inserisciLuoghi());
 
-            //inserimento luoghi
-            scambio.setLuoghi(this.inserisciLuoghi());
+        //inserimento giorni scambio
+        scambio.setGiorni(this.inserisciGiorni());
 
-            //inserimento giorni scambio
-            scambio.setGiorni(this.inserisciGiorni());
+        //inserimento intervallo orario
+        scambio.setIntervalliOrari(this.inserisciIntervalli());
 
-            //inserimento intervallo orario
-            scambio.setIntervalliOrari(this.inserisciIntervalli());
+        int scadenzaProposta = InputDati.leggiInteroPositivo("Inserisci numero giorni durata proposta: ");
+        scambio.setScadenzaProposta(scadenzaProposta);
 
-            int scadenzaProposta = InputDati.leggiIntero("Inserisci numero giorni durata proposta: ");
-            scambio.setScadenzaProposta(scadenzaProposta);
-
-            if (InputDati.yesOrNo("Salvare scambio? "))
-                JsonUtil.writeScambio(scambio);
+        if (InputDati.yesOrNo("Salvare scambio? "))
+            JsonUtil.writeScambio(scambio);
         /*} else
             System.out.println("\nNon sono presenti Gerarchie per cui inserire scambi...");*/
     }
@@ -66,7 +65,7 @@ public class InserisciScambio implements Action {
     private List<DayOfWeek> inserisciGiorni() {
         boolean errore = false;
         List<DayOfWeek> days = new ArrayList<>();
-        System.out.println("Inserisci giorni dello scambio (1=Lunedi, 2=Martedi, ..., 7=Domenica)");
+        System.out.println("Inserisci giorni dello scambio (1=Lunedi, 2=Martedi, ..., 7=Domenica) separati da uno spazio");
         do {
             String dayString = InputDati.leggiStringaNonVuota("Giorni [1...7]: ");
             for (int i = 0; i < dayString.length(); i++) {
@@ -82,6 +81,8 @@ public class InserisciScambio implements Action {
                         errore = true;
                 }
             }
+            if (days.isEmpty())
+                errore = true;
             if (errore)
                 System.out.println("Errore nell'inserimento dei giorni... range disponibile [1...7]");
         } while (errore);
@@ -116,7 +117,7 @@ public class InserisciScambio implements Action {
                 System.out.println("Attenzione: l'orario finale non può essere minore di quello iniziale");
         } while (intervalloOk);
         //controllo se ora iniziale è precedente a ora finale altrimenti richiedo il secondo orario
-        return new IntervalloOrario(oraInizio, oraFine);
+        return new IntervalloOrario(oraInizio.toString(), oraFine.toString());
     }
 
     private LocalTime inserisciOrario() {

@@ -4,7 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import model.gerarchia.Gerarchia;
 import model.scambio.Scambio;
-import java.io.*;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -78,14 +81,13 @@ public class JsonUtil {
         Scambio scambio = null;
         try {
             Reader reader;
-            reader = Files.newBufferedReader(Path.of(directoryScambi+"scambio.json"));
+            reader = Files.newBufferedReader(Path.of(directoryScambi + "scambio.json"));
             Gson gson = new Gson();
             // convert JSON file to Gerarchia
             scambio = gson.fromJson(reader, Scambio.class);
 
-        } catch (
-                IOException ex) {
-            System.out.println("Errore apertura file Gerarchie");
+        } catch (IOException ex) {
+            System.out.println("Nessuno scambio presente");
         }
         return scambio;
     }
@@ -100,7 +102,7 @@ public class JsonUtil {
         ) {
             writer.write(gson.toJson(scambio));
         } catch (IOException e) {
-            System.out.println("Errore nel salvataggio della gerarchia");
+            System.out.println("Errore nel salvataggio dello scambio");
         }
     }
 
