@@ -22,11 +22,12 @@ public class Offerta {
     private void archiviaStato() {
         if (this.stati == null)
             stati = new ArrayList<>();
-        stati.add(statoCorrente);
+        if(statoCorrente != null)
+            stati.add(statoCorrente);
     }
 
     public void setStatoCorrente(StatoOfferta statoCorrente) {
-        if(stati != null) this.archiviaStato();
+        this.archiviaStato();
         this.statoCorrente = statoCorrente;
     }
 
@@ -51,7 +52,7 @@ public class Offerta {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\nOfferta: ").append(titolo)
                 .append("\nCategoria: ").append(categoria.getNome())
-                .append("\nAutore pubblicazione: ").append(autore)
+                //().append("\nAutore pubblicazione: ").append(autore)
                 .append("\nDescrizione Oggetto: ");
         for (CampoCompilato campoCompilato: listaCampiCompilati){
             stringBuilder.append("\n\t").append(campoCompilato.getCampo().getNome())
