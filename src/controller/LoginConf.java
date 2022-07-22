@@ -28,15 +28,20 @@ public class LoginConf implements Action {
     }
 
     private Configuratore firstLogin(Utente utente) {
-        boolean credentialsChanged;
+        boolean credentialsChanged = false;
         String newUser;
         String newPass;
         do {
             newUser = InputDati.leggiStringaNonVuota("Inserisci nuovo username: ");
             newPass = InputDati.leggiStringaNonVuota("Inserisci nuova password: ");
-            credentialsChanged = db.updateCredentials(utente, newUser, newPass);
-            if (!credentialsChanged)
-                System.out.println("Utente già presente, Inseriscine un altro");
+            String pass = InputDati.leggiStringaNonVuota("Reinserisci nuova password: ");
+            if(pass.equals(newPass)) {
+                credentialsChanged = db.updateCredentials(utente, newUser, newPass);
+                if (!credentialsChanged)
+                    System.out.println("Utente già presente, Inseriscine un altro");
+            }
+            else
+                System.out.println("Password non corrispondenti, ripeti registrazione");
         }
         while (!credentialsChanged);
         utente.updateCredentials(newUser, newPass, false);

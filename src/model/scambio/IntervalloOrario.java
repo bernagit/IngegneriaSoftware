@@ -5,27 +5,27 @@ import com.sun.jdi.IncompatibleThreadStateException;
 import java.time.LocalTime;
 
 public class IntervalloOrario {
-    private LocalTime oraInizio;
-    private LocalTime oraFine;
+    private String oraInizio;
+    private String oraFine;
 
-    public IntervalloOrario(LocalTime oraInizio, LocalTime oraFine) {
+    public IntervalloOrario(String oraInizio, String oraFine) {
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
     }
 
     public boolean isIntersected(IntervalloOrario interval){
-        if(this.oraInizio.isBefore(interval.oraInizio) && this.oraFine.isAfter(interval.oraInizio))
+        if(this.getOraInizio().isBefore(interval.getOraInizio()) && this.getOraFine().isAfter(interval.getOraInizio()))
             return true;
-        else if (this.oraFine.isAfter(interval.oraFine) && this.oraInizio.isBefore(interval.oraFine))
+        else if (this.getOraFine().isAfter(interval.getOraFine()) && this.getOraInizio().isBefore(interval.getOraFine()))
             return true;
-        else return interval.oraInizio.isBefore(this.oraInizio) && interval.oraFine.isAfter(this.oraFine);
+        else return interval.getOraInizio().isBefore(this.getOraInizio()) && interval.getOraFine().isAfter(this.getOraFine());
     }
 
     public LocalTime getOraInizio() {
-        return oraInizio;
+        return LocalTime.parse(oraInizio);
     }
 
     public LocalTime getOraFine() {
-        return oraFine;
+        return LocalTime.parse(oraFine);
     }
 }
