@@ -37,6 +37,9 @@ class ModificaAppuntamento implements Action{
 
 class VisualizzaOfferteConf implements Action{
     +execute(utente: Utente): Utente
+    -sceltaGerarchia(): void
+    -scegliCategoriaFoglia(gerarchiaScelta: Gerarchia): Categoria
+    -visualizzaOfferteChSc(categoria: Categoria): void
 }
 
 
@@ -50,6 +53,7 @@ BarattaOfferta --> model.baratto.Baratto
 ModificaAppuntamento --> model.user.Utente
 ModificaAppuntamento --> model.baratto.Baratto
 ModificaAppuntamento --> model.scambio.Scambio
+VisualizzaOfferteConf --> model.offerta.Offerta
 
 
 

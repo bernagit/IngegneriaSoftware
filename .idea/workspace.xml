@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaOfferte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaOfferteConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/offerta/Offerta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/offerta/Offerta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/JsonUtil.java" afterDir="false" />
-    </list>
+    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="v4 finita (test forse completato)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,6 +67,14 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="v4 finita (test forse completato)">
+      <created>1658498916618</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1658498916618</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -88,6 +90,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="move files to controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="move files to controller" />
+    <MESSAGE value="v4 finita (test forse completato)" />
+    <option name="LAST_COMMIT_MESSAGE" value="v4 finita (test forse completato)" />
   </component>
 </project>
