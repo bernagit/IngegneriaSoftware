@@ -63,29 +63,24 @@ public class InserisciScambio implements Action {
     }
 
     private List<DayOfWeek> inserisciGiorni() {
-        boolean errore = false;
+        int day;
+        boolean end = false; //controlla lo stop all'input da parte dell'utente
         List<DayOfWeek> days = new ArrayList<>();
-        System.out.println("Inserisci giorni dello scambio (1=Lunedi, 2=Martedi, ..., 7=Domenica) separati da uno spazio");
-        do {
-            String dayString = InputDati.leggiStringaNonVuota("Giorni [1...7]: ");
-            for (int i = 0; i < dayString.length(); i++) {
-                char ch = dayString.charAt(i);
-                if (Character.isDigit(ch)) {
-                    int num = Character.getNumericValue(ch);
-                    if (num < 8) {
-                        if (!days.contains(DayOfWeek.of(num))) {
-                            days.add(DayOfWeek.of(num));
-                            errore = false;
-                        }
-                    } else
-                        errore = true;
-                }
-            }
-            if (days.isEmpty())
-                errore = true;
-            if (errore)
-                System.out.println("Errore nell'inserimento dei giorni... range disponibile [1...7]");
-        } while (errore);
+
+        System.out.println("Inserisci giorni dello scambio  (1=Lunedi, 2=Martedi, ..., 7=Domenica) (0 per terminare)");
+
+        do{
+            day = InputDati.leggiIntero("");
+            if(day == 0)
+                if(days.isEmpty()) System.out.println("Inserire almeno un giorno");
+                else end = true;
+            else if(day > 0 && day < 8)
+                if(!days.contains(DayOfWeek.of(day)))
+                    days.add(DayOfWeek.of(day));
+                else System.out.println("Giorno già inserito");
+            else System.out.println("Inserire un intero compreso tra 1 e 7");
+        }while(!end);
+
         return days;
     }
 
