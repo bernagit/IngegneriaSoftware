@@ -49,7 +49,8 @@ public class OptionList {
         voci.add(new Option("Inserisci Gerarchia", new InserisciGerarchia()));
         voci.add(new Option("Aggiungi Scambio", new InserisciScambio()));
         voci.add(new Option("Visualizza Offerte Aperte", new VisualizzaOfferte()));
-        voci.add(new Option("Visualizza offerte Chiuse o In Scambio", new VisualizzaOfferteConfig()));
+        voci.add(new Option("Visualizza Offerte Chiuse o In Scambio", new VisualizzaOfferteConfig()));
+        voci.add(new Option("Importa File Configurazione", new ImportaFileConf()));
     }
     private void setOptionFruit() {
         voci.clear();
