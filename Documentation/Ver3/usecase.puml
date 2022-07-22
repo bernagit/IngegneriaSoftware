@@ -48,7 +48,7 @@ conf -- (Visualizza Offerte\nper categoria)
 
 (Visualizza Offerte\nper categoria) ..> (Login\nFruitore): <<include>>
 (Pubblica\nArticolo) ..> (Login\nFruitore): <<include>>
-(Ritira\nOfferta) ..> (Login\nFruitore): <<include>>
+(Ritira\nOfferta) ..> (Visualizza Offerte\nPubblicate): <<include>>
 (Visualizza Offerte\nPubblicate) ..> (Login\nFruitore): <<include>>
 (Visualizza Offerte\nper categoria) ..> (Login\nConfiguratore): <<include>>
 
