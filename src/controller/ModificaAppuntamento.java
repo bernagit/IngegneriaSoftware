@@ -10,6 +10,7 @@ import utility.JsonUtil;
 import utility.MyMenu;
 
 import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,17 +23,21 @@ public class ModificaAppuntamento implements Action {
     }
 
     private void visualizzaAppuntamento(Utente utente) {
+        Scambio scambio = JsonUtil.readScambio();
+
         List<Baratto> barattoList = JsonUtil.readBarattoInScambio(utente.getUsername());
         if (barattoList.size() == 0) {
             System.out.println("Non sono presenti Appuntamenti per le offerte inserite");
             return;
         }
 
-        MyMenu menu = new MyMenu("Scegli offerta");
+        MyMenu menu = new MyMenu("Scegli Appuntamento");
         ArrayList<String> voci = new ArrayList<>();
         StringBuilder voce = new StringBuilder();
         for (Baratto baratto : barattoList) {
-            voce.append(baratto.getOffertaA().getTitolo()).append(" per: ").append(baratto.getOffertaB().getTitolo());
+            voce.append(baratto.getOffertaA().getTitolo()).append(" per: ").append(baratto.getOffertaB().getTitolo())
+                    .append(", \t").append(this.calcolaScadenze(baratto, scambio))
+                    .append("\tultima risposta da: ").append(baratto.getDecisore());
             voci.add(voce.toString());
         }
 
@@ -42,16 +47,23 @@ public class ModificaAppuntamento implements Action {
     }
 
     private void accettaORispondi(Baratto baratto, Utente utente) {
-        if (baratto.getDecisore() != null && !baratto.getDecisore().equals(utente.getUsername())) {
+        if (baratto.getDecisore() != null && baratto.getDecisore().equals(utente.getUsername())) {
             System.out.println("l'appuntamento deve essere confermato dall'altro utente");
             return;
         }
         System.out.println("\nDettagli appuntamento:" + baratto.getAppuntamento());
-        Boolean accetta = InputDati.yesOrNo("Vuoi accettare l'appuntamento? ");
+
+
+
+        boolean accetta = InputDati.yesOrNo("Vuoi accettare l'appuntamento? ");
         if (accetta)
             this.accettaBaratto(baratto, utente);
-        else
-            this.nuovoAppuntamento(baratto, utente);
+        else{
+            boolean modifica = InputDati.yesOrNo("Vuoi modificare l'appuntamento? ");
+            if(modifica)
+                this.nuovoAppuntamento(baratto, utente);
+        }
+
 
     }
 
@@ -83,7 +95,7 @@ public class ModificaAppuntamento implements Action {
         baratto.getOffertaB().setStatoCorrente(StatoOfferta.CHIUSA);
         JsonUtil.writeOfferta(baratto.getOffertaA());
         JsonUtil.writeOfferta(baratto.getOffertaB());
-        //elimino il baratto ??
+        //elimino baratto
         JsonUtil.deleteBaratto(baratto);
     }
 
@@ -107,7 +119,6 @@ public class ModificaAppuntamento implements Action {
         System.out.println("Giorno: " + giorno);
 
         //mostro orari disponibili e scelgo
-        //da mettere a posto
         MyMenu menuOrari = new MyMenu("scegli orario");
         ArrayList<String> orari = scambio.getOrariScambio();
         menuOrari.setVoci(orari);
@@ -121,5 +132,15 @@ public class ModificaAppuntamento implements Action {
             return null;
         else
             return nuovoAppuntamento;
+    }
+
+    private String calcolaScadenze(Baratto baratto, Scambio scambio) {
+        LocalDateTime oggi = LocalDateTime.now();
+        int giorniRisposta = scambio.getScadenzaProposta();
+        LocalDateTime scadenza;
+        scadenza = baratto.getDataOraBaratto().plusDays(giorniRisposta);
+        if (scadenza.isAfter(oggi))
+            return String.format("%d giorni rimanenti",scadenza.getDayOfYear() - oggi.getDayOfYear());
+        return "scaduta";
     }
 }

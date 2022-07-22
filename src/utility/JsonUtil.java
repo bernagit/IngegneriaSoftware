@@ -240,7 +240,7 @@ public class JsonUtil {
         ) {
             writer.write(gson.toJson(baratto));
         } catch (IOException e) {
-            System.out.println("Errore nel salvataggio dell' offerta");
+            System.out.println("Errore nel salvataggio del baratto");
         }
     }
 
@@ -357,7 +357,6 @@ public class JsonUtil {
                         JsonUtil.writeOfferta(b);
 
                         JsonUtil.deleteBaratto(baratto);
-
                     }
                 }
             }

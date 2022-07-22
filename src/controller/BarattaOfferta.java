@@ -50,6 +50,7 @@ public class BarattaOfferta implements Action {
         }
         System.out.println("Baratto avviato");
         Baratto baratto = this.inserisciBaratto(offertaDaBarattare, offertaScelta);
+        baratto.setDecisore(offertaDaBarattare.getAutore());
         JsonUtil.writeBaratto(baratto);
     }
 

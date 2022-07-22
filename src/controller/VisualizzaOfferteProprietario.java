@@ -44,9 +44,10 @@ public class VisualizzaOfferteProprietario implements Action {
     private void scegliOpzione(Offerta offerta) {
         if (offerta.getStatoCorrente().equals(StatoOfferta.APERTA) || offerta.getStatoCorrente().equals(StatoOfferta.RITIRATA))
             this.modificaOfferta(offerta);
-        else if (offerta.getStatoCorrente().equals(StatoOfferta.IN_SCAMBIO)) {
+        else if (offerta.getStatoCorrente().equals(StatoOfferta.IN_SCAMBIO))
             this.visualizzaStato(offerta);
-        }
+        else
+            System.out.println("Impossibile modificare l'offerta in questo stato: "+offerta.getStatoCorrente());
     }
 
     private void modificaOfferta(Offerta offerta) {

@@ -52,12 +52,8 @@ public class AccettaBaratto implements Action {
         offertaB.setStatoCorrente(StatoOfferta.IN_SCAMBIO);
         baratto.setOffertaA(offertaA);
         baratto.setOffertaB(offertaB);
-        baratto.setDecisore(offertaA.getAutore());
+        baratto.setDecisore(offertaB.getAutore());
         //salvataggio dati
-        /*
-        si potrebbe archiviarla in una sottocartella al posto che salavarla sempre nello stesso posto
-        per evitare di cercare ogni volta in tutte le offerte, anche quelle chiuse
-         */
         JsonUtil.writeOfferta(offertaA);
         JsonUtil.writeOfferta(offertaB);
         JsonUtil.writeBaratto(baratto);

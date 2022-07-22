@@ -14,7 +14,7 @@ public class MainFruitore {
         Fruitore fruitore = null;
         String titolo;
         do {
-            // eliminazione dei
+            // eliminazione dei baratti Scaduti
             JsonUtil.eliminaBarattiScaduti();
 
             menu.setVoci(option.getFruitOptionList(fruitore));
