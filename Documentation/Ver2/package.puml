@@ -1,0 +1,33 @@
+@startuml package
+
+note as n1
+    Si evidenziano in rosa i package che sono 
+    cambiati dalla versione precedente
+end note
+
+package controller #Pink{
+    interface Action{}
+    class Option{}
+    class OptionList{}
+    Option <--o OptionList
+    Option ..> Action
+}
+
+package model{
+    package user {}
+    package gerarchia{}
+    package scambio #Pink {}
+}
+package utility #Pink{
+    class DbConnect {}
+    class JsonUtil{}
+    class MyMenu{}
+    class InputDati{}
+}
+
+
+
+controller ..> model: use
+controller ..> utility: use
+
+@enduml

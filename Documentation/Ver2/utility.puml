@@ -1,0 +1,34 @@
+@startuml utility
+
+package com.google.gson #EEEEEE{}
+
+package model.gerarchia #EEEEEE{}
+
+package model.scambio #EEEEEE{}
+
+package "utility" #DDDDDD{
+    
+    class JsonUtil{
+        +{static} writeGerarchia(gerarchia: Gerarchia): void
+        +{static} createListOfFile(directory: String): List<Path>
+        +{static} readGerarchia(): List<Gerarchia>
+        +{static} checkNomeGerarchiaRipetuto(nome: String): boolean
+        +{static} writeScambio(scambio: Scambio): void
+        +{static} readScambio(): List<Scambio>
+    }
+
+    JsonUtil -up..> com.google.gson: use
+    JsonUtil -up..> model.gerarchia: use
+    JsonUtil -up..> model.scambio: use
+
+}
+note right of JsonUtil
+nuovi metodi: 
+    -writeScambio
+    -readScambio
+end note
+
+
+
+
+@enduml

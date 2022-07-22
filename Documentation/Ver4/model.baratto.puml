@@ -1,0 +1,42 @@
+@startuml model_baratto
+
+package model.baratto{
+    class Appuntamento{
+        -luogo: String
+        -dataOra: String
+        -giorno: DayOfWeek
+        +Appuntamento(luogo: String, dataOra: String, giorno: DayOfWeek)
+        +getLuogo(): String
+        +getDataOra(): LocalTime
+        +getGiorno(): DayOfWeek
+        +toString(): String
+        +equals(appuntamento: Appuntamento): Boolean
+    }
+
+    class Baratto{
+        -offertaA: Offerta
+        -offertaB: Offerta
+        -dataOraBaratto: String
+        -decisore: String
+        -appuntamento: Appuntamento
+        +Baratto(offertaA: Offerta, offertaB: Offerta, dataOraBaratto: String)
+        +getOffertaA(): Offerta
+        +getOffertaB(): Offerta
+        +getDataOraBaratto(): LocalTime
+        +getDecisore(): String
+        +getAppuntamento(): Appuntamento
+        +getAutoreA(): String
+        +getAutoreB(): String
+        +setDecisore(decisore: String): void
+        +setAppuntamento(appuntamento: Appuntamento): void
+        +setOffertaA(offertaA: Offerta): void
+        +setOffertaB(offertaB: Offerta): void
+    }
+
+    Baratto "1" *--> "1" Appuntamento
+
+    
+}
+Baratto "1" o--> "2" model.offerta.Offerta
+
+@enduml

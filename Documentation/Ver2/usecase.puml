@@ -1,0 +1,44 @@
+@startuml use_case
+
+note as n1
+    Si evidenziano in rosa i nuovi casi d'uso.
+    alcuni casi d'uso della versione precedente sono stati eliminati.
+endnote
+
+:Configuratore: as conf
+:Utente: as user
+':Amministratore: as admin
+conf -up-> user
+
+conf -- (Login Configuratore)
+'conf -- (Visualizza Gerarchia)
+'conf -- (Creazione Gerarchia)
+'conf -- (Registrazione Configuratore)
+
+'admin -- (Registrazione Configuratore)
+
+'(Creazione Gerarchia) ..> (Login Configuratore): <<include>>
+(Login Configuratore) ..> (Login Utente): <<extends>>
+
+'Versione 2'
+
+:Fruitore: as fruit
+fruit -up-> user
+
+(Aggiungi Scambio) #Pink
+(Login Fruitore) #Pink
+(Registrazione Fruitore) #Pink
+(Visualizza Scambi) #Pink
+
+conf --(Aggiungi Scambio)
+fruit -- (Visualizza Scambi)
+fruit -- (Registrazione Fruitore)
+fruit -- (Login Fruitore)
+
+(Login Fruitore) ..> (Login Utente): <<extends>>
+(Visualizza Scambi) ..> (Login Fruitore): <<include>>
+(Aggiungi Scambio) ..> (Login Configuratore): <<include>>
+
+
+
+@enduml

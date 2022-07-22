@@ -1,0 +1,35 @@
+@startuml model.scambio
+
+package model.scambio{
+    class Scambio{
+        -piazza: String
+        -luoghi: List<String>
+        -giorni: List<DayOfWeek>
+        -intervalliOrari: List<IntervalloOrario>
+        -scadenzaProposta: int
+
+        +Scambio(piazza: String)
+        +setLuoghi(luoghi: List<String>)
+        +setGiorni(giorni: List<DayOfWeek>)
+        +setIntervalliOrari(intervalliOrari: List<IntervalloOrario>)
+        +setScadenzaProposta(scadenzaProposta: int)
+        +getPiazza(): String
+        +getLuoghi(): List<String>
+        +getGiorni(): List<DayOfWeek>
+        +getIntervalliOrari(): List<IntervalloOrario>
+
+    }
+
+    class IntervalloOrario{
+        -oraInizio: LocalTime
+        -oraFine: LocalTime
+
+        +IntervalloOrario(oraInizio: LocalTime, oraFine: LocalTime)
+        +isIntersected(intervalloOrario: IntervalloOrario): boolean
+        +getOraInizio(): LocalTime
+        +getOraFine(): LocalTime
+    }
+
+    IntervalloOrario "1..n" <--* "1" Scambio
+}
+@enduml

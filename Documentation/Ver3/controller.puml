@@ -1,0 +1,44 @@
+@startuml controller
+
+interface Action{
+    +execute(utente: Utente): Utente
+}
+
+note left of Action
+    Per questioni di spazio le classi dei casi d'uso delle versioni
+    precedenti non vengono rappresentate.
+endnote
+
+class PubblicaOfferta implements Action{
+    +execute(utente: Utente): Utente
+    -inserisciOfferta(utente: Utente): void
+    -scegliCategoriaFoglia(gerarchiaScelta: Gerarchia): Categoria
+    -inserisciDatiOfferta(categoriaFoglia: Categoria, utente: Utente): Offerta
+    -compilaCampi(categoriaFoglia: Categoria, obbligatori: boolean): List<CampoCompilato>
+}
+
+class VisualizzaOfferte implements Action{
+    +execute(utente: Utente): Utente
+    -sceltaGerarchia():void
+    -scegliCategoriaFoglia(gerarchiaScelta: Gerarchia): Categoria
+    -visualizzaOfferteAperte(categoriaFoglia: Categoria): void
+}
+
+class VisualizzaOfferteProprietario implements Action{
+    +execute(utente: Utente): Utente
+    -visualizzaEModifica(utente: Utente): void
+    -modificaOfferta(offerta: Offerta): void
+}
+
+PubblicaOfferta --> model.offerta.Offerta
+PubblicaOfferta --> model.gerarchia.Categoria
+PubblicaOfferta --> model.gerarchia.Gerarchia
+PubblicaOfferta --> model.user.Utente
+PubblicaOfferta --> model.offerta.CampoCompilato
+VisualizzaOfferteProprietario --> model.offerta.Offerta
+VisualizzaOfferteProprietario --> model.user.Utente
+VisualizzaOfferte --> model.gerarchia.Categoria
+VisualizzaOfferte --> model.gerarchia.Gerarchia
+
+
+@enduml

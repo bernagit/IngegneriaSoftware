@@ -1,0 +1,17 @@
+@startuml use_case
+
+:Configuratore: as conf
+:Utente: as user
+:Amministratore: as admin
+conf -up-> user
+
+conf -- (Visualizza Gerarchia)
+conf -- (Creazione Gerarchia)
+conf -- (Registrazione Configuratore)
+
+admin -- (Registrazione Configuratore)
+
+(Creazione Gerarchia) ..> (Login Configuratore): <<include>>
+(Login Configuratore) ..> (Login Utente): <<extends>>
+
+@enduml

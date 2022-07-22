@@ -1,0 +1,60 @@
+@startuml utility
+
+package java.sql #EEEEEE{}
+
+package com.google.gson #EEEEEE{}
+
+package model.gerarchia #EEEEEE{}
+
+package "utility" #DDDDDD{
+    class DbConnect{
+        -url: String
+        +connect(): Connection
+        +createNewTable(tableName: String): void
+        +insertUser(user: String, pass: String, firstLogin: boolean, type: boolean): Utente
+        +getId(user: String): int
+        +checkLogin(user: String, pass: String): Utente
+        +updateCredentials(user: Utente, newUser: String, newPass, String): boolean
+        +checkNewUser(newUser: String): boolean
+    }
+   
+    class MyMenu{
+        -titolo: String
+        -voci: ArrayList<String>
+        +MyMenu(titolo: String)
+        +setVoci(voci: ArrayList<String>): void
+        +scegli(): int
+        +stampaMenu(): void
+    }
+    class JsonUtil{
+        +{static} writeGerarchia(gerarchia: Gerarchia): void
+        +{static} createListOfFile(directory: String): List<Path>
+        +{static} readGerarchia(): List<Gerarchia>
+        +{static} checkNomeGerarchiaRipetuto(nome: String): boolean
+    }
+    class InputDati{
+        -{static} scanner: Scanner
+        +{static} creaScanner(): Scanner
+        +{static} leggiStringa(message: String): String
+        +{static} leggiStringaNonVuota(message: String): String
+        +{static} leggiChar(message: String): char
+        +{static} leggiUpperChar(message: String, ammissibili: String): char
+        +{static} leggiIntero(message: String): int
+        +{static} leggiIntero(message: String, min: int, max: int): int
+        +{static} leggiDouble(message: String): double
+        +{static} yesOrNo(message: String): boolean
+
+
+    }
+
+
+    MyMenu ..> InputDati: use
+    JsonUtil -up..> com.google.gson: use
+    JsonUtil -up..> model.gerarchia: use
+    DbConnect -up..> java.sql : use
+
+}
+
+
+
+@enduml

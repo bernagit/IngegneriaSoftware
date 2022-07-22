@@ -1,0 +1,19 @@
+@startuml main
+
+class MainConfiguratore {
+    +{static} main(args: String[]): void
+}
+
+class MainFruitore {
+    +{static} main(args: String[]): void
+}
+
+
+MainConfiguratore o--> controller.OptionList
+MainConfiguratore o--> utility.MyMenu
+
+MainFruitore o--> controller.OptionList
+MainFruitore o--> utility.MyMenu
+
+
+@enduml

@@ -1,0 +1,42 @@
+@startuml model_offerta
+
+package model.offerta{
+    class CampoCompilato{
+        -campo: CampoNativo
+        -contenuto: String
+        +CampoCompilato(campo: CampoNativo, contenuto: String)
+        +getCampo(): CampoNativo
+        +getContenuto(): String
+    }
+
+    class Offerta{
+        -titolo: String
+        -categoria: Categoria
+        -listaCampiCompilati: List<CampoCompilato>
+        -autore: String
+        -stati: List<StatoOfferta>
+        -statoCorrente: StatoOfferta
+        +Offerta(titolo: String, categoria: Categoria, autore: String)
+        -archiviaStato(): void
+        +setStatoCorrente(statoCorrente: StatoOfferta): void
+        +addCampiCompilati(campiCompilati: List<CampoCompilato>): void
+        +getTitolo(): String
+        +getAutore(): String
+        +getCategoria(): Categoria
+        +getCategoriaName(): String
+        +getStatoCorrente(): StatoOfferta
+        +toString(): String
+    }
+
+    enum StatoOfferta{
+        APERTA
+        RITIRATA
+    }
+
+    Offerta "1" *--> "1..n" StatoOfferta
+    CampoCompilato "1..n" <--* "1" Offerta
+    
+}
+CampoCompilato o--> model.gerarchia.CampoNativo
+Offerta o--> model.gerarchia.Categoria
+@enduml

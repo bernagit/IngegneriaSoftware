@@ -1,0 +1,52 @@
+@startuml model.gerarchia
+
+package model.gerarchia{
+    class CampoNativo{
+        -nomeCampo: String
+        -required: boolean
+        +CampoNativo(nomeCampo: string, required: boolean)
+        +getNome(): String
+        +isRequired(): boolean
+        +toString(): String
+    }
+
+    class Categoria{
+        -nome: String
+        -descrizione: String
+        -campi: ArrayList<CampoNativo>
+        -figli: ArrayList<Categoria>
+        -padre: String
+
+        +Categoria(nome: String, descrizione: String, campi: ArrayList<CampoNativo>, padre: string)
+        +addSingoloCampo(campo: CampoNativo): void
+        +getNome(): String
+        +getDescrizione(): String
+        +getPadre(): String
+        +isRadice(): boolean
+        +isFoglia(): boolean
+        +addSingoloFiglio(figlio: Categoria): void
+        +getCampi(): ArrayList<CampoNativo>
+        +getStrutturaCompleta(): ArrayList<Categoria>
+        +toString(): String
+        +isCampoPresente(nomeCampo: String): boolean
+        +checkNomeRipetuto(nome: String): boolean
+        +getCategorieFoglia(): ArrayList<Categoria>
+        +getCampiObbligatori(): ArrayList<CampoNativo>
+        +getCampiNonObbligatori(): ArrayList<CampoNativo>
+    }
+
+    class Gerarchia{
+        -radice: Categoria
+        +Gerarchia(radice: Categoria)
+        +getNomeRadice(): String
+        +getRadice(): Categoria
+        +toString(): String
+    }
+
+    CampoNativo "2..n" <--* "1" Categoria : contains
+    Categoria "1" <--* "1" Gerarchia  : contains
+    Categoria <--* "*" Categoria : children
+}
+
+
+@enduml

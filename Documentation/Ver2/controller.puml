@@ -1,0 +1,45 @@
+@startuml controller
+
+
+
+interface Action{
+    +execute(utente: Utente): Utente
+}
+
+note left of Action
+    Per questioni di spazio le classi dei casi d'uso delle versioni
+    precedenti non vengono rappresentate.
+endnote
+
+class InserisciScambio implements Action{
+    +execute(utente: Utente): Utente
+    -inserisciScambio():void
+    -inserisciLuoghi():List<String>
+    -inserisciGiorni():List<DayOfWeek>
+    -inserisciIntervalli():List<IntervalloOrario>
+    -inserisciIntervallo():IntervalloOrario
+    -inserisciOrario():LocalTime
+
+}
+
+class VisualizzaScambi implements Action{
+    +execute(utente: Utente): Utente
+    -visualizzaScambio():void
+}
+
+class LoginFruit implements Action{
+    +execute(utente: Utente): Utente
+    -doLogin():Utente
+    -normalLogin():Fruitore
+    -firstLogin():Fruitore
+}
+
+InserisciScambio --> model.scambio.IntervalloOrario
+InserisciScambio --> model.scambio.Scambio
+VisualizzaScambi --> model.scambio.Scambio
+LoginFruit --> model.user.Fruitore
+LoginFruit --> utility.DbConnect
+InserisciScambio --> utility.JsonUtil
+VisualizzaScambi --> utility.JsonUtil
+
+@enduml

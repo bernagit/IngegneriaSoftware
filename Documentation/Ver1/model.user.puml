@@ -1,0 +1,25 @@
+@startuml model.user
+
+package model.user{
+
+    abstract class Utente{
+        -id: int
+        -username: String
+        -password: String
+        -firstLogin: boolean
+        +Utente(id: int, username: String, password: String)
+        +getId(): int
+        +getUsername(): String
+        +getPassword(): String
+        +setFirstLogin(firstLogin: boolean): void
+        +getFirstLogin(): boolean
+    }
+
+    class Configuratore{
+        +Configuratore(id: int, username: String, password: String)
+    }
+
+    Utente <|-- Configuratore
+
+}
+@enduml

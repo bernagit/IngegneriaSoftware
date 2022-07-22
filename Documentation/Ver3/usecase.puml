@@ -1,0 +1,57 @@
+@startuml ver1
+
+:Configuratore: as conf
+:Utente: as user
+':Amministratore: as admin
+conf -up-> user
+
+conf -- (Login\nConfiguratore)
+'conf -- (Visualizza\nGerarchia)
+'conf -- (Creazione\nGerarchia)
+'conf -- (Registrazione\nConfiguratore)
+
+'admin -- (Registrazione\nConfiguratore)
+
+'(Creazione\nGerarchia) ..> (Login\nConfiguratore): <<include>>
+(Login\nConfiguratore) ..> (Login Utente): <<extends>>
+
+'Versione 2'
+
+:Fruitore: as fruit
+fruit -up-> user
+
+'(Aggiungi\nScambio)
+(Login\nFruitore)
+'(Registrazione\nFruitore)
+'(Visualizza\nScambi)
+
+'conf --(Aggiungi\nScambio)
+'fruit -- (Visualizza\nScambi)
+'fruit -- (Registrazione\nFruitore)
+fruit -- (Login\nFruitore)
+
+(Login\nFruitore) ..> (Login Utente): <<extends>>
+'(Visualizza\nScambi) ..> (Login\nFruitore): <<include>>
+'(Aggiungi\nScambio) ..> (Login\nConfiguratore): <<include>>
+
+'versione 3'
+(Visualizza Offerte\nper categoria) #Pink
+(Pubblica\nArticolo) #Pink
+(Ritira\nOfferta) #Pink
+(Visualizza Offerte\nPubblicate) #Pink
+
+fruit -- (Visualizza Offerte\nper categoria)
+fruit -- (Pubblica\nArticolo)
+fruit -- (Ritira\nOfferta)
+fruit -- (Visualizza Offerte\nPubblicate)
+conf -- (Visualizza Offerte\nper categoria)
+
+(Visualizza Offerte\nper categoria) ..> (Login\nFruitore): <<include>>
+(Pubblica\nArticolo) ..> (Login\nFruitore): <<include>>
+(Ritira\nOfferta) ..> (Visualizza Offerte\nPubblicate): <<include>>
+(Visualizza Offerte\nPubblicate) ..> (Login\nFruitore): <<include>>
+(Visualizza Offerte\nper categoria) ..> (Login\nConfiguratore): <<include>>
+
+
+
+@enduml
