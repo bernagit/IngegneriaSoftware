@@ -1,18 +1,20 @@
 package model.scambio;
 
+import com.sun.jdi.IncompatibleThreadStateException;
+
 import java.time.LocalTime;
 
 public class IntervalloOrario {
     private String oraInizio;
     private String oraFine;
+
     public IntervalloOrario(String oraInizio, String oraFine) {
         this.oraInizio = oraInizio;
         this.oraFine = oraFine;
     }
 
     public boolean isIntersected(IntervalloOrario interval){
-
-        if(this.getOraInizio().isBefore(interval.getOraInizio()) && this.getOraFine().isAfter(interval.getOraFine()))
+        if(this.getOraInizio().isBefore(interval.getOraInizio()) && this.getOraFine().isAfter(interval.getOraInizio()))
             return true;
         else if (this.getOraFine().isAfter(interval.getOraFine()) && this.getOraInizio().isBefore(interval.getOraFine()))
             return true;
