@@ -64,12 +64,9 @@ public class VisualizzaOfferteProprietario implements Action {
     }
 
     private void visualizzaStato(Offerta offerta) {
-        System.out.println("Offerta in scambio, Ultima risposta ricevuta:");
         Baratto baratto = JsonUtil.readBarattobyOfferta(offerta);
-        StringBuilder str = new StringBuilder();
-        str.append("Ultima risposta da: ").append(baratto.getDecisore())
-                .append(baratto.getAppuntamento());
-        System.out.println(str);
+        System.out.println("Offerta in scambio, Ultima risposta ricevuta da: " + baratto.getDecisore());
+        System.out.println(baratto.getAppuntamento());
     }
 }
 

@@ -11,7 +11,6 @@ import utility.MyMenu;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class ModificaAppuntamento implements Action {
         Scambio scambio = JsonUtil.readScambio();
 
         List<Baratto> barattoList = JsonUtil.readBarattoInScambio(utente.getUsername());
-        if (barattoList.size() == 0) {
+        if ( barattoList != null && barattoList.size() == 0) {
             System.out.println("Non sono presenti Appuntamenti per le offerte inserite");
             return;
         }
@@ -36,14 +35,20 @@ public class ModificaAppuntamento implements Action {
         StringBuilder voce = new StringBuilder();
         for (Baratto baratto : barattoList) {
             voce.append(baratto.getOffertaA().getTitolo()).append(" per: ").append(baratto.getOffertaB().getTitolo())
-                    .append(", \t").append(this.calcolaScadenze(baratto, scambio))
-                    .append("\tultima risposta da: ").append(baratto.getDecisore());
+                    .append("\t (").append(this.calcolaScadenze(baratto, scambio))
+                    .append("\tultima risposta da: ").append(baratto.getDecisore())
+                    .append(")");
             voci.add(voce.toString());
         }
-
+        voci.add("Torna al menu");
         menu.setVoci(voci);
+
+        int scelta = menu.scegli();
+        if (scelta == voci.size() - 1) {
+            return;
+        }
         //rispondi all'offerta
-        this.accettaORispondi(barattoList.get(menu.scegli()), utente);
+        this.accettaORispondi(barattoList.get(scelta), utente);
     }
 
     private void accettaORispondi(Baratto baratto, Utente utente) {
@@ -57,7 +62,7 @@ public class ModificaAppuntamento implements Action {
 
         boolean accetta = InputDati.yesOrNo("Vuoi accettare l'appuntamento? ");
         if (accetta)
-            this.accettaBaratto(baratto, utente);
+            this.accettaBaratto(baratto);
         else{
             boolean modifica = InputDati.yesOrNo("Vuoi modificare l'appuntamento? ");
             if(modifica)
@@ -74,7 +79,7 @@ public class ModificaAppuntamento implements Action {
             System.out.println("Appuntamento inserito uguale a quello deciso dall'altro utente");
             boolean accetta = InputDati.yesOrNo("Vuoi accettare dunque? ");
             if (accetta)
-                this.accettaBaratto(baratto, utente);
+                this.accettaBaratto(baratto);
             return;
         }
 
@@ -90,7 +95,7 @@ public class ModificaAppuntamento implements Action {
         JsonUtil.writeBaratto(baratto);
     }
 
-    private void accettaBaratto(Baratto baratto, Utente utente) {
+    private void accettaBaratto(Baratto baratto) {
         baratto.getOffertaA().setStatoCorrente(StatoOfferta.CHIUSA);
         baratto.getOffertaB().setStatoCorrente(StatoOfferta.CHIUSA);
         JsonUtil.writeOfferta(baratto.getOffertaA());
