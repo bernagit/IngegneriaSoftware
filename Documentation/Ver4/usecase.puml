@@ -56,19 +56,16 @@ fruit -up-> user
 (Baratta\nOggetti) #Pink
 (Accetta\nBaratto) #Pink
 (Visualizza\ne/o Accetta\nAppuntamento) #Pink
-(Visualizza\nofferte\nAperte) #Pink
 (Visualizza offerte\nChiuse o In scambio) #Pink
 
 fruit -- (Baratta\nOggetti)
 fruit -- (Accetta\nBaratto)
 fruit -- (Visualizza\ne/o Accetta\nAppuntamento)
-conf -- (Visualizza\nofferte\nAperte)
 conf -- (Visualizza offerte\nChiuse o In scambio)
 
 (Baratta\nOggetti) ..> (Login\nFruitore): <<include>>
 (Accetta\nBaratto) ..> (Login\nFruitore): <<include>>
 (Visualizza\ne/o Accetta\nAppuntamento) ..> (Login\nFruitore): <<include>>
-(Visualizza\nofferte\nAperte) ..> (Login\nConfiguratore): <<include>>
 (Visualizza offerte\nChiuse o In scambio) ..> (Login\nConfiguratore): <<include>>
 
 
