@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="v4 finita (test forse completato)">
-      <change afterPath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/OptionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/OptionList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Elaborato2021_22.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/scambi/scambio.json" beforeDir="false" afterPath="$PROJECT_DIR$/files/scambi/scambio.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/InputDati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/InputDati.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/JsonUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,13 +38,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "MTConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MTConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="controller" />
@@ -50,9 +54,7 @@
     <configuration name="Administrator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Administrator" />
       <module name="ProgettoIngeSw-2022" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+      <method v="2" />
     </configuration>
     <configuration name="MainConfiguratore" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainConfiguratore" />
@@ -61,18 +63,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainFruitore" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainFruitore" />
-      <module name="ProgettoIngeSw-2022" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="ProgettoIngeSw-2022.jar (1)" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/administrator_jar/ProgettoIngeSw-2022.jar" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ProgettoIngeSw-2022.jar (2)" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/configuratore_jar/ProgettoIngeSw-2022.jar" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ProgettoIngeSw-2022.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/ProgettoIngeSw_2022_v1_jar/ProgettoIngeSw-2022.jar" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-15" />
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainConfiguratore" />
+        <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar" />
+        <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (2)" />
+        <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (1)" />
         <item itemvalue="Application.Administrator" />
-        <item itemvalue="Application.MainFruitore" />
       </list>
     </recent_temporary>
   </component>
@@ -109,6 +120,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="move files to controller" />
     <MESSAGE value="v4 finita (test forse completato)" />
-    <option name="LAST_COMMIT_MESSAGE" value="v4 finita (test forse completato)" />
+    <MESSAGE value="fix documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix documentation" />
   </component>
 </project>

@@ -16,6 +16,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.stream.Stream;
 
 public class JsonUtil {
     private final static String directoryGerarchie = "files/gerarchie/";
-    private final static String directoryScambi = "files/scambi/";
+    private final static Path pathScambio = Path.of("files/scambi/scambio.json");
     private final static String directoryOfferte = "files/offerte/";
     private final static String directoryBaratti = "files/baratti/";
 
@@ -45,7 +46,10 @@ public class JsonUtil {
         List<Path> list = null;
 
         try (Stream<Path> files = Files.list(Paths.get(directory))) {
-            list = files.collect(Collectors.toList());
+            list = files.map(e -> e.toString())
+                    .filter(e -> e.endsWith(".json"))
+                    .map(e -> Path.of(e))
+                    .collect(Collectors.toList());
         } catch (IOException e) {
             System.out.println("Errore: directory files/gerarchie non presente");
         }
@@ -89,7 +93,7 @@ public class JsonUtil {
         Scambio scambio = null;
         try {
             Reader reader;
-            reader = Files.newBufferedReader(Path.of(directoryScambi + "scambio.json"));
+            reader = Files.newBufferedReader(pathScambio);
             Gson gson = new Gson();
             // convert JSON file to Gerarchia
             scambio = gson.fromJson(reader, Scambio.class);
@@ -104,13 +108,26 @@ public class JsonUtil {
     public static void writeScambio(Scambio scambio) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        String nomeFile = directoryScambi + "scambio.json";
         try (
-                FileWriter writer = new FileWriter(nomeFile)
+                FileWriter writer = new FileWriter(pathScambio.toString())
         ) {
             writer.write(gson.toJson(scambio));
         } catch (IOException e) {
             System.out.println("Errore nel salvataggio dello scambio");
+        }
+    }
+
+    public static boolean checkScambioExists(){
+        return Files.exists(pathScambio) && Files.isReadable(pathScambio);
+    }
+
+    public static void sovrascriviFileScambio(Path path) {
+        try {
+            Files.copy(pathScambio, Path.of(pathScambio.toString()+".old"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(path, pathScambio, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Configurazione importata con successo");
+        } catch (IOException e) {
+            System.out.println("Errore nell'importazione della configurazione");
         }
     }
 
@@ -363,5 +380,4 @@ public class JsonUtil {
         }
         return true;
     }
-
 }

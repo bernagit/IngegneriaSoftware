@@ -2,21 +2,61 @@ package controller;
 
 import model.user.Utente;
 import utility.InputDati;
+import utility.JsonUtil;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 public class ImportaFileConf implements Action {
     @Override
     public Utente execute(Utente utente) throws ExitException {
-        this.importaFile(utente);
+        this.importaFile();
         return null;
     }
 
-    private void importaFile(Utente utente) {
-        System.out.println("Importa File Configurazione");
-        boolean estensioneOk;
+    private void importaFile() {
+        String scelta;
+        boolean sceltaOk = false;
+        do {
+            scelta = InputDati.leggiStringaNonVuota(
+                    "Vuoi importare una gerarchia o i valori dei parametri di configurazione? (ger/conf): ");
+            if (scelta.equals("ger")) {
+                sceltaOk = true;
+                this.importaGerarchia();
+            } else if (scelta.equals("conf")) {
+                sceltaOk = true;
+                this.importaConfigurazione();
+            } else {
+                System.out.println("Scelta non valida, (ger/conf uniche scelte possibili)");
+            }
+        }while (!sceltaOk);
+    }
+
+    private void importaConfigurazione() {
+        String strPath = InputDati.leggiStringaNonVuota("Inserisci il percorso del file di configurazione: ");
+        Path path = Path.of(strPath);
+        if (strPath.endsWith(".json") && Files.exists(path)) {
+            if(JsonUtil.checkScambioExists()){
+                boolean sovrascrivi = InputDati.yesOrNo("Esiste già un file di configurazione, vuoi sovrascriverlo? ");
+                if(sovrascrivi){
+                    JsonUtil.sovrascriviFileScambio(path);
+                }
+            }
+        } else {
+            System.out.println("Errore nell'importazione della configurazione");
+        }
+    }
+
+    private void importaGerarchia() {
+
+    }
+
+    /*
+
+    boolean estensioneOk;
+
         do{
             String nomeFile =InputDati.leggiStringaNonVuota("Inserisci il nome del file da importare:");
             estensioneOk = !nomeFile.endsWith(".json");
@@ -33,10 +73,6 @@ public class ImportaFileConf implements Action {
 
 
         }while(!estensioneOk);
-
-    }
-
-    /*
     private boolean importaGerarchia(file){
         Gerarchia g = JSONUTIL.readGerarchie(file);
         if(g != null){
