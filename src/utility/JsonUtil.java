@@ -94,8 +94,7 @@ public class JsonUtil {
             // convert JSON file to Gerarchia
             scambio = gson.fromJson(reader, Scambio.class);
 
-        } catch (
-                IOException ex) {
+        } catch (IOException ex) {
             System.out.println("Errore apertura file Scambi");
         }
         return scambio;
@@ -106,8 +105,6 @@ public class JsonUtil {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         String nomeFile = directoryScambi + "scambio.json";
-
-
         try (
                 FileWriter writer = new FileWriter(nomeFile)
         ) {
@@ -348,7 +345,7 @@ public class JsonUtil {
                 if (baratto.getOffertaA().getStatoCorrente().equals(StatoOfferta.ACCOPPIATA)
                         || baratto.getOffertaA().getStatoCorrente().equals(StatoOfferta.IN_SCAMBIO)) {
                     scadenza = baratto.getDataOraBaratto().plusDays(scambio.getScadenzaProposta());
-                    if (scadenza.isBefore(oggi)){
+                    if (scadenza.isBefore(oggi)) {
                         //cambio stati offerta
                         Offerta a = baratto.getOffertaA();
                         a.setStatoCorrente(StatoOfferta.APERTA);
