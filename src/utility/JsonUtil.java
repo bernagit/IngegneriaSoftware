@@ -345,10 +345,11 @@ public class JsonUtil {
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
                 baratto = gson.fromJson(reader, Baratto.class);
-                if (baratto.getOffertaA().getStatoCorrente().equals(StatoOfferta.ACCOPPIATA)) {
+                if (baratto.getOffertaA().getStatoCorrente().equals(StatoOfferta.ACCOPPIATA)
+                        || baratto.getOffertaA().getStatoCorrente().equals(StatoOfferta.IN_SCAMBIO)) {
                     scadenza = baratto.getDataOraBaratto().plusDays(scambio.getScadenzaProposta());
                     if (scadenza.isBefore(oggi)){
-                        //cambio stati
+                        //cambio stati offerta
                         Offerta a = baratto.getOffertaA();
                         a.setStatoCorrente(StatoOfferta.APERTA);
                         Offerta b = baratto.getOffertaB();
