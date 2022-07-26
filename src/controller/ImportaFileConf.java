@@ -4,10 +4,8 @@ import model.user.Utente;
 import utility.InputDati;
 import utility.JsonUtil;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 
 public class ImportaFileConf implements Action {
     @Override
@@ -31,71 +29,48 @@ public class ImportaFileConf implements Action {
             } else {
                 System.out.println("Scelta non valida, (ger/conf uniche scelte possibili)");
             }
-        }while (!sceltaOk);
+        } while (!sceltaOk);
     }
 
     private void importaConfigurazione() {
         String strPath = InputDati.leggiStringaNonVuota("Inserisci il percorso del file di configurazione: ");
         Path path = Path.of(strPath);
         if (strPath.endsWith(".json") && Files.exists(path)) {
-            if(JsonUtil.checkScambioExists()){
-                boolean sovrascrivi = InputDati.yesOrNo("Esiste già un file di configurazione, vuoi sovrascriverlo? ");
-                if(sovrascrivi){
-                    JsonUtil.sovrascriviFileScambio(path);
-                }
+            boolean sovrascrivi = false;
+            if (JsonUtil.checkScambioExists()) {
+                sovrascrivi = InputDati.yesOrNo("Esiste già un file di configurazione, vuoi sovrascriverlo? ");
+                if (!sovrascrivi)
+                    return;
             }
+            boolean result = JsonUtil.scriviFileScambio(path, sovrascrivi);
+            if (result)
+                System.out.println("File di configurazione importato con successo");
+            else
+                System.out.println("Errore nell'importazione del file di configurazione (file compromesso)");
         } else {
-            System.out.println("Errore nell'importazione della configurazione");
+            System.out.println("Errore nell'importazione della configurazione (file non trovato o formato non valido)");
         }
     }
 
     private void importaGerarchia() {
         String strPath = InputDati.leggiStringaNonVuota("Inserisci il percorso del file Gerarchia: ");
         Path path = Path.of(strPath);
-        if (strPath.endsWith(".json") && Files.exists(path)){
-            if(JsonUtil.checkGerarchiaExists(path)){
-                boolean sovrascrivi = InputDati.yesOrNo("Esiste già un file gerarchia con questo nome, vuoi sovrascriverlo? ");
-                if(sovrascrivi)
-                    JsonUtil.sovrascriviFileGerarchia(path);
-            }
-            else
-                JsonUtil.scriviFileGerarchia(path);
-        } else {
-            System.out.println("Errore nell'importazione della configurazione");
-        }
-    }
-
-    /*
-
-    boolean estensioneOk;
-
-        do{
-            String nomeFile =InputDati.leggiStringaNonVuota("Inserisci il nome del file da importare:");
-            estensioneOk = !nomeFile.endsWith(".json");
-            if(estensioneOk){
-                System.out.println("Il file deve essere di tipo json");
+        if (strPath.endsWith(".json") && Files.exists(path)) {
+            boolean sovrascrivi = false;
+            if (JsonUtil.checkGerarchiaExists(path))
+                sovrascrivi = InputDati.yesOrNo("Esiste già un file gerarchia con questo nome, vuoi sovrascriverlo? ");
+            if (!sovrascrivi) {
+                System.out.println("File Gerarchia non importato");
                 return;
             }
+            boolean result = JsonUtil.scriviFileGerarchia(path, sovrascrivi);
+            if (result)
+                System.out.println("Gerarchia importata con successo");
+            else
+                System.out.println("Errore nell'importazione della Gerarchia (file compromesso)");
 
-            try {
-                Files.copy(Path.of(nomeFile), Path.of("files/scambio/"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-
-
-        }while(!estensioneOk);
-    private boolean importaGerarchia(file){
-        Gerarchia g = JSONUTIL.readGerarchie(file);
-        if(g != null){
-            g.checkGerarchia();
-            return true;
+        } else {
+            System.out.println("Errore nell'importazione della gerarchia (file non trovato o formato non valido)");
         }
-        else{
-            System.out.println("\nErrore nell'importazione della gerarchia");
-            return false;
-        }
-
     }
-     */
 }

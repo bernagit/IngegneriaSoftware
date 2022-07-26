@@ -46,9 +46,9 @@ public class JsonUtil {
         List<Path> list = null;
 
         try (Stream<Path> files = Files.list(Paths.get(directory))) {
-            list = files.map(e -> e.toString())
+            list = files.map(Path::toString)
                     .filter(e -> e.endsWith(".json"))
-                    .map(e -> Path.of(e))
+                    .map(Path::of)
                     .collect(Collectors.toList());
         } catch (IOException e) {
             System.out.println("Errore: directory files/gerarchie non presente");
@@ -99,25 +99,31 @@ public class JsonUtil {
         return false;
     }
 
-    public static void sovrascriviFileGerarchia(Path path) {
+    public static boolean scriviFileGerarchia(Path path, boolean overwrite) {
         try {
             Path pathFile = Path.of(directoryGerarchie + path.getFileName());
-            Files.copy(pathFile, Path.of(pathFile + ".old"), StandardCopyOption.REPLACE_EXISTING);
+            if (!JsonUtil.tryToReadGerarchia(pathFile))
+                return false;
+            if (overwrite)
+                Files.copy(pathFile, Path.of(pathFile + ".old"), StandardCopyOption.REPLACE_EXISTING);
             Files.copy(path, pathFile, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Gerarchia importata con successo");
+            return true;
         } catch (IOException e) {
-            System.out.println("Errore nell'importazione della Gerarchia");
+            return false;
         }
     }
 
-    public static void scriviFileGerarchia(Path path) {
+    private static boolean tryToReadGerarchia(Path pathFile) {
+        Gson gson = new Gson();
+        Gerarchia gerarchia = null;
         try {
-            Path pathFile = Path.of(directoryGerarchie + path.getFileName());
-            Files.copy(path, pathFile, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Gerarchia importata con successo");
-        } catch (IOException e) {
-            System.out.println("Errore nell'importazione della Gerarchia");
+            Reader reader = Files.newBufferedReader(pathFile);
+            // convert JSON file to Gerarchia
+            gerarchia = gson.fromJson(reader, Gerarchia.class);
+        } catch (Exception e) {
+            return false;
         }
+        return gerarchia == null;
     }
 
     public static Scambio readScambio() {
@@ -135,7 +141,6 @@ public class JsonUtil {
         return scambio;
     }
 
-
     public static void writeScambio(Scambio scambio) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
@@ -152,25 +157,40 @@ public class JsonUtil {
         return Files.exists(pathScambio) && Files.isReadable(pathScambio);
     }
 
-    public static void sovrascriviFileScambio(Path path) {
+    public static boolean scriviFileScambio(Path path, boolean overwrite) {
         try {
-            Files.copy(pathScambio, Path.of(pathScambio.toString() + ".old"), StandardCopyOption.REPLACE_EXISTING);
+            if (!JsonUtil.tryToReadScambio(path))
+                return false;
+            if (overwrite)
+                Files.copy(pathScambio, Path.of(pathScambio.toString() + ".old"), StandardCopyOption.REPLACE_EXISTING);
             Files.copy(path, pathScambio, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Configurazione importata con successo");
+            return true;
         } catch (IOException e) {
-            System.out.println("Errore nell'importazione della configurazione");
+            return false;
         }
+    }
+
+    private static boolean tryToReadScambio(Path pathFile) {
+        Gson gson = new Gson();
+        Scambio scambio = null;
+        try {
+            Reader reader = Files.newBufferedReader(pathFile);
+            // convert JSON file to Gerarchia
+            scambio = gson.fromJson(reader, Scambio.class);
+        } catch (Exception e) {
+            return false;
+        }
+        return scambio == null;
     }
 
     public static void writeOfferta(Offerta offerta) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        StringBuilder nomeFile = new StringBuilder();
-        nomeFile.append(directoryOfferte).append(offerta.getTitolo())
-                .append("_").append(offerta.getAutore())
-                .append(".json");
+        var nomeFile = directoryOfferte + offerta.getTitolo() +
+                "_" + offerta.getAutore() +
+                ".json";
         try (
-                FileWriter writer = new FileWriter(nomeFile.toString())
+                FileWriter writer = new FileWriter(nomeFile)
         ) {
             writer.write(gson.toJson(offerta));
         } catch (IOException e) {
@@ -274,14 +294,13 @@ public class JsonUtil {
     public static void writeBaratto(Baratto baratto) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        StringBuilder nomeFile = new StringBuilder();
-        nomeFile.append(directoryBaratti)
-                .append(baratto.getOffertaA().getAutore()).append("_")
-                .append(baratto.getOffertaB().getAutore()).append("_")
-                .append("_").append(baratto.getDataOraBaratto())
-                .append(".json");
+        var nomeFile = directoryBaratti +
+                baratto.getOffertaA().getAutore() + "_" +
+                baratto.getOffertaB().getAutore() + "_" +
+                "_" + baratto.getDataOraBaratto() +
+                ".json";
         try (
-                FileWriter writer = new FileWriter(nomeFile.toString())
+                FileWriter writer = new FileWriter(nomeFile)
         ) {
             writer.write(gson.toJson(baratto));
         } catch (IOException e) {
@@ -361,21 +380,20 @@ public class JsonUtil {
     }
 
     public static void deleteBaratto(Baratto baratto) {
-        StringBuilder nomeFile = new StringBuilder();
-        nomeFile.append(directoryBaratti)
-                .append(baratto.getOffertaA().getAutore()).append("_")
-                .append(baratto.getOffertaB().getAutore()).append("_")
-                .append("_").append(baratto.getDataOraBaratto())
-                .append(".json");
+        String nomeFile = directoryBaratti +
+                baratto.getOffertaA().getAutore() + "_" +
+                baratto.getOffertaB().getAutore() + "_" +
+                "_" + baratto.getDataOraBaratto() +
+                ".json";
 
-        File fileBaratto = new File(nomeFile.toString());
+        File fileBaratto = new File(nomeFile);
         if (fileBaratto.delete())
             System.out.println("Baratto chiuso");
         else
             System.out.println("impossibile chiudere baratto");
     }
 
-    public static boolean eliminaBarattiScaduti() {
+    public static void eliminaBarattiScaduti() {
         Baratto baratto;
         LocalDateTime oggi = LocalDateTime.now();
         LocalDateTime scadenza;
@@ -383,7 +401,7 @@ public class JsonUtil {
         try {
             Reader reader;
             if (JsonUtil.createListOfFile(directoryBaratti) == null) {
-                return false;
+                return;
             }
             for (Path file : JsonUtil.createListOfFile(directoryBaratti)) {
                 reader = Files.newBufferedReader(file);
@@ -409,6 +427,5 @@ public class JsonUtil {
         } catch (IOException ex) {
             System.out.println("Errore apertura file Baratti");
         }
-        return true;
     }
 }
