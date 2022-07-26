@@ -50,7 +50,19 @@ public class ImportaFileConf implements Action {
     }
 
     private void importaGerarchia() {
-
+        String strPath = InputDati.leggiStringaNonVuota("Inserisci il percorso del file Gerarchia: ");
+        Path path = Path.of(strPath);
+        if (strPath.endsWith(".json") && Files.exists(path)){
+            if(JsonUtil.checkGerarchiaExists(path)){
+                boolean sovrascrivi = InputDati.yesOrNo("Esiste già un file gerarchia con questo nome, vuoi sovrascriverlo? ");
+                if(sovrascrivi)
+                    JsonUtil.sovrascriviFileGerarchia(path);
+            }
+            else
+                JsonUtil.scriviFileGerarchia(path);
+        } else {
+            System.out.println("Errore nell'importazione della configurazione");
+        }
     }
 
     /*

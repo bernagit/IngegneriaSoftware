@@ -89,6 +89,37 @@ public class JsonUtil {
         return false;
     }
 
+    public static boolean checkGerarchiaExists(Path path) {
+        List<Path> list = createListOfFile(directoryGerarchie);
+        for (Path p : list) {
+            if (p.getFileName().equals(path.getFileName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void sovrascriviFileGerarchia(Path path) {
+        try {
+            Path pathFile = Path.of(directoryGerarchie + path.getFileName());
+            Files.copy(pathFile, Path.of(pathFile + ".old"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(path, pathFile, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Gerarchia importata con successo");
+        } catch (IOException e) {
+            System.out.println("Errore nell'importazione della Gerarchia");
+        }
+    }
+
+    public static void scriviFileGerarchia(Path path) {
+        try {
+            Path pathFile = Path.of(directoryGerarchie + path.getFileName());
+            Files.copy(path, pathFile, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Gerarchia importata con successo");
+        } catch (IOException e) {
+            System.out.println("Errore nell'importazione della Gerarchia");
+        }
+    }
+
     public static Scambio readScambio() {
         Scambio scambio = null;
         try {
@@ -117,13 +148,13 @@ public class JsonUtil {
         }
     }
 
-    public static boolean checkScambioExists(){
+    public static boolean checkScambioExists() {
         return Files.exists(pathScambio) && Files.isReadable(pathScambio);
     }
 
     public static void sovrascriviFileScambio(Path path) {
         try {
-            Files.copy(pathScambio, Path.of(pathScambio.toString()+".old"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(pathScambio, Path.of(pathScambio.toString() + ".old"), StandardCopyOption.REPLACE_EXISTING);
             Files.copy(path, pathScambio, StandardCopyOption.REPLACE_EXISTING);
             System.out.println("Configurazione importata con successo");
         } catch (IOException e) {
