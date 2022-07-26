@@ -68,7 +68,6 @@ public class ImportaFileConf implements Action {
                 System.out.println("Gerarchia importata con successo");
             else
                 System.out.println("Errore nell'importazione della Gerarchia (file compromesso)");
-
         } else {
             System.out.println("Errore nell'importazione della gerarchia (file non trovato o formato non valido)");
         }

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="v4 finita (test forse completato)">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="error fixing v5">
+      <change beforePath="$PROJECT_DIR$/.idea/ProgettoIngeSw-2022.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProgettoIngeSw-2022.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Elaborato2021_22.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/scambi/scambio.json" beforeDir="false" afterPath="$PROJECT_DIR$/files/scambi/scambio.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/gerarchie/libri.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/files/scambi/scambio.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/InputDati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/InputDati.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/JsonUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +36,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MTConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="controller" />
@@ -103,7 +105,28 @@
       <option name="presentableId" value="Default" />
       <updated>1658500524364</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="importa file Scambio modalità batch">
+      <created>1658770416000</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658770416000</updated>
+    </task>
+    <task id="LOCAL-00003" summary="importa file Gerarchia modalità batch">
+      <created>1658824134543</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658824134543</updated>
+    </task>
+    <task id="LOCAL-00004" summary="error fixing v5">
+      <created>1658845657963</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658845657963</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -121,6 +144,9 @@
     <MESSAGE value="move files to controller" />
     <MESSAGE value="v4 finita (test forse completato)" />
     <MESSAGE value="fix documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix documentation" />
+    <MESSAGE value="importa file Scambio modalità batch" />
+    <MESSAGE value="importa file Gerarchia modalità batch" />
+    <MESSAGE value="error fixing v5" />
+    <option name="LAST_COMMIT_MESSAGE" value="error fixing v5" />
   </component>
 </project>
