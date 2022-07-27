@@ -70,8 +70,9 @@ public class DbConnect {
             int id = rs.getInt("id");
             return id;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
+        return -1;
     }
 
     public Utente checkLogin(String usr, String pwd) {
@@ -140,6 +141,21 @@ public class DbConnect {
             return (username != null && firstlogin);
         } catch (SQLException e) {
             return true;
+        }
+    }
+
+    public boolean checkUsername(String user) {
+        String sql = "SELECT username FROM utenti"
+                + " WHERE username = ?";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, user);
+            ResultSet rs = pstmt.executeQuery();
+            String username = rs.getString("username");
+            //se user esiste
+            return (username != null);
+        } catch (SQLException e) {
+            return false;
         }
     }
 }
