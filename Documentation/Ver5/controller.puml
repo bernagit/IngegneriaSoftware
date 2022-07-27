@@ -1,0 +1,25 @@
+@startuml controller
+
+interface Action{
+    +execute(utente: Utente): Utente
+}
+
+note left of Action
+    Per questioni di spazio le classi dei casi d'uso delle versioni
+    precedenti non vengono rappresentate.
+endnote
+
+class ImportaFileConf implements Action{
+    +execute(utente: Utente): Utente
+    -importaFile(): void
+    -importaConfigurazione(): void
+    -importaGerarchia(): void
+}
+
+ImportaFileConf ..> utility.JsonUtil: use
+ImportaFileConf ..> utility.InputDati: use
+
+
+
+
+@enduml

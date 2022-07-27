@@ -1,9 +1,9 @@
 @startuml use_case
 
 :Configuratore: as conf
-:Utente: as user
+':Utente: as user
 ':Amministratore: as admin
-conf -up-> user
+'conf -up-> user
 
 conf -- (Login\nConfiguratore)
 'conf -- (Visualizza\nGerarchia)
@@ -13,15 +13,15 @@ conf -- (Login\nConfiguratore)
 'admin -- (Registrazione\nConfiguratore)
 
 '(Creazione\nGerarchia) ..> (Login\nConfiguratore): <<include>>
-(Login\nConfiguratore) ..> (Login Utente): <<extends>>
+'(Login\nConfiguratore) ..> (Login Utente): <<extends>>
 
 'Versione 2'
 
-:Fruitore: as fruit
-fruit -up-> user
+':Fruitore: as fruit
+'fruit -up-> user
 
 '(Aggiungi\nScambio)
-(Login\nFruitore)
+'(Login\nFruitore)
 '(Registrazione\nFruitore)
 '(Visualizza\nScambi)
 
@@ -30,7 +30,7 @@ fruit -up-> user
 'fruit -- (Registrazione\nFruitore)
 'fruit -- (Login\nFruitore)
 
-(Login\nFruitore) ..> (Login Utente): <<extends>>
+'(Login\nFruitore) ..> (Login Utente): <<extends>>
 '(Visualizza\nScambi) ..> (Login\nFruitore): <<include>>
 '(Aggiungi\nScambio) ..> (Login\nConfiguratore): <<include>>
 
@@ -53,20 +53,31 @@ fruit -up-> user
 '(Visualizza\nOfferte\nper categoria) ..> (Login\nConfiguratore): <<include>>
 
 'Versione 4'
-(Baratta\nOggetti) #Pink
-(Accetta\nBaratto) #Pink
-(Visualizza\ne/o Accetta\nAppuntamento) #Pink
-(Visualizza offerte\nChiuse o In scambio) #Pink
+'(Baratta\nOggetti) #Pink
+'(Accetta\nBaratto) #Pink
+'(Visualizza\ne/o Accetta\nAppuntamento) #Pink
+'(Visualizza\nofferte\nAperte) #Pink
+'(Visualizza offerte\nChiuse o In scambio) #Pink
 
-fruit -- (Baratta\nOggetti)
-fruit -- (Accetta\nBaratto)
-fruit -- (Visualizza\ne/o Accetta\nAppuntamento)
-conf -- (Visualizza offerte\nChiuse o In scambio)
+'fruit -- (Baratta\nOggetti)
+'fruit -- (Accetta\nBaratto)
+'fruit -- (Visualizza\ne/o Accetta\nAppuntamento)
+'conf -- (Visualizza\nofferte\nAperte)
+'conf -- (Visualizza offerte\nChiuse o In scambio)
 
-(Baratta\nOggetti) ..> (Login\nFruitore): <<include>>
-(Accetta\nBaratto) ..> (Login\nFruitore): <<include>>
-(Visualizza\ne/o Accetta\nAppuntamento) ..> (Login\nFruitore): <<include>>
-(Visualizza offerte\nChiuse o In scambio) ..> (Login\nConfiguratore): <<include>>
+'(Baratta\nOggetti) ..> (Login\nFruitore): <<include>>
+'(Accetta\nBaratto) ..> (Login\nFruitore): <<include>>
+'(Visualizza\ne/o Accetta\nAppuntamento) ..> (Login\nFruitore): <<include>>
+'(Visualizza\nofferte\nAperte) ..> (Login\nConfiguratore): <<include>>
+'(Visualizza offerte\nChiuse o In scambio) ..> (Login\nConfiguratore): <<include>>
+
+'Versione 5'
+(Importa File Back-End) #Pink
+
+conf -- (Importa File Back-End)
+
+(Importa File Back-End) ..> (Login\nConfiguratore): <<include>>
+
 
 
 @enduml

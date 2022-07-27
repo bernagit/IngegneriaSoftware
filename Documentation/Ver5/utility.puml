@@ -1,15 +1,5 @@
 @startuml utility
 
-package com.google.gson #EEEEEE{}
-
-package model.gerarchia #EEEEEE{}
-
-package model.scambio #EEEEEE{}
-
-package model.offerta #EEEEEE{}
-
-package model.baratto #EEEEEE{}
-
 package "utility" #DDDDDD{
     
     class JsonUtil{
@@ -17,8 +7,14 @@ package "utility" #DDDDDD{
         -{static} createListOfFile(directory: String): List<Path>
         +{static} readGerarchia(): List<Gerarchia>
         +{static} checkNomeGerarchiaRipetuto(nome: String): boolean
+        +{static} checkGerarchiaExists(path: Path): boolean
+        +{static} scriviFileGerarchia(path: Path, overwrite:boolean): boolean
+        -{static} tryToReadGerarchia(pathFile: Path): boolean
         +{static} writeScambio(scambio: Scambio): void
         +{static} readScambio(): List<Scambio>
+        +{static} checkScambioExists(): boolean
+        +{static} scriviFileScambio(path: Path, overwrite:boolean): boolean
+        -{static} tryToReadScambio(pathFile: Path): boolean
         +{static} writeOfferta(offerta: Offerta): void
         +{static} readOffertaByCategoria(nomeCategoria: String): List<Offerta>
         +{static} readOffertaByAutore(autore: String): List<Offerta>
@@ -33,23 +29,15 @@ package "utility" #DDDDDD{
 
     }
 
-    JsonUtil -up..> com.google.gson: use
-    JsonUtil -up..> model.gerarchia: use
-    JsonUtil -up..> model.scambio: use
-    JsonUtil -up..> model.offerta: use
-    JsonUtil -up..> model.baratto: use
-
 }
 note right of JsonUtil
 nuovi metodi: 
-    - readOffertaByAutoreAndState
-    - readOfferteAperteByCategoria
-    - writeBaratto
-    - readBarattoByUtente
-    - readBarattoInScambio
-    - readBarattoByOfferta
-    - deleteBaratto
-    - eliminaBarattiScaduti
+    - checkGerarchiaExists
+    - scriviFileGerarchia
+    - tryToReadGerarchia
+    - checkScambioExists
+    - scriviFileScambio
+    - tryToReadScambio
 end note
 
 

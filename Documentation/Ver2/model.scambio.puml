@@ -1,4 +1,4 @@
-@startuml model.scambio
+@startuml model_scambio
 
 package model.scambio{
     class Scambio{
