@@ -25,7 +25,8 @@ public class InserisciScambio implements Action {
         if (scambio != null) {
             modifica = InputDati.yesOrNo("\nScambio già presente, si vuole modificare? ");
             System.out.println("Città di scambio: " + scambio.getPiazza());
-        } else {
+        }
+        else{
             String piazza = InputDati.leggiStringaNonVuota("Inserisci piazza di scambio (Citta): ");
             //creazione scambio
             scambio = new Scambio(piazza);
@@ -46,6 +47,8 @@ public class InserisciScambio implements Action {
 
         if (InputDati.yesOrNo("Salvare scambio? "))
             JsonUtil.writeScambio(scambio);
+        /*} else
+            System.out.println("\nNon sono presenti Gerarchie per cui inserire scambi...");*/
     }
 
     private List<String> inserisciLuoghi() {
