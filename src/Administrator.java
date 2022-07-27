@@ -8,9 +8,17 @@ public class Administrator {
         DbConnect db = new DbConnect();
         db.createNewTable("Utenti");
         String password = getNewPassword(10);
-        String utente = InputDati.leggiStringaNonVuota("Inserisci nome Utente da creare: ");
-        System.out.println("password dell'utente "+ utente+ ": " + password);
+        String utente;
+        boolean userOk;
+        do {
+            utente = InputDati.leggiStringaNonVuota("Inserisci nome Utente da creare: ");
+            userOk = db.checkUsername(utente);
+            if (userOk)
+                System.out.println("Username già presente");
+        } while (userOk);
+        System.out.println("password dell'utente " + utente + ": " + password);
         writePasswordToFile(utente, password);
+
         db.insertUser(utente, password, true, true);
     }
 
