@@ -1,0 +1,46 @@
+@startuml class_diagram
+
+package "utility" #DDDDDD{
+    
+    class JsonUtil{
+        +{static} writeGerarchia(gerarchia: Gerarchia): void
+        -{static} createListOfFile(directory: String): List<Path>
+        +{static} readGerarchia(): List<Gerarchia>
+        +{static} checkNomeGerarchiaRipetuto(nome: String): boolean
+        +{static} checkGerarchiaExists(path: Path): boolean
+        +{static} scriviFileGerarchia(path: Path, overwrite:boolean): boolean
+        -{static} tryToReadGerarchia(pathFile: Path): boolean
+        +{static} writeScambio(scambio: Scambio): void
+        +{static} readScambio(): List<Scambio>
+        +{static} checkScambioExists(): boolean
+        +{static} scriviFileScambio(path: Path, overwrite:boolean): boolean
+        -{static} tryToReadScambio(pathFile: Path): boolean
+        +{static} writeOfferta(offerta: Offerta): void
+        +{static} readOffertaByCategoria(nomeCategoria: String): List<Offerta>
+        +{static} readOffertaByAutore(autore: String): List<Offerta>
+        +{static} readOffertaByAutoreAndState(autore: String, stat: StatoOfferta): List<Offerta>
+        +{static} readOfferteAperteByCategoria(autore: String, categoria: Categoria): List<Offerta>
+        +{static} writeBaratto(baratto: Baratto): void
+        +{static} readBarattoByUtente(utente: String): List<Baratto>
+        +{static} readBarattoInScambio(utente: String): List<Baratto>
+        +{static} readBarattoByOfferta(offerta: Offerta): List<Baratto>
+        +{static} deleteBaratto(baratto: Baratto): void
+        +{static} eliminaBarattiScaduti(): boolean
+
+    }
+
+}
+note right of JsonUtil
+nuovi metodi: 
+    - checkGerarchiaExists
+    - scriviFileGerarchia
+    - tryToReadGerarchia
+    - checkScambioExists
+    - scriviFileScambio
+    - tryToReadScambio
+end note
+
+
+
+
+@enduml
