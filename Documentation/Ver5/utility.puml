@@ -1,4 +1,4 @@
-@startuml class_diagram
+@startuml utility
 
 package "utility" #DDDDDD{
     

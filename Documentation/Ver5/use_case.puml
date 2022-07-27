@@ -1,4 +1,4 @@
-@startuml ver1
+@startuml use_case
 
 :Configuratore: as conf
 ':Utente: as user
