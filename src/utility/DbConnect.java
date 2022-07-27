@@ -142,4 +142,19 @@ public class DbConnect {
             return true;
         }
     }
+
+    public boolean checkUsername(String user) {
+        String sql = "SELECT username FROM utenti"
+                + " WHERE username = ?";
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, user);
+            ResultSet rs = pstmt.executeQuery();
+            String username = rs.getString("username");
+            //se user esiste
+            return (username != null);
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }
