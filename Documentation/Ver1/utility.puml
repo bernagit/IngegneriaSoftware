@@ -16,6 +16,7 @@ package "utility" #DDDDDD{
         +checkLogin(user: String, pass: String): Utente
         +updateCredentials(user: Utente, newUser: String, newPass, String): boolean
         +checkNewUser(newUser: String): boolean
+        +checkUsername(user: String): boolean
     }
    
     class MyMenu{

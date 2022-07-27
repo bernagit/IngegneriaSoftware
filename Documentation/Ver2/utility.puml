@@ -10,7 +10,7 @@ package "utility" #DDDDDD{
     
     class JsonUtil{
         +{static} writeGerarchia(gerarchia: Gerarchia): void
-        +{static} createListOfFile(directory: String): List<Path>
+        -{static} createListOfFile(directory: String): List<Path>
         +{static} readGerarchia(): List<Gerarchia>
         +{static} checkNomeGerarchiaRipetuto(nome: String): boolean
         +{static} writeScambio(scambio: Scambio): void
