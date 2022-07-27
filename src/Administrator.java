@@ -1,16 +1,26 @@
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import utility.DbConnect;
 import utility.InputDati;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 public class Administrator {
     public static void main(String[] args) {
         DbConnect db = new DbConnect();
         db.createNewTable("Utenti");
         String password = getNewPassword(10);
-        String utente = InputDati.leggiStringaNonVuota("Inserisci nome Utente da creare: ");
-        System.out.println("password dell'utente "+ utente+ ": " + password);
+        String utente;
+        boolean userOk;
+        do {
+            utente = InputDati.leggiStringaNonVuota("Inserisci nome Utente da creare: ");
+            userOk = db.checkUsername(utente);
+            if (userOk)
+                System.out.println("Username già presente");
+        } while (userOk);
+        System.out.println("password dell'utente " + utente + ": " + password);
         writePasswordToFile(utente, password);
+
         db.insertUser(utente, password, true, true);
     }
 
@@ -27,8 +37,8 @@ public class Administrator {
         return password.toString();
     }
 
-    public static void writePasswordToFile(String username, String password){
-        try(PrintWriter out = new PrintWriter(username)) {
+    public static void writePasswordToFile(String username, String password) {
+        try (PrintWriter out = new PrintWriter(username)) {
             out.println(password);
         } catch (FileNotFoundException e) {
             System.out.println("File non creato");
