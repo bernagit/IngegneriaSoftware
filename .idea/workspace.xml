@@ -1,12 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="error fixing v5">
+    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="init test with junit">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_5_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_params_5_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/controller/InserisciGerarchiaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ProgettoIngeSw-2022.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProgettoIngeSw-2022.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/gerarchie/libri.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/scambi/scambio.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver1/controller.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver1/main.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver1/model.gerarchia.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver1/model.user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver1/package.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver1/use_case.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver1/utility.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver2/controller.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver2/main.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver2/model_scambio.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver2/package.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver2/use_case.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver2/utility.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver3/controller.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver3/model_offerta.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver3/package.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver3/use_case.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver3/utility.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver4/controller.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver4/model_baratto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver4/package.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver4/use_case.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver4/utility.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver5/controller.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver5/package.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver5/use_case.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/Documentation/Ver5/utility.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Administrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainConfiguratore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainConfiguratore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainFruitore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainFruitore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AccettaBaratto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AccettaBaratto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Action.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Action.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/BarattaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/BarattaOfferta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Exit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Exit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ExitException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ExitException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ImportaFileConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/InserisciGerarchia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/InserisciGerarchia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/InserisciScambio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/InserisciScambio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/LoginConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/LoginFruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginFruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Logout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ModificaAppuntamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ModificaAppuntamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Option.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/OptionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/OptionList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/PubblicaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PubblicaOfferta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaGerarchie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/VisualizzaGerarchie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/VisualizzaOfferte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/VisualizzaOfferteConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteProprietario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/VisualizzaOfferteProprietario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaScambi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/VisualizzaScambi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/baratto/Appuntamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/baratto/Appuntamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/baratto/Baratto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/baratto/Baratto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/gerarchia/CampoNativo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/gerarchia/CampoNativo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/gerarchia/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/gerarchia/Categoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/gerarchia/Gerarchia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/gerarchia/Gerarchia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/offerta/CampoCompilato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/offerta/CampoCompilato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/offerta/Offerta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/offerta/Offerta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/offerta/StatoOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/offerta/StatoOfferta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/scambio/IntervalloOrario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/scambio/IntervalloOrario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/scambio/Scambio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/scambio/Scambio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/user/Configuratore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/user/Configuratore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/user/Fruitore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/user/Fruitore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/user/Utente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/user/Utente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/DbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/DbConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/InputDati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/InputDati.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/JsonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/MyMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utility/MyMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,13 +99,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="v4" />
+        <entry key="$PROJECT_DIR$" value="v5" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -44,6 +127,13 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "jdk.selected.JAVA_MODULE": "corretto-15",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.21028037",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
@@ -51,8 +141,14 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="controller" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="controller" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.MainConfiguratore">
+  <component name="RunManager" selected="Application.mainProva">
     <configuration name="Administrator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Administrator" />
       <module name="ProgettoIngeSw-2022" />
@@ -65,9 +161,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProgettoIngeSw-2022.jar (1)" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/administrator_jar/ProgettoIngeSw-2022.jar" />
-      <method v="2" />
+    <configuration name="mainProva" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mainProva" />
+      <module name="ProgettoIngeSw-2022" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="ProgettoIngeSw-2022.jar (2)" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/configuratore_jar/ProgettoIngeSw-2022.jar" />
@@ -81,11 +180,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.mainProva" />
+        <item itemvalue="Application.Administrator" />
         <item itemvalue="Application.MainConfiguratore" />
         <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar" />
         <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (2)" />
-        <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (1)" />
-        <item itemvalue="Application.Administrator" />
       </list>
     </recent_temporary>
   </component>
@@ -147,6 +246,7 @@
     <MESSAGE value="importa file Scambio modalità batch" />
     <MESSAGE value="importa file Gerarchia modalità batch" />
     <MESSAGE value="error fixing v5" />
-    <option name="LAST_COMMIT_MESSAGE" value="error fixing v5" />
+    <MESSAGE value="init test with junit" />
+    <option name="LAST_COMMIT_MESSAGE" value="init test with junit" />
   </component>
 </project>

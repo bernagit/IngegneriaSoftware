@@ -18,8 +18,4 @@ public class Gerarchia {
     public String toString() {
         return radice.toString();
     }
-
-    /*public boolean checkGerarchia(){
-
-    }*/
 }
