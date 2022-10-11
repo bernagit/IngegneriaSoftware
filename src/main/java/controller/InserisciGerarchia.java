@@ -15,7 +15,7 @@ public class InserisciGerarchia implements Action {
         return null;
     }
 
-    public void inserisciGerarchia() {
+    public Gerarchia inserisciGerarchia() {
         String nome = this.inserisciNome();
         String descrizione = InputDati.leggiStringaNonVuota("Inserisci descrizione categoria: ");
         ArrayList<CampoNativo> campi = new ArrayList<>();
@@ -51,10 +51,12 @@ public class InserisciGerarchia implements Action {
             JsonUtil.writeGerarchia(gerarchia);
             System.out.println("Gerarchia salvata");
         }
-        else
+        else {
             System.out.println("Gerarchia non salvata");
+        }
+        return gerarchia;
     }
-    public String inserisciNome() {
+    private String inserisciNome() {
         boolean nomeRipetuto = true;
         String nome;
         do{
@@ -66,7 +68,7 @@ public class InserisciGerarchia implements Action {
         }while(nomeRipetuto);
         return nome;
     }
-    public void aggiungiCampi(Categoria radice, Categoria categoria){
+    private void aggiungiCampi(Categoria radice, Categoria categoria){
         boolean inserisci = false;
         do{
             inserisci = InputDati.yesOrNo("Vuoi inserire un campo? ");
@@ -84,7 +86,7 @@ public class InserisciGerarchia implements Action {
             }
         }while (inserisci);
     }
-    public Categoria scegliPadre(Categoria radice) {
+    private Categoria scegliPadre(Categoria radice) {
         MyMenu menu = new MyMenu("Scelta categoria padre");
         ArrayList<Categoria> categorie = radice.getStrutturaCompleta();
         ArrayList<String> voci = new ArrayList<>();
@@ -99,7 +101,7 @@ public class InserisciGerarchia implements Action {
         return null;
     }
 
-    public void inserisciFiglio(int num, Categoria padre, Categoria radice) {
+    private void inserisciFiglio(int num, Categoria padre, Categoria radice) {
         boolean nomeRipetuto = true;
         String nome;
         do {

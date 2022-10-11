@@ -1,21 +1,31 @@
 package controller;
 
-import model.user.Utente;
+import model.gerarchia.Gerarchia;
 import org.junit.jupiter.api.Test;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class InserisciGerarchiaTest {
-
-    @Test
-    void execute() {
-    }
+    InserisciGerarchia inserisci = new InserisciGerarchia();
+    Gerarchia gerarchia;
+    InputStream systemIn;
 
     @Test
     void inserisciGerarchia() {
 
-    }
-
-    @Test
-    void inserisciNome(){
-
+        File file = new File("./src/test/cases/InserisciGerarchia");
+        try {
+            systemIn = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("File non torovato");
+        }
+        System.setIn(systemIn);
+        gerarchia = inserisci.inserisciGerarchia();
+        assertEquals(gerarchia.getNomeRadice(), "libri");
+        assertEquals(gerarchia.getRadice().getPadre(), null);
     }
 }
