@@ -8,12 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class InserisciGerarchiaTest {
     InserisciGerarchia inserisci = new InserisciGerarchia();
     Gerarchia gerarchia;
     InputStream systemIn;
-
     @Test
     void inserisciGerarchia() {
 
@@ -21,11 +21,14 @@ class InserisciGerarchiaTest {
         try {
             systemIn = new FileInputStream(file);
         } catch (FileNotFoundException e) {
-            System.out.println("File non torovato");
+            System.out.println("File non trovato");
         }
         System.setIn(systemIn);
         gerarchia = inserisci.inserisciGerarchia();
-        assertEquals(gerarchia.getNomeRadice(), "libri");
-        assertEquals(gerarchia.getRadice().getPadre(), null);
+        assertEquals(gerarchia.getNomeRadice(), "scarpe");
+        assertEquals(gerarchia.getRadice().getFigli().get(2).getNome(), "eleganti");
+        assertEquals(gerarchia.getRadice().getFigli().get(2).getFigli().get(0).getNome(), "mocassini");
+        assertTrue(gerarchia.getRadice().getFigli().get(0).isFoglia());
+        assertTrue(gerarchia.getRadice().getFigli().get(2).getFigli().get(0).isFoglia());
     }
 }
