@@ -7,7 +7,11 @@ import model.user.Utente;
 
 public class LoginConf implements Action {
     DbConnect db = new DbConnect();
-    private Configuratore doLogin() {
+    @Override
+    public Utente execute(Utente utente) throws ExitException {
+        return doLogin();
+    }
+    public Configuratore doLogin() {
         String user = InputDati.leggiStringaNonVuota("Inserisci username: ");
         String pass = InputDati.leggiStringaNonVuota("Inserisci password: ");
         Utente conf = db.checkLogin(user, pass);
@@ -47,10 +51,5 @@ public class LoginConf implements Action {
         utente.updateCredentials(newUser, newPass, false);
         System.out.println("Utente " + newUser + " modificato correttamente");
         return (Configuratore) utente;
-    }
-
-    @Override
-    public Utente execute(Utente utente) throws ExitException {
-        return doLogin();
     }
 }
