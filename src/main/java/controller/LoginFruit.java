@@ -14,7 +14,7 @@ public class LoginFruit implements Action {
         return doLogin();
     }
 
-    private Utente doLogin() {
+    public Utente doLogin() {
         boolean firstLogin = InputDati.yesOrNo("Primo Login? ");
         if (firstLogin)
             return this.firstLogin();
