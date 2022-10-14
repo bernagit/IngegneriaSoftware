@@ -18,7 +18,7 @@ public class InserisciScambio implements Action {
         return null;
     }
 
-    private void inserisciScambio() {
+    public Scambio inserisciScambio() {
         Scambio scambio = JsonUtil.readScambio();
         boolean modifica = true;
         //se scambio esiste chiedo di modificarlo altrimente lo creo chiedendo la città di scambio
@@ -32,7 +32,7 @@ public class InserisciScambio implements Action {
             scambio = new Scambio(piazza);
         }
         if (!modifica)
-            return;
+            return scambio;
         //inserimento luoghi
         scambio.setLuoghi(this.inserisciLuoghi());
 
@@ -47,8 +47,8 @@ public class InserisciScambio implements Action {
 
         if (InputDati.yesOrNo("Salvare scambio? "))
             JsonUtil.writeScambio(scambio);
-        /*} else
-            System.out.println("\nNon sono presenti Gerarchie per cui inserire scambi...");*/
+
+        return scambio;
     }
 
     private List<String> inserisciLuoghi() {

@@ -115,7 +115,7 @@ public class JsonUtil {
 
     private static boolean tryToReadGerarchia(Path pathFile) {
         Gson gson = new Gson();
-        Gerarchia gerarchia = null;
+        Gerarchia gerarchia;
         try {
             Reader reader = Files.newBufferedReader(pathFile);
             // convert JSON file to Gerarchia
@@ -136,7 +136,7 @@ public class JsonUtil {
             scambio = gson.fromJson(reader, Scambio.class);
 
         } catch (IOException ex) {
-            System.out.println("Errore apertura file Scambi");
+            //System.out.println("Errore apertura file Scambi");
         }
         return scambio;
     }
@@ -162,7 +162,7 @@ public class JsonUtil {
             if (!JsonUtil.tryToReadScambio(path))
                 return false;
             if (overwrite)
-                Files.copy(pathScambio, Path.of(pathScambio.toString() + ".old"), StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(pathScambio, Path.of(pathScambio + ".old"), StandardCopyOption.REPLACE_EXISTING);
             Files.copy(path, pathScambio, StandardCopyOption.REPLACE_EXISTING);
             return true;
         } catch (IOException e) {
@@ -172,7 +172,7 @@ public class JsonUtil {
 
     private static boolean tryToReadScambio(Path pathFile) {
         Gson gson = new Gson();
-        Scambio scambio = null;
+        Scambio scambio;
         try {
             Reader reader = Files.newBufferedReader(pathFile);
             // convert JSON file to Gerarchia
