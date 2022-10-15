@@ -21,7 +21,7 @@ public class PubblicaOfferta implements Action {
         return null;
     }
 
-    private void inserisciOfferta(Utente utente) {
+    public Offerta inserisciOfferta(Utente utente) {
         List<Gerarchia> gerarchie = JsonUtil.readGerarchie();
         ArrayList<String> vociGerarchie = new ArrayList<>();
         MyMenu menuGerarchie = new MyMenu("Scelta gerarchia");
@@ -42,6 +42,7 @@ public class PubblicaOfferta implements Action {
             JsonUtil.writeOfferta(offerta);
             System.out.println("Offerta " + offerta.getTitolo() + " salvato");
         }
+        return offerta;
     }
 
 
@@ -70,7 +71,7 @@ public class PubblicaOfferta implements Action {
     }
 
     private List<CampoCompilato> compilaCampi(Categoria categoriaFoglia, boolean obbligatori) {
-        List<CampoNativo> campi = null;
+        List<CampoNativo> campi;
         List<CampoCompilato> campiCompilati = new ArrayList<>();
         if (obbligatori)
             campi = categoriaFoglia.getCampiObbligatori();

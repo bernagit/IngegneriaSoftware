@@ -47,6 +47,10 @@ public class Offerta {
         return statoCorrente;
     }
 
+    public List<CampoCompilato> getListaCampiCompilati() {
+        return listaCampiCompilati;
+    }
+
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
