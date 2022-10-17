@@ -16,16 +16,16 @@ import java.util.List;
 public class BarattaOfferta implements Action {
     @Override
     public Utente execute(Utente utente) throws ExitException {
-        this.barattaOfferta(utente);
+        //this.barattaOfferta(utente);
         return null;
     }
 
-    private void barattaOfferta(Utente utente) {
+    public Baratto barattaOfferta(Utente utente, Offerta offertaDaBarattare, Offerta offertaScelta) {
         List<Offerta> offerteAperte = JsonUtil.readOffertaByAutoreAndState(utente.getUsername(), StatoOfferta.APERTA);
         MyMenu menu = new MyMenu("Scegli oggetto da barattare");
         if (offerteAperte.size() < 1) {
             System.out.println("Non sono presenti Offerte nello stato Aperto");
-            return;
+            return null;
         }
         //creazione menu
         for (Offerta offerta : offerteAperte) {
@@ -36,22 +36,23 @@ public class BarattaOfferta implements Action {
         int scelta = menu.scegli();
         //esci
         if (scelta == offerteAperte.size())
-            return;
+            return null;
 
-        Offerta offertaDaBarattare = offerteAperte.get(scelta);
-        Offerta offertaScelta = this.scegliOffertaAltroAutore(utente, offertaDaBarattare.getCategoria());
+        //Offerta offertaDaBarattare = offerteAperte.get(scelta);
+        //Offerta offertaScelta = this.scegliOffertaAltroAutore(utente, offertaDaBarattare.getCategoria());
         if (offertaScelta == null)
-            return;
+            return null;
         System.out.println("Dettagli offerta:\n" + offertaScelta);
         boolean conferma = InputDati.yesOrNo("Sei sicuro di voler scambiare " + offertaDaBarattare.getTitolo()
                 + " con: " + offertaScelta.getTitolo());
         if (!conferma) {
-            return;
+            return null;
         }
         System.out.println("Baratto avviato");
         Baratto baratto = this.inserisciBaratto(offertaDaBarattare, offertaScelta);
         baratto.setDecisore(offertaDaBarattare.getAutore());
         JsonUtil.writeBaratto(baratto);
+        return baratto;
     }
 
     private Offerta scegliOffertaAltroAutore(Utente utente, Categoria categoria) {
