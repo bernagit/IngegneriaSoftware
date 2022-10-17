@@ -51,7 +51,7 @@ public class JsonUtil {
                     .map(Path::of)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            System.out.println("Errore: directory files/gerarchie non presente");
+            System.out.println("Errore: directory non presenti");
         }
         return list;
     }

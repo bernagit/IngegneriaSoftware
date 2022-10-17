@@ -24,3 +24,7 @@ hs_err_pid*
 
 # program files
 *.db
+
+*.png
+
+
