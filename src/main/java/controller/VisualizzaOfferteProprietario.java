@@ -50,7 +50,7 @@ public class VisualizzaOfferteProprietario implements Action {
             System.out.println("Impossibile modificare l'offerta in questo stato: "+offerta.getStatoCorrente());
     }
 
-    private void modificaOfferta(Offerta offerta) {
+    public void modificaOfferta(Offerta offerta) {
         System.out.println("Offerta da modificare: " + offerta.getTitolo());
         MyMenu menu = new MyMenu("Scegli stato Offerta");
         List<StatoOfferta> stati = List.of(StatoOfferta.APERTA, StatoOfferta.RITIRATA);
