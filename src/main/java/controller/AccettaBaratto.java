@@ -22,7 +22,7 @@ public class AccettaBaratto implements Action {
         return null;
     }
 
-    private void accettaBaratto(Utente utente) {
+    public void accettaBaratto(Utente utente) {
         Scambio scambio = JsonUtil.readScambio();
         //selezione offerta da accettare
         Baratto baratto = selezionaBaratto(utente, scambio);
