@@ -18,16 +18,16 @@ import java.util.List;
 public class AccettaBaratto implements Action {
     @Override
     public Utente execute(Utente utente) throws ExitException {
-        this.accettaBaratto(utente);
+        //this.accettaBaratto(utente);
         return null;
     }
 
-    public void accettaBaratto(Utente utente) {
+    public Baratto accettaBaratto(Utente utente, Baratto baratto) {
         Scambio scambio = JsonUtil.readScambio();
         //selezione offerta da accettare
-        Baratto baratto = selezionaBaratto(utente, scambio);
+        //Baratto baratto = selezionaBaratto(utente, scambio);
         if (baratto == null)
-            return;
+            return baratto;
 
         //chiedo conferma dopo aver mostrato le info dell'offerta
         Offerta offertaBaratto = baratto.getOffertaA();
@@ -36,14 +36,14 @@ public class AccettaBaratto implements Action {
 
 
         if (!accetta)
-            return;
+            return baratto;
 
         baratto.setAppuntamento(this.inserisciAppuntamento(scambio));
         //conferma prima del salvataggio
         boolean save = InputDati.yesOrNo("sei sicuro di voler salvare l'appuntamento? ");
         if (!save) {
             System.out.println("Appuntamento non salvato!");
-            return;
+            return baratto;
         }
         //cambio stato offerta
         Offerta offertaA = baratto.getOffertaA();
@@ -57,6 +57,8 @@ public class AccettaBaratto implements Action {
         JsonUtil.writeOfferta(offertaA);
         JsonUtil.writeOfferta(offertaB);
         JsonUtil.writeBaratto(baratto);
+
+        return baratto;
     }
 
     private Baratto selezionaBaratto(Utente utente, Scambio scambio) {

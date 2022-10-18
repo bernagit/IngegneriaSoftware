@@ -1,5 +1,6 @@
 package controller;
 
+import model.baratto.Baratto;
 import model.gerarchia.Categoria;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
@@ -10,9 +11,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class AccettaBarattoTest {
     InputStream systemIn;
@@ -23,7 +26,7 @@ public class AccettaBarattoTest {
     Fruitore fruitore1;
     Fruitore fruitore2;
 
-
+    Baratto baratto;
     @Test
     void accettaBarattoTest(){
         File file = new File("./src/test/cases/AccettaBaratto");
@@ -46,14 +49,20 @@ public class AccettaBarattoTest {
         JsonUtil.writeOfferta(offertaF2);
 
         barattaOfferta = new BarattaOfferta();
-        barattaOfferta.inserisciBaratto(offertaF2,offertaF1);
+        baratto = barattaOfferta.inserisciBaratto(offertaF2,offertaF1);
         assertEquals(offertaF2.getStatoCorrente(), StatoOfferta.ACCOPPIATA);
 
         accetta = new AccettaBaratto();
-        accetta.accettaBaratto(fruitore1);
+        baratto = accetta.accettaBaratto(fruitore1, baratto);
 
-        //assertEquals(offertaF1.getStatoCorrente(), StatoOfferta.IN_SCAMBIO);
-
+        assertEquals(baratto.getOffertaA().getStatoCorrente(), StatoOfferta.IN_SCAMBIO);
+        assertEquals(baratto.getOffertaB().getStatoCorrente(), StatoOfferta.IN_SCAMBIO);
+        assertNotNull(baratto.getDataOraBaratto());
+        assertNotNull(baratto.getAppuntamento());
+        assertEquals(baratto.getAppuntamento().getLuogo(), "via branze");
+        assertEquals(baratto.getAppuntamento().getGiorno(), DayOfWeek.MONDAY);
+        assertEquals(baratto.getDecisore(), offertaF1.getAutore());
+        assertEquals(baratto.getUtenteA(), offertaF2.getAutore());
     }
 
 }
