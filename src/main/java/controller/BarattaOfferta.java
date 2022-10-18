@@ -73,7 +73,7 @@ public class BarattaOfferta implements Action {
         return null;
     }
 
-    private Baratto inserisciBaratto(Offerta offertaDaBarattare, Offerta offertaScelta) {
+    public Baratto inserisciBaratto(Offerta offertaDaBarattare, Offerta offertaScelta) {
         //cambio di stato delle offerte
         offertaDaBarattare.setStatoCorrente(StatoOfferta.ACCOPPIATA);
         JsonUtil.writeOfferta(offertaDaBarattare);
