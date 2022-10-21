@@ -91,13 +91,14 @@ public class ModificaAppuntamento implements Action {
         JsonUtil.writeBaratto(baratto);
     }
 
-    private void accettaBaratto(Baratto baratto) {
+    public Baratto accettaBaratto(Baratto baratto) {
         baratto.getOffertaA().setStatoCorrente(StatoOfferta.CHIUSA);
         baratto.getOffertaB().setStatoCorrente(StatoOfferta.CHIUSA);
         JsonUtil.writeOfferta(baratto.getOffertaA());
         JsonUtil.writeOfferta(baratto.getOffertaB());
         //elimino baratto
         JsonUtil.deleteBaratto(baratto);
+        return baratto;
     }
 
     private Appuntamento cambiaAppuntamento(Scambio scambio, Baratto baratto) {
