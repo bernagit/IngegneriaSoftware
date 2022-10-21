@@ -1,0 +1,48 @@
+{
+  "radice": {
+    "nome": "libri",
+    "descrizione": "libri",
+    "campi": [
+      {
+        "nomeCampo": "Stato di conservazione",
+        "required": true
+      },
+      {
+        "nomeCampo": "Descrizione libera",
+        "required": false
+      }
+    ],
+    "figli": [
+      {
+        "nome": "romanzo",
+        "descrizione": "romanzo",
+        "campi": [
+          {
+            "nomeCampo": "Stato di conservazione",
+            "required": true
+          },
+          {
+            "nomeCampo": "Descrizione libera",
+            "required": false
+          }
+        ],
+        "padre": "libri"
+      },
+      {
+        "nome": "fumetto",
+        "descrizione": "fumetto",
+        "campi": [
+          {
+            "nomeCampo": "Stato di conservazione",
+            "required": true
+          },
+          {
+            "nomeCampo": "Descrizione libera",
+            "required": false
+          }
+        ],
+        "padre": "libri"
+      }
+    ]
+  }
+}

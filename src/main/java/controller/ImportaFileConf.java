@@ -32,7 +32,7 @@ public class ImportaFileConf implements Action {
         } while (!sceltaOk);
     }
 
-    private void importaConfigurazione() {
+    public void importaConfigurazione() {
         String strPath = InputDati.leggiStringaNonVuota("Inserisci il percorso del file di configurazione: ");
         Path path = Path.of(strPath);
         if (strPath.endsWith(".json") && Files.exists(path)) {
@@ -52,7 +52,7 @@ public class ImportaFileConf implements Action {
         }
     }
 
-    private void importaGerarchia() {
+    public void importaGerarchia() {
         String strPath = InputDati.leggiStringaNonVuota("Inserisci il percorso del file Gerarchia: ");
         Path path = Path.of(strPath);
         if (strPath.endsWith(".json") && Files.exists(path)) {

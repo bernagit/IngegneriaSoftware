@@ -1,0 +1,24 @@
+{
+  "piazza": "brescia",
+  "luoghi": [
+    "via branze",
+    "via san",
+    "via oberdan"
+  ],
+  "giorni": [
+    "MONDAY",
+    "WEDNESDAY",
+    "FRIDAY"
+  ],
+  "intervalliOrari": [
+    {
+      "oraInizio": "10:00",
+      "oraFine": "12:00"
+    },
+    {
+      "oraInizio": "14:30",
+      "oraFine": "18:00"
+    }
+  ],
+  "scadenzaProposta": 10
+}

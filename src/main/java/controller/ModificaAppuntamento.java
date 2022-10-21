@@ -17,7 +17,7 @@ import java.util.List;
 public class ModificaAppuntamento implements Action {
     @Override
     public Utente execute(Utente utente) throws ExitException {
-        this.visualizzaAppuntamento(utente);
+        //this.visualizzaAppuntamento(utente);
         return null;
     }
 
@@ -58,8 +58,6 @@ public class ModificaAppuntamento implements Action {
         }
         System.out.println("\nDettagli appuntamento:" + baratto.getAppuntamento());
 
-
-
         boolean accetta = InputDati.yesOrNo("Vuoi accettare l'appuntamento? ");
         if (accetta)
             this.accettaBaratto(baratto);
@@ -68,8 +66,6 @@ public class ModificaAppuntamento implements Action {
             if(modifica)
                 this.nuovoAppuntamento(baratto, utente);
         }
-
-
     }
 
     private void nuovoAppuntamento(Baratto baratto, Utente utente) {
