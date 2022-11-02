@@ -5,11 +5,15 @@ import model.user.Utente;
 import utility.JsonUtil;
 import model.gerarchia.Gerarchia;
 import utility.MyMenu;
+import view.CategoriaView;
+import view.GerarchiaView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class VisualizzaGerarchie implements Action {
+    CategoriaView catView = new CategoriaView();
+    GerarchiaView gerView = new GerarchiaView();
     @Override
     public Utente execute(Utente utente) {
         this.visualizza();
@@ -24,24 +28,16 @@ public class VisualizzaGerarchie implements Action {
             MyMenu menu = new MyMenu("Gerarchia da visualizzare");
             menu.setVoci(voci);
             //visualizzazione gerarchia
-            Gerarchia gerarchia = gerarchiaList.get(menu.scegli());
-            System.out.println("\nGerarchia: " + gerarchia.getNomeRadice());
-            Categoria radice = gerarchia.getRadice();
-            System.out.println("Descrizione: " + radice.getDescrizione());
-            System.out.println("Campi:");
-            radice.getCampi().forEach(System.out::println);
+            Gerarchia ger = gerarchiaList.get(menu.scegli());
+            gerView.printGerarchiaDetails(ger.getNomeRadice(),ger.getRadice().getDescrizione(),ger.getRadice().getCampi());
             //visualizzazione sottocategorie della gerarchia selezionata
             boolean end = false;
-            ArrayList<Categoria> sottocategorie = radice.getFigli();
+            ArrayList<Categoria> sottocategorie = ger.getRadice().getFigli();
             ArrayList<Categoria> sottocategorieFoglia = new ArrayList<>();
             do {
-                for (Categoria categoria : sottocategorie) {
-                    System.out.println("\nSottocategoria di " + categoria.getPadre());
-                    System.out.println("Categoria: " + categoria.getNome());
-                    System.out.println("Descrizione: " + categoria.getDescrizione());
-                    System.out.println("Campi:");
-                    categoria.getCampi().forEach(System.out::println);
-                    if (categoria.getFigli() != null) sottocategorieFoglia.addAll(categoria.getFigli());
+                for (Categoria cat : sottocategorie) {
+                    catView.printCategoriaDetails(cat.getPadre(), cat.getNome(),cat.getDescrizione(),cat.getCampi());
+                    if (cat.getFigli() != null) sottocategorieFoglia.addAll(cat.getFigli());
                     sottocategorie = sottocategorieFoglia;
                     sottocategorieFoglia = null;
                 }
