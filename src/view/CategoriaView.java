@@ -10,7 +10,7 @@ public class CategoriaView {
         System.out.println("Categoria: " + categoria.getNome());
         System.out.println("Descrizione: " + categoria.getDescrizione());
         System.out.println("Campi:");
-        categoria.getCampi().forEach(System.out::println);
+        categoria.getCampi().forEach(e -> print(e));
     }
 
 }

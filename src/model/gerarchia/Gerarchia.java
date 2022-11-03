@@ -14,12 +14,7 @@ public class Gerarchia {
     public Categoria getRadice(){
         return this.radice;
     }
-    @Override
     public String toString() {
         return radice.toString();
     }
-
-    /*public boolean checkGerarchia(){
-
-    }*/
 }

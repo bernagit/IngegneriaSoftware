@@ -1,14 +1,13 @@
-import controller.Logout;
-import controller.Action;
-import controller.ExitException;
-import controller.LoginConf;
-import controller.OptionList;
+import controller.*;
+import controller.Handler;
 import model.user.Configuratore;
 import utility.MyMenu;
+import view.View;
 
 public class MainConfiguratore {
     public static void main(String[] args) {
         OptionList option = new OptionList();
+        View genericView = null;
         MyMenu menu = new MyMenu();
         String titolo;
         Configuratore configuratore = null;
@@ -19,11 +18,11 @@ public class MainConfiguratore {
             menu.setTitolo(titolo);
             int scelta = menu.scegli();
             try {
-                Action action = option.getOption(scelta).getAction();
-                if (action instanceof LoginConf || action instanceof Logout)
-                    configuratore = (Configuratore) action.execute(configuratore);
+                Handler handler = option.getOption(scelta).getAction();
+                if (handler instanceof LoginConf || handler instanceof Logout)
+                    configuratore = (Configuratore) handler.execute(configuratore, genericView);
                 else
-                    action.execute(configuratore);
+                    handler.execute(configuratore, genericView);
             } catch (ExitException e) {
                 System.out.println(e.getMessage());
                 System.exit(1);

@@ -8,19 +8,20 @@ import model.user.Utente;
 import utility.InputDati;
 import utility.JsonUtil;
 import utility.MyMenu;
+import view.View;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-public class BarattaOfferta implements Action {
+public class BarattaOfferta implements Handler {
     @Override
-    public Utente execute(Utente utente) throws ExitException {
-        this.barattaOfferta(utente);
+    public Utente execute(Utente utente, View view) throws ExitException {
+        this.barattaOfferta(utente, view);
         return null;
     }
 
-    private void barattaOfferta(Utente utente) {
+    private void barattaOfferta(Utente utente, View view) {
         List<Offerta> offerteAperte = JsonUtil.readOffertaByAutoreAndState(utente.getUsername(), StatoOfferta.APERTA);
         MyMenu menu = new MyMenu("Scegli oggetto da barattare");
         if (offerteAperte.size() < 1) {

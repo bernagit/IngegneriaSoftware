@@ -13,13 +13,5 @@ public class CampoNativo {
     public boolean isRequired() {
         return required;
     }
-    @Override
-    public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("\t- ").append(nomeCampo);
-        if(!isRequired())
-            str.append(" (opzionale)");
-        return str.toString();
-    }
 
 }

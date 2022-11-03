@@ -11,7 +11,6 @@ public class GerarchiaView implements View{
         gerarchia = (Gerarchia) obj;
         System.out.println("\nGerarchia: " + gerarchia.getNomeRadice());
         System.out.println("Descrizione: " + gerarchia.getRadice().getDescrizione());
-        gerarchia.getRadice().getCampi().forEach(System.out::println);
+        gerarchia.getRadice().getCampi().forEach(e -> print(e));
     }
-
 }
