@@ -3,15 +3,15 @@ package view;
 import model.gerarchia.CampoNativo;
 import model.gerarchia.Gerarchia;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class GerarchiaView {
-
-    public void printGerarchiaDetails(String nomeRadice, String radice, ArrayList<CampoNativo> campi){
-        System.out.println("\nGerarchia: " + nomeRadice);
-        System.out.println("Descrizione: " + radice);
-        campi.forEach(System.out::println);
+public class GerarchiaView implements View{
+    Gerarchia gerarchia;
+    public void print(Object obj){
+        gerarchia = (Gerarchia) obj;
+        System.out.println("\nGerarchia: " + gerarchia.getNomeRadice());
+        System.out.println("Descrizione: " + gerarchia.getRadice().getDescrizione());
+        gerarchia.getRadice().getCampi().forEach(System.out::println);
     }
 
 }
