@@ -47,4 +47,12 @@ public class View {
             str.append(" (opzionale)");
         System.out.println(str);
     }
+
+    public String getString(String s) {
+        return InputDati.leggiStringaNonVuota(s);
+    }
+
+    public boolean getBoolean(String s) {
+        return InputDati.yesOrNo(s);
+    }
 }
