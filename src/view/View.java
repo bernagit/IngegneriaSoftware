@@ -4,16 +4,28 @@ import model.gerarchia.CampoNativo;
 import model.gerarchia.Categoria;
 import model.gerarchia.Gerarchia;
 
-public class View {
+import java.util.ArrayList;
 
+public class View {
     MyMenu menu;
     public void print(String str){
         System.out.println(str);
     }
-
     public void createMenu(String title){
         menu = new MyMenu(title);
     }
+    public void setVociMenu(ArrayList<String> voci) {
+        menu.clearVoci();
+        menu.setVoci(voci);
+    }
+    public int scegliVoceMenu() {
+        return menu.scegli();
+    }
+    public void setTitoloMenu(String titolo) {
+        menu.setTitolo(titolo);
+    }
+
+
     public void printGerarchia(Gerarchia gerarchia){
         System.out.println("\nGerarchia: " + gerarchia.getNomeRadice());
         System.out.println("Descrizione: " + gerarchia.getRadice().getDescrizione());
@@ -35,5 +47,4 @@ public class View {
             str.append(" (opzionale)");
         System.out.println(str);
     }
-
 }

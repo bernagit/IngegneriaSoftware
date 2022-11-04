@@ -22,10 +22,10 @@ public class VisualizzaGerarchie implements Handler {
             ArrayList<String> voci = new ArrayList<>();
             for (Gerarchia gerarchia : gerarchiaList)
                 voci.add(gerarchia.getNomeRadice());
-            MyMenu menu = new MyMenu("Gerarchia da visualizzare");
-            menu.setVoci(voci);
+            view.createMenu("Gerarchia da visualizzare");
+            view.setVociMenu(voci);
             //visualizzazione gerarchia
-            Gerarchia ger = gerarchiaList.get(menu.scegli());
+            Gerarchia ger = gerarchiaList.get(view.scegliVoceMenu());
             view.printGerarchia(ger);
             //visualizzazione sottocategorie della gerarchia selezionata
             boolean end = false;
