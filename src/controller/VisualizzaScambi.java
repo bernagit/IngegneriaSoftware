@@ -1,63 +1,34 @@
 package controller;
 
 import model.gerarchia.Gerarchia;
-import model.scambio.IntervalloOrario;
 import model.scambio.Scambio;
 import model.user.Utente;
 import utility.JsonUtil;
 import view.View;
 
-import java.time.DayOfWeek;
-import java.time.format.TextStyle;
 import java.util.List;
-import java.util.Locale;
 
 public class VisualizzaScambi implements Handler {
     @Override
     public Utente execute(Utente utente, View view) throws ExitException {
-        this.visualizzaScambio();
+        this.visualizza(view);
         return null;
     }
-
-    private void visualizzaScambio() {
+    private void visualizza(View view) {
         //metodo per visualizzare gli scambi
         List<Gerarchia> gerarchie = JsonUtil.readGerarchie();
-        StringBuilder stringBuilder = new StringBuilder();
         Scambio scambio = JsonUtil.readScambio();
         if (gerarchie != null) {
-            stringBuilder.append("Gerarchie:");
+            view.print("Gerarchie:");
             for (Gerarchia gerarchia : gerarchie)
-                stringBuilder.append("\n\tNome: ").append(gerarchia.getNomeRadice())
-                        .append("\n\tDescrizione: ").append(gerarchia.getRadice().getDescrizione())
-                            .append("\n");
+                view.printGerarchia(gerarchia);
         }
         else
-            System.out.println("Impossibile visualizzare luoghi di scambio: gerarchie nulle!");
+           view.print("Impossibile visualizzare luoghi di scambio: gerarchie nulle!");
 
-        if(scambio != null){
-            stringBuilder.append("\nPiazza di scambio: ")
-                    .append(scambio.getPiazza());
-
-            stringBuilder.append("\nLuoghi:");
-            for (String luogo: scambio.getLuoghi())
-                stringBuilder.append("\n\t")
-                        .append(luogo);
-
-            stringBuilder.append("\nGiorni dello scambio:");
-            for (DayOfWeek giorno: scambio.getGiorni())
-                stringBuilder.append("\n\t")
-                        .append(giorno.getDisplayName(TextStyle.FULL, Locale.getDefault()));
-
-            stringBuilder.append("\nIntervalli orari:");
-            for (IntervalloOrario interval: scambio.getIntervalliOrari())
-                stringBuilder.append("\n\tOra inizio: ")
-                        .append(interval.getOraInizio())
-                            .append("\tOra fine: ")
-                                .append(interval.getOraFine());
-
-            System.out.println(stringBuilder);
-        }
+        if(scambio != null)
+            view.printScambio(scambio);
         else
-            System.out.println("Impossibile visualizzare scambi: non esistono luoghi di scambio");
+            view.print("Impossibile visualizzare scambi: non esistono luoghi di scambio");
     }
 }
