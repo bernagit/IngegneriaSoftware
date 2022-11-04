@@ -21,7 +21,6 @@ public class Appuntamento {
                 .append("\nGiorno: ").append(giorno.name());
         return str.toString();
     }
-
     public String getLuogo() {
         return luogo;
     }

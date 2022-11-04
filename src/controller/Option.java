@@ -1,20 +1,19 @@
 package controller;
 
-import controller.Action;
 public class Option {
     final private String label;
-    final private Action action;
+    final private Handler handler;
 
-    public Option(String label, Action action){
+    public Option(String label, Handler handler){
         this.label = label;
-        this.action = action;
+        this.handler = handler;
     }
 
     public String getLabel(){
         return this.label;
     }
 
-    public Action getAction(){
-        return this.action;
+    public Handler getAction(){
+        return this.handler;
     }
 }

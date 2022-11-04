@@ -7,16 +7,17 @@ import model.offerta.Offerta;
 import model.offerta.CampoCompilato;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
-import utility.InputDati;
+import view.InputDati;
 import utility.JsonUtil;
-import utility.MyMenu;
+import view.MyMenu;
+import view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PubblicaOfferta implements Action {
+public class PubblicaOfferta implements Handler {
     @Override
-    public Utente execute(Utente utente) throws ExitException {
+    public Utente execute(Utente utente, View view) throws ExitException {
         this.inserisciOfferta(utente);
         return null;
     }

@@ -5,14 +5,16 @@ import model.scambio.IntervalloOrario;
 import model.scambio.Scambio;
 import model.user.Utente;
 import utility.JsonUtil;
+import view.View;
+
 import java.time.DayOfWeek;
 import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
 
-public class VisualizzaScambi implements Action {
+public class VisualizzaScambi implements Handler {
     @Override
-    public Utente execute(Utente utente) throws ExitException {
+    public Utente execute(Utente utente, View view) throws ExitException {
         this.visualizzaScambio();
         return null;
     }

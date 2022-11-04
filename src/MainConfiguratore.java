@@ -1,14 +1,14 @@
 import controller.*;
 import controller.Handler;
 import model.user.Configuratore;
-import utility.MyMenu;
+import view.MyMenu;
 import view.View;
 
 public class MainConfiguratore {
     public static void main(String[] args) {
         OptionList option = new OptionList();
         View genericView = null;
-        MyMenu menu = new MyMenu();
+        MyMenu menu = new MyMenu("");
         String titolo;
         Configuratore configuratore = null;
         do {

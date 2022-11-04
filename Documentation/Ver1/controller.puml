@@ -6,8 +6,8 @@ interface Action{
 
 class Option{
     -label: String
-    -action: Action
-    +Option(label: String, action: Action)
+    -handler: Action
+    +Option(label: String, handler: Action)
     +getLabel(): String
     +getAction(): Action
 }

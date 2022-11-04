@@ -3,17 +3,18 @@ package controller;
 import model.scambio.IntervalloOrario;
 import model.scambio.Scambio;
 import model.user.Utente;
-import utility.InputDati;
+import view.InputDati;
 import utility.JsonUtil;
+import view.View;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InserisciScambio implements Action {
+public class InserisciScambio implements Handler {
     @Override
-    public Utente execute(Utente utente) throws ExitException {
+    public Utente execute(Utente utente, View view) throws ExitException {
         this.inserisciScambio();
         return null;
     }

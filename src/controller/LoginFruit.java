@@ -2,15 +2,15 @@ package controller;
 
 import model.user.Fruitore;
 import utility.DbConnect;
-import utility.InputDati;
+import view.InputDati;
 import model.user.Utente;
+import view.View;
 
-public class LoginFruit implements Action {
+public class LoginFruit implements Handler {
 
     DbConnect db = new DbConnect();
-
     @Override
-    public Utente execute(Utente utente) {
+    public Utente execute(Utente utente, View view) {
         return doLogin();
     }
 

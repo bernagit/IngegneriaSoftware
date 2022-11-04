@@ -1,12 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="error fixing v5">
-      <change beforePath="$PROJECT_DIR$/.idea/ProgettoIngeSw-2022.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProgettoIngeSw-2022.iml" afterDir="false" />
+    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="il forEach chiama il metodo print">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/gerarchie/libri.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/files/scambi/scambio.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver1/controller.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver1/controller.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Administrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainConfiguratore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainConfiguratore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainFruitore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainFruitore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AccettaBaratto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AccettaBaratto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/BarattaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/BarattaOfferta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/InserisciGerarchia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InserisciGerarchia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/InserisciScambio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InserisciScambio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/LoginConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/LoginConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/LoginFruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/LoginFruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Logout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ModificaAppuntamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ModificaAppuntamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Option.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/PubblicaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PubblicaOfferta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaGerarchie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaGerarchie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaOfferte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaOfferteConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteProprietario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaOfferteProprietario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaScambi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaScambi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/baratto/Appuntamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/baratto/Appuntamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/gerarchia/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/gerarchia/Categoria.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/InputDati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InputDati.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/MyMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MyMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CampoNativoView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CategoriaView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/GerarchiaView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,13 +44,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="v4" />
+        <entry key="$PROJECT_DIR$" value="test" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -32,21 +60,24 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2CIktYLQI25cL6j0HOHTvKNnluO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="controller" />
@@ -79,6 +110,13 @@
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-15" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Administrator" />
+      <item itemvalue="Application.MainConfiguratore" />
+      <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar" />
+      <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (1)" />
+      <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (2)" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainConfiguratore" />
@@ -126,7 +164,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658845657963</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Migliorata la gestione delle view, devo ancora capire bene come non crearle all'interno di ogni classe ma passarle dal main">
+      <created>1667494680839</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1667494680839</updated>
+    </task>
+    <task id="LOCAL-00006" summary="il forEach chiama il metodo print">
+      <created>1667497287880</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1667497287880</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,6 +199,25 @@
     <MESSAGE value="importa file Scambio modalità batch" />
     <MESSAGE value="importa file Gerarchia modalità batch" />
     <MESSAGE value="error fixing v5" />
-    <option name="LAST_COMMIT_MESSAGE" value="error fixing v5" />
+    <MESSAGE value="Migliorata la gestione delle view, devo ancora capire bene come non crearle all'interno di ogni classe ma passarle dal main" />
+    <MESSAGE value="il forEach chiama il metodo print" />
+    <option name="LAST_COMMIT_MESSAGE" value="il forEach chiama il metodo print" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
+        <PinnedItemInfo parentTag="model.offerta.CampoCompilato" memberName="contenuto" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ProgettoIngeSw_2022$InserisciGerarchiaTest.ic" NAME="InserisciGerarchiaTest Coverage Results" MODIFIED="1665504369896" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoIngeSw_2022$AccettaBarattoTest_accettaBarattoTest.ic" NAME="AccettaBarattoTest.accettaBarattoTest Coverage Results" MODIFIED="1666122828765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ProgettoIngeSw_2022$MainFruitore.ic" NAME="MainFruitore Coverage Results" MODIFIED="1665827304811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

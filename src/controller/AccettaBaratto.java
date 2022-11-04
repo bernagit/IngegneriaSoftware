@@ -6,9 +6,9 @@ import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.scambio.Scambio;
 import model.user.Utente;
-import utility.InputDati;
+import view.InputDati;
 import utility.JsonUtil;
-import utility.MyMenu;
+import view.MyMenu;
 import view.View;
 
 import java.time.DayOfWeek;

@@ -3,19 +3,20 @@ package controller;
 import model.gerarchia.*;
 import model.user.Utente;
 import utility.JsonUtil;
-import utility.InputDati;
-import utility.MyMenu;
+import view.InputDati;
+import view.MyMenu;
+import view.View;
 
 import java.util.ArrayList;
 
-public class InserisciGerarchia implements Action {
+public class InserisciGerarchia implements Handler {
     @Override
-    public Utente execute(Utente utente) {
-        inserisciGerarchia();
+    public Utente execute(Utente utente, View view) {
+        inserisciGerarchia(view);
         return null;
     }
 
-    private void inserisciGerarchia() {
+    private void inserisciGerarchia(View view) {
         String nome = this.inserisciNome();
         String descrizione = InputDati.leggiStringaNonVuota("Inserisci descrizione categoria: ");
         ArrayList<CampoNativo> campi = new ArrayList<>();

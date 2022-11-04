@@ -1,5 +1,5 @@
 import utility.DbConnect;
-import utility.InputDati;
+import view.InputDati;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

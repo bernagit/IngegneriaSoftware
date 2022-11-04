@@ -6,14 +6,15 @@ import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
 import utility.JsonUtil;
-import utility.MyMenu;
+import view.MyMenu;
+import view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VisualizzaOfferte implements Action {
+public class VisualizzaOfferte implements Handler {
     @Override
-    public Utente execute(Utente utente) throws ExitException {
+    public Utente execute(Utente utente, View view) throws ExitException {
         this.sceltaGerarchia();
         return null;
     }

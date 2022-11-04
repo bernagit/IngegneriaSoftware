@@ -2,10 +2,15 @@ package controller;
 
 import model.user.Configuratore;
 import utility.DbConnect;
-import utility.InputDati;
+import view.InputDati;
 import model.user.Utente;
+import view.View;
 
-public class LoginConf implements Action {
+public class LoginConf implements Handler {
+    @Override
+    public Utente execute(Utente utente, View view) throws ExitException {
+        return doLogin();
+    }
     DbConnect db = new DbConnect();
     private Configuratore doLogin() {
         String user = InputDati.leggiStringaNonVuota("Inserisci username: ");
@@ -47,10 +52,5 @@ public class LoginConf implements Action {
         utente.updateCredentials(newUser, newPass, false);
         System.out.println("Utente " + newUser + " modificato correttamente");
         return (Configuratore) utente;
-    }
-
-    @Override
-    public Utente execute(Utente utente) throws ExitException {
-        return doLogin();
     }
 }

@@ -5,18 +5,19 @@ import model.baratto.Baratto;
 import model.offerta.StatoOfferta;
 import model.scambio.Scambio;
 import model.user.Utente;
-import utility.InputDati;
+import view.InputDati;
 import utility.JsonUtil;
-import utility.MyMenu;
+import view.MyMenu;
+import view.View;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ModificaAppuntamento implements Action {
+public class ModificaAppuntamento implements Handler {
     @Override
-    public Utente execute(Utente utente) throws ExitException {
+    public Utente execute(Utente utente, View view) throws ExitException {
         this.visualizzaAppuntamento(utente);
         return null;
     }

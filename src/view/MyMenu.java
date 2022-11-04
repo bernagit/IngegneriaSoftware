@@ -1,4 +1,4 @@
-package utility;
+package view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +19,6 @@ public class MyMenu {
 
     public MyMenu(String titolo) {
         this.titolo = titolo;
-    }
-
-    public MyMenu() {
     }
 
     public void setVoci(ArrayList<String> voci) {

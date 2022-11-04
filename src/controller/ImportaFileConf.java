@@ -1,15 +1,16 @@
 package controller;
 
 import model.user.Utente;
-import utility.InputDati;
+import view.InputDati;
 import utility.JsonUtil;
+import view.View;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class ImportaFileConf implements Action {
+public class ImportaFileConf implements Handler {
     @Override
-    public Utente execute(Utente utente) throws ExitException {
+    public Utente execute(Utente utente, View view) throws ExitException {
         this.importaFile();
         return null;
     }
