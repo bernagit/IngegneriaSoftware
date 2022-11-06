@@ -4,7 +4,6 @@ import model.gerarchia.Categoria;
 import model.user.Utente;
 import utility.JsonUtil;
 import model.gerarchia.Gerarchia;
-import view.MyMenu;
 import view.View;
 
 import java.util.ArrayList;

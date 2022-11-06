@@ -3,8 +3,13 @@ package view;
 import model.gerarchia.CampoNativo;
 import model.gerarchia.Categoria;
 import model.gerarchia.Gerarchia;
+import model.scambio.IntervalloOrario;
+import model.scambio.Scambio;
 
+import java.time.DayOfWeek;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class View {
     MyMenu menu;
@@ -79,5 +84,17 @@ public class View {
                                 .append(interval.getOraFine());
 
             System.out.println(stringBuilder);
+    }
+
+    public int getIntPos(String s) {
+        return InputDati.leggiInteroPositivo(s);
+    }
+
+    public int getInt(String s){
+        return InputDati.leggiIntero(s);
+    }
+
+    public int getInt(String s, int i, int i1) {
+        return InputDati.leggiIntero(s, i, i1);
     }
 }

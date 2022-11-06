@@ -1,5 +1,6 @@
 import utility.DbConnect;
 import view.InputDati;
+import view.View;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -8,17 +9,18 @@ public class Administrator {
     public static void main(String[] args) {
         DbConnect db = new DbConnect();
         db.createNewTable("Utenti");
+        View view = new View();
         String password = getNewPassword(10);
         String utente;
         boolean userOk;
         do {
-            utente = InputDati.leggiStringaNonVuota("Inserisci nome Utente da creare: ");
+            utente = view.getString("Inserisci nome Utente da creare: ");
             userOk = db.checkUsername(utente);
             if (userOk)
-                System.out.println("Username già presente");
+                view.print("Username già presente");
         } while (userOk);
-        System.out.println("password dell'utente " + utente + ": " + password);
-        writePasswordToFile(utente, password);
+        view.print("password dell'utente " + utente + ": " + password);
+        writePasswordToFile(utente, password, view);
 
         db.insertUser(utente, password, true, true);
     }
@@ -36,11 +38,11 @@ public class Administrator {
         return password.toString();
     }
 
-    public static void writePasswordToFile(String username, String password) {
+    public static void writePasswordToFile(String username, String password, View view) {
         try (PrintWriter out = new PrintWriter(username)) {
             out.println(password);
         } catch (FileNotFoundException e) {
-            System.out.println("File non creato");
+            view.print("File non creato");
         }
     }
 }
