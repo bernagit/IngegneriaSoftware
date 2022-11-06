@@ -5,31 +5,30 @@ import controller.ExitException;
 import controller.OptionList;
 import model.user.Fruitore;
 import utility.JsonUtil;
-import view.MyMenu;
 import view.View;
 
 public class MainFruitore {
     public static void main(String[] args) {
         OptionList option = new OptionList();
-        MyMenu menu = new MyMenu("");
         Fruitore fruitore = null;
         String titolo;
-        View genericView = null;
+        View view = new View();
         do {
             // eliminazione dei baratti Scaduti
             JsonUtil.eliminaBarattiScaduti();
 
-            menu.setVoci(option.getFruitOptionList(fruitore));
+            view.createMenu("");
+            view.setVociMenu(option.getFruitOptionList(fruitore));
             if (fruitore != null) titolo = "Utente "+fruitore.getUsername()+" loggato";
             else titolo = "Programma fruitore";
-            menu.setTitolo(titolo);
-            int scelta = menu.scegli();
+            view.setTitoloMenu(titolo);
+            int scelta = view.scegliVoceMenu();
             try {
                 Handler handler = option.getOption(scelta).getAction();
                 if (handler instanceof LoginFruit || handler instanceof Logout)
-                    fruitore = (Fruitore) handler.execute(fruitore, genericView);
+                    fruitore = (Fruitore) handler.execute(fruitore, view);
                 else
-                    handler.execute(fruitore, genericView);
+                    handler.execute(fruitore, view);
             } catch (ExitException e) {
                 System.out.println(e.getMessage());
                 System.exit(1);
