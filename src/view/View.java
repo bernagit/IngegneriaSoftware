@@ -3,6 +3,8 @@ package view;
 import model.gerarchia.CampoNativo;
 import model.gerarchia.Categoria;
 import model.gerarchia.Gerarchia;
+import model.offerta.CampoCompilato;
+import model.offerta.Offerta;
 import model.scambio.IntervalloOrario;
 import model.scambio.Scambio;
 
@@ -29,14 +31,20 @@ public class View {
     public void setTitoloMenu(String titolo) {
         menu.setTitolo(titolo);
     }
-
-
+    public int getIntPos(String s) {
+        return InputDati.leggiInteroPositivo(s);
+    }
+    public int getInt(String s){
+        return InputDati.leggiIntero(s);
+    }
+    public int getInt(String s, int i, int i1) {
+        return InputDati.leggiIntero(s, i, i1);
+    }
     public void printGerarchia(Gerarchia gerarchia){
         System.out.println("\nGerarchia: " + gerarchia.getNomeRadice());
         System.out.println("Descrizione: " + gerarchia.getRadice().getDescrizione());
         gerarchia.getRadice().getCampi().forEach(this::printCampoNativo);
     }
-
     public void printCategoria(Categoria categoria){
         System.out.println("\nSottocategoria di " + categoria.getPadre());
         System.out.println("Categoria: " + categoria.getNome());
@@ -44,7 +52,6 @@ public class View {
         System.out.println("Campi:");
         categoria.getCampi().forEach(this::printCampoNativo);
     }
-
     public void printCampoNativo(CampoNativo campo){
         StringBuilder str = new StringBuilder();
         str.append("\t- ").append(campo.getNome());
@@ -52,15 +59,12 @@ public class View {
             str.append(" (opzionale)");
         System.out.println(str);
     }
-
     public String getString(String s) {
         return InputDati.leggiStringaNonVuota(s);
     }
-
     public boolean getBoolean(String s) {
         return InputDati.yesOrNo(s);
     }
-
     public void printScambio(Scambio scambio) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("\nPiazza di scambio: ")
@@ -85,16 +89,18 @@ public class View {
 
             System.out.println(stringBuilder);
     }
+    public void printOfferta(Offerta offerta) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\nOfferta: ").append(offerta.getTitolo())
+                .append("\nCategoria: ").append(offerta.getCategoria().getNome())
+                //().append("\nAutore pubblicazione: ").append(autore)
+                .append("\nDescrizione Oggetto: ");
+        for (CampoCompilato campoCompilato: offerta.getListaCampiCompilati()){
+            stringBuilder.append("\n\t").append(campoCompilato.getCampo().getNome())
+                    .append(": ").append(campoCompilato.getContenuto());
+        }
+        stringBuilder.append("\nStatoOfferta: ").append(offerta.getStatoCorrente().toString());
 
-    public int getIntPos(String s) {
-        return InputDati.leggiInteroPositivo(s);
-    }
-
-    public int getInt(String s){
-        return InputDati.leggiIntero(s);
-    }
-
-    public int getInt(String s, int i, int i1) {
-        return InputDati.leggiIntero(s, i, i1);
+        System.out.println(stringBuilder);
     }
 }

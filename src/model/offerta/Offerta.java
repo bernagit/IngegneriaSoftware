@@ -47,19 +47,8 @@ public class Offerta {
         return statoCorrente;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\nOfferta: ").append(titolo)
-                .append("\nCategoria: ").append(categoria.getNome())
-                //().append("\nAutore pubblicazione: ").append(autore)
-                .append("\nDescrizione Oggetto: ");
-        for (CampoCompilato campoCompilato: listaCampiCompilati){
-            stringBuilder.append("\n\t").append(campoCompilato.getCampo().getNome())
-                    .append(": ").append(campoCompilato.getContenuto());
-        }
-        stringBuilder.append("\nStatoOfferta: ").append(statoCorrente.toString());
-        return stringBuilder.toString();
+    public List<CampoCompilato> getListaCampiCompilati() {
+        return listaCampiCompilati;
     }
 
     public String getCategoriaName() {
