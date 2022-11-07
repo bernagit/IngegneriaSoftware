@@ -4,34 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="MVC for Versione 5 completata">
-      <change afterPath="$PROJECT_DIR$/src/controller/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/CliView.java" afterDir="false" />
+    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="MVC review">
+      <change afterPath="$PROJECT_DIR$/src/controller/ControllerConfiguratore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver1/controller.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver1/controller.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver1/main.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver1/main.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver1/package.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver1/package.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver1/utility.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver1/utility.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver2/controller.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver2/controller.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver2/main.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver2/main.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver2/package.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver2/package.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver2/utility.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver2/utility.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver3/package.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver3/package.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver3/utility.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver3/utility.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver4/package.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver4/package.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver4/utility.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver4/utility.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver5/controller.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver5/controller.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver5/package.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver5/package.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/Ver5/utility.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver5/utility.puml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Administrator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainConfiguratore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainConfiguratore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainFruitore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainFruitore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AccettaBaratto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/AccettaBaratto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/BarattaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/BarattaOfferta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/Exit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/Exit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/ImportaFileConf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/InserisciGerarchia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/InserisciGerarchia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/InserisciScambio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/InserisciScambio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/LoginConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/LoginConf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/LoginFruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/LoginFruit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/Logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/Logout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ModificaAppuntamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/ModificaAppuntamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/OptionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/OptionList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/PubblicaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/PubblicaOfferta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaGerarchie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaGerarchie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteProprietario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteProprietario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaScambi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaScambi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/gerarchia/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/gerarchia/Categoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/gerarchia/Gerarchia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/gerarchia/Gerarchia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ControllerFruitore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/AccettaBaratto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/AccettaBaratto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/BarattaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/BarattaOfferta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/ImportaFileConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/ImportaFileConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/InserisciGerarchia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/InserisciGerarchia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/InserisciScambio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/InserisciScambio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/LoginConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/LoginConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/LoginFruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/LoginFruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/ModificaAppuntamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/ModificaAppuntamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/PubblicaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/PubblicaOfferta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/VisualizzaGerarchie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaGerarchie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteProprietario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteProprietario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/handlers/VisualizzaScambi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaScambi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/DbConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DbConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utility/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/JsonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MyMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MyMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +52,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="package-info" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -242,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667830292919</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="MVC review">
+      <created>1667832468326</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1667832468326</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -274,7 +292,8 @@
     <MESSAGE value="MVC for Versione 3 completata" />
     <MESSAGE value="MVC for Versione 4 completata" />
     <MESSAGE value="MVC for Versione 5 completata" />
-    <option name="LAST_COMMIT_MESSAGE" value="MVC for Versione 5 completata" />
+    <MESSAGE value="MVC review" />
+    <option name="LAST_COMMIT_MESSAGE" value="MVC review" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

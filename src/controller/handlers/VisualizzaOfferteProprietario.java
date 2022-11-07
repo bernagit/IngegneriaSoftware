@@ -6,7 +6,7 @@ import model.baratto.Baratto;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
-import utility.JsonUtil;
+import db.JsonUtil;
 import view.View;
 
 import java.util.List;

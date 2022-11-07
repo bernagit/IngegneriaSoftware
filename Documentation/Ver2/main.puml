@@ -10,10 +10,10 @@ class MainFruitore {
 
 
 MainConfiguratore o--> controller.OptionList
-MainConfiguratore o--> utility.MyMenu
+MainConfiguratore o--> db.MyMenu
 
 MainFruitore o--> controller.OptionList
-MainFruitore o--> utility.MyMenu
+MainFruitore o--> db.MyMenu
 
 
 @enduml

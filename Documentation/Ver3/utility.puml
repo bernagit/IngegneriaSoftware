@@ -1,4 +1,4 @@
-@startuml utility
+@startuml db
 
 package com.google.gson #EEEEEE{}
 
@@ -8,7 +8,7 @@ package model.scambio #EEEEEE{}
 
 package model.offerta #EEEEEE{}
 
-package "utility" #DDDDDD{
+package "db" #DDDDDD{
     
     class JsonUtil{
         +{static} writeGerarchia(gerarchia: Gerarchia): void

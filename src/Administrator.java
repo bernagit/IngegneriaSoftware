@@ -1,4 +1,4 @@
-import utility.DbConnect;
+import db.DbConnect;
 import view.CliView;
 
 import java.io.FileNotFoundException;

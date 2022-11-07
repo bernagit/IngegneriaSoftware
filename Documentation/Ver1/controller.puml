@@ -60,11 +60,11 @@ class VisualizzaGerarchie implements Action{
 }
 
 Login ..> model.user.Utente: use
-Login ..> utility.DbConnect: use
+Login ..> db.DbConnect: use
 InserisciGerarchia ..> model.gerarchia.Categoria: use
 VisualizzaGerarchie ..> model.gerarchia.Categoria: use
-InserisciGerarchia ..> utility.JsonUtil: use
-VisualizzaGerarchie ..> utility.JsonUtil: use
+InserisciGerarchia ..> db.JsonUtil: use
+VisualizzaGerarchie ..> db.JsonUtil: use
 
 
 @enduml

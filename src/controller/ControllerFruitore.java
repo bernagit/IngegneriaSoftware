@@ -3,13 +3,13 @@ package controller;
 import controller.handlers.LoginFruit;
 import controller.handlers.Logout;
 import model.user.Fruitore;
-import utility.JsonUtil;
+import db.JsonUtil;
 import view.View;
 
-public class Controller {
+public class ControllerFruitore {
     private View view;
 
-    public Controller(View view){
+    public ControllerFruitore(View view){
         this.view = view;
     }
 

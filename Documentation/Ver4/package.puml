@@ -20,7 +20,7 @@ package model{
     package offerta {}
     package baratto #Pink {}
 }
-package utility #Pink{
+package db #Pink{
     class DbConnect {}
     class JsonUtil{}
     class MyMenu{}
@@ -28,6 +28,6 @@ package utility #Pink{
 }
 
 controller ..> model: use
-controller ..> utility: use
+controller ..> db: use
 
 @enduml

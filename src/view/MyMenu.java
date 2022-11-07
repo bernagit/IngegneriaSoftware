@@ -32,16 +32,10 @@ public class MyMenu {
         }
         voci.add(voce);
     }
-
-    public int getVociSize(){
-        return voci.size();
-    }
-
     public int scegli() {
         stampaMenu();
         return InputDati.leggiIntero(RICHIESTA_INSERIMENTO, 0, voci.size());
     }
-
     private void stampaMenu() {
         System.out.println();
         System.out.println("--- " + titolo + " ----");

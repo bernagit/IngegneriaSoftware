@@ -1,4 +1,4 @@
-package utility;
+package db;
 
 import model.user.Configuratore;
 import model.user.Fruitore;

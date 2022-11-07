@@ -12,8 +12,8 @@ class Main {
 
 
 Main o--> controller.OptionList
-Main o--> utility.MyMenu
+Main o--> db.MyMenu
 
-Administrator ..> utility.DbConnect: use
+Administrator ..> db.DbConnect: use
 
 @enduml

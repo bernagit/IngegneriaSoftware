@@ -12,7 +12,7 @@ package model{
     package user {}
     package gerarchia{}
 }
-package utility{
+package db{
     class DbConnect {}
     class JsonUtil{}
     class MyMenu{}
@@ -20,7 +20,7 @@ package utility{
 }
 
 controller ..> model: use
-controller ..> utility: use
+controller ..> db: use
 
 
 @enduml

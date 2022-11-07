@@ -8,7 +8,7 @@ import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.scambio.Scambio;
 import model.user.Utente;
-import utility.JsonUtil;
+import db.JsonUtil;
 import view.View;
 
 import java.time.DayOfWeek;

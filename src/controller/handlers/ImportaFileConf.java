@@ -3,7 +3,7 @@ package controller.handlers;
 import controller.ExitException;
 import controller.Handler;
 import model.user.Utente;
-import utility.JsonUtil;
+import db.JsonUtil;
 import view.View;
 
 import java.nio.file.Files;

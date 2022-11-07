@@ -1,4 +1,4 @@
-@startuml utility
+@startuml db
 
 package java.sql #EEEEEE{}
 
@@ -6,7 +6,7 @@ package com.google.gson #EEEEEE{}
 
 package model.gerarchia #EEEEEE{}
 
-package "utility" #DDDDDD{
+package "db" #DDDDDD{
     class DbConnect{
         -url: String
         +connect(): Connection

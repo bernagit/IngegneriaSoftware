@@ -3,7 +3,7 @@ package controller.handlers;
 import controller.Handler;
 import model.gerarchia.Categoria;
 import model.user.Utente;
-import utility.JsonUtil;
+import db.JsonUtil;
 import model.gerarchia.Gerarchia;
 import view.View;
 

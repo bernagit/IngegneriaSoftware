@@ -5,8 +5,7 @@ import controller.Handler;
 import model.gerarchia.Gerarchia;
 import model.scambio.Scambio;
 import model.user.Utente;
-import utility.JsonUtil;
-import view.View;
+import db.JsonUtil;
 import view.View;
 
 import java.util.List;

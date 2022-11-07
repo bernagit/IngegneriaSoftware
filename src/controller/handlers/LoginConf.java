@@ -3,7 +3,7 @@ package controller.handlers;
 import controller.ExitException;
 import controller.Handler;
 import model.user.Configuratore;
-import utility.DbConnect;
+import db.DbConnect;
 import model.user.Utente;
 import view.View;
 
