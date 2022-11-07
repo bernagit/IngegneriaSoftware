@@ -16,7 +16,6 @@ public class MainFruitore {
         do {
             // eliminazione dei baratti Scaduti
             JsonUtil.eliminaBarattiScaduti();
-
             view.createMenu("");
             view.setVociMenu(option.getFruitOptionList(fruitore));
             if (fruitore != null) titolo = "Utente "+fruitore.getUsername()+" loggato";

@@ -5,9 +5,7 @@ import model.baratto.Baratto;
 import model.offerta.StatoOfferta;
 import model.scambio.Scambio;
 import model.user.Utente;
-import view.InputDati;
 import utility.JsonUtil;
-import view.MyMenu;
 import view.View;
 
 import java.time.DayOfWeek;
@@ -18,20 +16,20 @@ import java.util.List;
 public class ModificaAppuntamento implements Handler {
     @Override
     public Utente execute(Utente utente, View view) throws ExitException {
-        this.visualizzaAppuntamento(utente);
+        this.visualizzaAppuntamento(utente, view);
         return null;
     }
 
-    private void visualizzaAppuntamento(Utente utente) {
+    private void visualizzaAppuntamento(Utente utente, View view) {
         Scambio scambio = JsonUtil.readScambio();
 
         List<Baratto> barattoList = JsonUtil.readBarattoInScambio(utente.getUsername());
         if ( barattoList != null && barattoList.size() == 0) {
-            System.out.println("Non sono presenti Appuntamenti per le offerte inserite");
+            view.print("Non sono presenti Appuntamenti per le offerte inserite");
             return;
         }
 
-        MyMenu menu = new MyMenu("Scegli Appuntamento");
+        view.createMenu("Scegli Appuntamento");
         ArrayList<String> voci = new ArrayList<>();
         StringBuilder voce = new StringBuilder();
         for (Baratto baratto : barattoList) {
@@ -42,43 +40,42 @@ public class ModificaAppuntamento implements Handler {
             voci.add(voce.toString());
         }
         voci.add("Torna al menu");
-        menu.setVoci(voci);
+        view.setVociMenu(voci);
 
-        int scelta = menu.scegli();
+        int scelta = view.scegliVoceMenu();
         if (scelta == voci.size() - 1) {
             return;
         }
         //rispondi all'offerta
-        this.accettaORispondi(barattoList.get(scelta), utente);
+        this.accettaORispondi(barattoList.get(scelta), utente, view);
     }
 
-    private void accettaORispondi(Baratto baratto, Utente utente) {
+    private void accettaORispondi(Baratto baratto, Utente utente, View view) {
         if (baratto.getDecisore() != null && baratto.getDecisore().equals(utente.getUsername())) {
-            System.out.println("l'appuntamento deve essere confermato dall'altro utente");
+            view.print("l'appuntamento deve essere confermato dall'altro utente");
             return;
         }
-        System.out.println("\nDettagli appuntamento:" + baratto.getAppuntamento());
+        view.print("\nDettagli appuntamento:");
+        view.printAppuntamento(baratto.getAppuntamento());
 
-
-
-        boolean accetta = InputDati.yesOrNo("Vuoi accettare l'appuntamento? ");
+        boolean accetta = view.getBoolean("Vuoi accettare l'appuntamento? ");
         if (accetta)
             this.accettaBaratto(baratto);
         else{
-            boolean modifica = InputDati.yesOrNo("Vuoi modificare l'appuntamento? ");
+            boolean modifica = view.getBoolean("Vuoi modificare l'appuntamento? ");
             if(modifica)
-                this.nuovoAppuntamento(baratto, utente);
+                this.nuovoAppuntamento(baratto, utente, view);
         }
 
 
     }
 
-    private void nuovoAppuntamento(Baratto baratto, Utente utente) {
+    private void nuovoAppuntamento(Baratto baratto, Utente utente, View view) {
         Scambio scambio = JsonUtil.readScambio();
-        Appuntamento appuntamento = this.cambiaAppuntamento(scambio, baratto);
+        Appuntamento appuntamento = this.cambiaAppuntamento(scambio, baratto, view);
         if (appuntamento == null) {
-            System.out.println("Appuntamento inserito uguale a quello deciso dall'altro utente");
-            boolean accetta = InputDati.yesOrNo("Vuoi accettare dunque? ");
+            view.print("Appuntamento inserito uguale a quello deciso dall'altro utente");
+            boolean accetta = view.getBoolean("Vuoi accettare dunque? ");
             if (accetta)
                 this.accettaBaratto(baratto);
             return;
@@ -105,32 +102,32 @@ public class ModificaAppuntamento implements Handler {
         JsonUtil.deleteBaratto(baratto);
     }
 
-    private Appuntamento cambiaAppuntamento(Scambio scambio, Baratto baratto) {
+    private Appuntamento cambiaAppuntamento(Scambio scambio, Baratto baratto, View view) {
         //mostro luoghi disponibili e scelgo
-        MyMenu menuLuoghi = new MyMenu("scegli luogo");
-        menuLuoghi.setVoci((ArrayList<String>) scambio.getLuoghi());
-        String luogo = scambio.getLuoghi().get(menuLuoghi.scegli());
+        view.createMenu("scegli luogo");
+        view.setVociMenu((ArrayList<String>) scambio.getLuoghi());
+        String luogo = scambio.getLuoghi().get(view.scegliVoceMenu());
 
-        System.out.println("luogo: " + luogo);
+        view.print("luogo: " + luogo);
 
         //mostro giorni disponibili e scelgo
-        MyMenu menuGiorni = new MyMenu("scegli giorno");
+        view.createMenu("scegli giorno");
         ArrayList<String> giorni = new ArrayList<>();
         for (DayOfWeek giorno : scambio.getGiorni()) {
             giorni.add(giorno.name());
         }
-        menuGiorni.setVoci(giorni);
-        DayOfWeek giorno = DayOfWeek.valueOf(giorni.get(menuGiorni.scegli()));
+        view.setVociMenu(giorni);
+        DayOfWeek giorno = DayOfWeek.valueOf(giorni.get(view.scegliVoceMenu()));
 
-        System.out.println("Giorno: " + giorno);
+        view.print("Giorno: " + giorno);
 
         //mostro orari disponibili e scelgo
-        MyMenu menuOrari = new MyMenu("scegli orario");
+        view.createMenu("scegli orario");
         ArrayList<String> orari = scambio.getOrariScambio();
-        menuOrari.setVoci(orari);
-        String orario = orari.get(menuOrari.scegli());
+        view.setVociMenu(orari);
+        String orario = orari.get(view.scegliVoceMenu());
 
-        System.out.println("Orario: " + orario);
+        view.print("Orario: " + orario);
 
         Appuntamento nuovoAppuntamento = new Appuntamento(luogo, orario, giorno);
 

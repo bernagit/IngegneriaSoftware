@@ -6,9 +6,7 @@ import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.scambio.Scambio;
 import model.user.Utente;
-import view.InputDati;
 import utility.JsonUtil;
-import view.MyMenu;
 import view.View;
 
 import java.time.DayOfWeek;
@@ -19,31 +17,30 @@ import java.util.List;
 public class AccettaBaratto implements Handler {
     @Override
     public Utente execute(Utente utente, View view) throws ExitException {
-        this.accettaBaratto(utente);
+        this.accettaBaratto(utente, view);
         return null;
     }
 
-    private void accettaBaratto(Utente utente) {
+    private void accettaBaratto(Utente utente, View view) {
         Scambio scambio = JsonUtil.readScambio();
         //selezione offerta da accettare
-        Baratto baratto = selezionaBaratto(utente, scambio);
+        Baratto baratto = selezionaBaratto(utente, scambio, view);
         if (baratto == null)
             return;
 
         //chiedo conferma dopo aver mostrato le info dell'offerta
         Offerta offertaBaratto = baratto.getOffertaA();
-        System.out.println(offertaBaratto);
-        boolean accetta = InputDati.yesOrNo("sei sicuro di voler accettare l'offerta: " + offertaBaratto.getTitolo() + " ? ");
-
+        view.printOfferta(offertaBaratto);
+        boolean accetta = view.getBoolean("sei sicuro di voler accettare l'offerta: " + offertaBaratto.getTitolo() + " ? ");
 
         if (!accetta)
             return;
 
-        baratto.setAppuntamento(this.inserisciAppuntamento(scambio));
+        baratto.setAppuntamento(this.inserisciAppuntamento(scambio, view));
         //conferma prima del salvataggio
-        boolean save = InputDati.yesOrNo("sei sicuro di voler salvare l'appuntamento? ");
+        boolean save = view.getBoolean("sei sicuro di voler salvare l'appuntamento? ");
         if (!save) {
-            System.out.println("Appuntamento non salvato!");
+            view.print("Appuntamento non salvato!");
             return;
         }
         //cambio stato offerta
@@ -60,22 +57,22 @@ public class AccettaBaratto implements Handler {
         JsonUtil.writeBaratto(baratto);
     }
 
-    private Baratto selezionaBaratto(Utente utente, Scambio scambio) {
+    private Baratto selezionaBaratto(Utente utente, Scambio scambio, View view) {
         List<Baratto> barattoList = JsonUtil.readBarattoByUtente(utente.getUsername());
         //se non ci sono offerte
         if (barattoList.size() == 0) {
-            System.out.println("Non sono presenti baratti da accettare");
+            view.print("Non sono presenti baratti da accettare");
             return null;
         }
 
-        MyMenu menu = new MyMenu("Seleziona offerta");
+        view.createMenu("Seleziona offerta");
         for (Baratto baratto : barattoList)
-            menu.addVoce(baratto.getOffertaA().getTitolo() + " \t " + this.calcolaScadenze(baratto, scambio));
+            view.addVoceMenu(baratto.getOffertaA().getTitolo() + " \t " + this.calcolaScadenze(baratto, scambio));
 
-        menu.addVoce("Esci senza accettare baratti");
+        view.addVoceMenu("Esci senza accettare baratti");
 
         //scelta dell'offerta da accettare
-        int scelta = menu.scegli();
+        int scelta = view.scegliVoceMenu();
         //esci
         if (scelta == barattoList.size())
             return null;
@@ -83,33 +80,33 @@ public class AccettaBaratto implements Handler {
             return barattoList.get(scelta);
     }
 
-    private Appuntamento inserisciAppuntamento(Scambio scambio) {
+    private Appuntamento inserisciAppuntamento(Scambio scambio, View view) {
         //mostro luoghi disponibili e scelgo
-        MyMenu menuLuoghi = new MyMenu("scegli luogo");
-        menuLuoghi.setVoci((ArrayList<String>) scambio.getLuoghi());
-        String luogo = scambio.getLuoghi().get(menuLuoghi.scegli());
+        view.createMenu("scegli luogo");
+        view.setVociMenu((ArrayList<String>) scambio.getLuoghi());
+        String luogo = scambio.getLuoghi().get(view.scegliVoceMenu());
 
-        System.out.println("luogo: " + luogo);
+        view.print("luogo: " + luogo);
 
         //mostro giorni disponibili e scelgo
-        MyMenu menuGiorni = new MyMenu("scegli giorno");
+        view.createMenu("scegli giorno");
         ArrayList<String> giorni = new ArrayList<>();
         for (DayOfWeek giorno : scambio.getGiorni()) {
             giorni.add(giorno.name());
         }
-        menuGiorni.setVoci(giorni);
-        DayOfWeek giorno = DayOfWeek.valueOf(giorni.get(menuGiorni.scegli()));
+        view.setVociMenu(giorni);
+        DayOfWeek giorno = DayOfWeek.valueOf(giorni.get(view.scegliVoceMenu()));
 
-        System.out.println("Giorno: " + giorno);
+        view.print("Giorno: " + giorno.name());
 
         //mostro orari disponibili e scelgo
         //da mettere a posto
-        MyMenu menuOrari = new MyMenu("scegli orario");
+        view.createMenu("scegli orario");
         ArrayList<String> orari = scambio.getOrariScambio();
-        menuOrari.setVoci(orari);
-        String orario = orari.get(menuOrari.scegli());
+        view.setVociMenu(orari);
+        String orario = orari.get(view.scegliVoceMenu());
 
-        System.out.println("Orario: " + orario);
+        view.print("Orario: " + orario);
 
         return new Appuntamento(luogo, orario, giorno);
     }

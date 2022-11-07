@@ -111,7 +111,7 @@ public class View {
         System.out.println(stringBuilder);
     }
 
-    public void print(Appuntamento appuntamento) {
+    public void printAppuntamento(Appuntamento appuntamento){
         StringBuilder str = new StringBuilder();
         str.append("\nLuogo: ").append(appuntamento.getLuogo())
                 .append("\nOra: ").append(appuntamento.getDataOra())

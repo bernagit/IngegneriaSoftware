@@ -5,9 +5,7 @@ import model.gerarchia.Categoria;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
-import view.InputDati;
 import utility.JsonUtil;
-import view.MyMenu;
 import view.View;
 
 import java.time.LocalDateTime;
@@ -23,49 +21,50 @@ public class BarattaOfferta implements Handler {
 
     private void barattaOfferta(Utente utente, View view) {
         List<Offerta> offerteAperte = JsonUtil.readOffertaByAutoreAndState(utente.getUsername(), StatoOfferta.APERTA);
-        MyMenu menu = new MyMenu("Scegli oggetto da barattare");
+        view.createMenu("Scegli oggetto da barattare");
         if (offerteAperte.size() < 1) {
-            System.out.println("Non sono presenti Offerte nello stato Aperto");
+            view.print("Non sono presenti Offerte nello stato Aperto");
             return;
         }
         //creazione menu
         for (Offerta offerta : offerteAperte) {
-            menu.addVoce(offerta.getTitolo());
+            view.addVoceMenu(offerta.getTitolo());
         }
-        menu.addVoce("Esci senza barattare");
+        view.addVoceMenu("Esci senza barattare");
         //scelta dell'offerta da barattare
-        int scelta = menu.scegli();
+        int scelta = view.scegliVoceMenu();
         //esci
         if (scelta == offerteAperte.size())
             return;
 
         Offerta offertaDaBarattare = offerteAperte.get(scelta);
-        Offerta offertaScelta = this.scegliOffertaAltroAutore(utente, offertaDaBarattare.getCategoria());
+        Offerta offertaScelta = this.scegliOffertaAltroAutore(utente, offertaDaBarattare.getCategoria(), view);
         if (offertaScelta == null)
             return;
-        System.out.println("Dettagli offerta:\n" + offertaScelta);
-        boolean conferma = InputDati.yesOrNo("Sei sicuro di voler scambiare " + offertaDaBarattare.getTitolo()
+        view.print("Dettagli offerta:\n");
+        view.printOfferta(offertaScelta);
+        boolean conferma = view.getBoolean("Sei sicuro di voler scambiare " + offertaDaBarattare.getTitolo()
                 + " con: " + offertaScelta.getTitolo());
         if (!conferma) {
             return;
         }
-        System.out.println("Baratto avviato");
+        view.print("Baratto avviato");
         Baratto baratto = this.inserisciBaratto(offertaDaBarattare, offertaScelta);
         baratto.setDecisore(offertaDaBarattare.getAutore());
         JsonUtil.writeBaratto(baratto);
     }
 
-    private Offerta scegliOffertaAltroAutore(Utente utente, Categoria categoria) {
+    private Offerta scegliOffertaAltroAutore(Utente utente, Categoria categoria, View view) {
         List<Offerta> offerte = JsonUtil.readOfferteApertebyCategoria(utente.getUsername(), categoria);
-        MyMenu menu = new MyMenu("Scegli oggetto che vorresti");
+        view.createMenu("Scegli oggetto che vorresti");
         if (offerte.size() < 1) {
-            System.out.println("Non sono presenti offerte aperte della stessa categoria");
+            view.print("Non sono presenti offerte aperte della stessa categoria");
         } else {
             for (Offerta offerta : offerte) {
-                menu.addVoce(offerta.getTitolo());
+                view.addVoceMenu(offerta.getTitolo());
             }
-            menu.addVoce("Esci senza barattare");
-            int scelta = menu.scegli();
+            view.addVoceMenu("Esci senza barattare");
+            int scelta = view.scegliVoceMenu();
             if (scelta == offerte.size())
                 return null;
             return offerte.get(scelta);
