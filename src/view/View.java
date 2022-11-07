@@ -1,5 +1,6 @@
 package view;
 
+import model.baratto.Appuntamento;
 import model.gerarchia.CampoNativo;
 import model.gerarchia.Categoria;
 import model.gerarchia.Gerarchia;
@@ -24,6 +25,12 @@ public class View {
     public void setVociMenu(ArrayList<String> voci) {
         menu.clearVoci();
         menu.setVoci(voci);
+    }
+    public void clearVociMenu(){
+        menu.clearVoci();
+    }
+    public void addVoceMenu(String voce){
+        menu.addVoce(voce);
     }
     public int scegliVoceMenu() {
         return menu.scegli();
@@ -102,5 +109,13 @@ public class View {
         stringBuilder.append("\nStatoOfferta: ").append(offerta.getStatoCorrente().toString());
 
         System.out.println(stringBuilder);
+    }
+
+    public void print(Appuntamento appuntamento) {
+        StringBuilder str = new StringBuilder();
+        str.append("\nLuogo: ").append(appuntamento.getLuogo())
+                .append("\nOra: ").append(appuntamento.getDataOra())
+                .append("\nGiorno: ").append(appuntamento.getGiorno().name());
+        System.out.println(str);
     }
 }

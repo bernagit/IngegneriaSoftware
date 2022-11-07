@@ -7,9 +7,7 @@ import model.offerta.Offerta;
 import model.offerta.CampoCompilato;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
-import view.InputDati;
 import utility.JsonUtil;
-import view.MyMenu;
 import view.View;
 
 import java.util.ArrayList;
@@ -18,75 +16,73 @@ import java.util.List;
 public class PubblicaOfferta implements Handler {
     @Override
     public Utente execute(Utente utente, View view) throws ExitException {
-        this.inserisciOfferta(utente);
+        this.inserisciOfferta(utente, view);
         return null;
     }
 
-    private void inserisciOfferta(Utente utente) {
+    private void inserisciOfferta(Utente utente, View view) {
         List<Gerarchia> gerarchie = JsonUtil.readGerarchie();
         ArrayList<String> vociGerarchie = new ArrayList<>();
-        MyMenu menuGerarchie = new MyMenu("Scelta gerarchia");
+        view.createMenu("Scelta gerarchia");
         for (Gerarchia gerarchia : gerarchie)
             vociGerarchie.add(gerarchia.getNomeRadice());
-        menuGerarchie.setVoci(vociGerarchie);
+        view.setVociMenu(vociGerarchie);
         //scelta gerarchia
-        Gerarchia gerarchiaScelta = gerarchie.get(menuGerarchie.scegli());
+        Gerarchia gerarchiaScelta = gerarchie.get(view.scegliVoceMenu());
         //scelta categoria foglia
-        Categoria categoriaFoglia = this.scegliCategoriaFoglia(gerarchiaScelta);
+        Categoria categoriaFoglia = this.scegliCategoriaFoglia(gerarchiaScelta, view);
         //inserimento dati offerta
-        Offerta offerta = this.inserisciDatiOfferta(categoriaFoglia, utente);
+        Offerta offerta = this.inserisciDatiOfferta(categoriaFoglia, utente, view);
         //set offerta come offerta aperta
         offerta.setStatoCorrente(StatoOfferta.APERTA);
 
-        boolean save = InputDati.yesOrNo("Vuoi salvare l'offerta inserita? ");
+        boolean save = view.getBoolean("Vuoi salvare l'offerta inserita? ");
         if (save) {
             JsonUtil.writeOfferta(offerta);
-            System.out.println("Offerta " + offerta.getTitolo() + " salvato");
+            view.print("Offerta " + offerta.getTitolo() + " salvato");
         }
     }
 
 
-    private Categoria scegliCategoriaFoglia(Gerarchia gerarchiaScelta) {
-        MyMenu menuCategorie = new MyMenu("Scegli categoria foglia");
+    private Categoria scegliCategoriaFoglia(Gerarchia gerarchiaScelta, View view) {
+        view.createMenu("Scegli categoria foglia");
         List<Categoria> categorieFoglia = gerarchiaScelta.getRadice().getCategorieFoglia();
         ArrayList<String> voci = new ArrayList<>();
         for (Categoria categoria : categorieFoglia)
             voci.add(categoria.getNome());
-        menuCategorie.setVoci(voci);
-        return categorieFoglia.get(menuCategorie.scegli());
+        view.setVociMenu(voci);
+        return categorieFoglia.get(view.scegliVoceMenu());
     }
 
-    private Offerta inserisciDatiOfferta(Categoria categoriaFoglia, Utente utente) {
-        String titolo = InputDati.leggiStringaNonVuota("Inserisci titolo offerta: ");
+    private Offerta inserisciDatiOfferta(Categoria categoriaFoglia, Utente utente, View view) {
+        String titolo = view.getString("Inserisci titolo offerta: ");
         //creazione articolo
         Offerta offerta = new Offerta(titolo, categoriaFoglia, utente.getUsername());
         //inserimento campi obbligatori
-        offerta.addCampiCompilati(this.compilaCampi(categoriaFoglia, true));
+        offerta.addCampiCompilati(this.compilaCampi(categoriaFoglia, true, view));
         //eventuale inserimento campi non obbligatori
-        boolean inserisci = InputDati.yesOrNo("Vuoi inserire eventuali campi non obbligatori? ");
+        boolean inserisci = view.getBoolean("Vuoi inserire eventuali campi non obbligatori? ");
         if (inserisci)
-            offerta.addCampiCompilati(this.compilaCampi(categoriaFoglia, false));
+            offerta.addCampiCompilati(this.compilaCampi(categoriaFoglia, false, view));
 
         return offerta;
     }
 
-    private List<CampoCompilato> compilaCampi(Categoria categoriaFoglia, boolean obbligatori) {
+    private List<CampoCompilato> compilaCampi(Categoria categoriaFoglia, boolean obbligatori, View view) {
         List<CampoNativo> campi = null;
         List<CampoCompilato> campiCompilati = new ArrayList<>();
         if (obbligatori)
             campi = categoriaFoglia.getCampiObbligatori();
         else
             campi = categoriaFoglia.getCampiNonObbligatori();
-
         if (campi != null) {
-            System.out.println("Compila i seguenti campi uno per volta:");
+            view.print("Compila i seguenti campi uno per volta:");
             for (CampoNativo campoNativo : campi) {
-                String contenuto = InputDati.leggiStringaNonVuota(campoNativo.getNome() + ": ");
+                String contenuto = view.getString(campoNativo.getNome() + ": ");
                 campiCompilati.add(new CampoCompilato(campoNativo, contenuto));
             }
         } else
-            System.out.println("Non sono presenti campi da compilare");
-
+            view.print("Non sono presenti campi da compilare");
         return campiCompilati;
     }
 }
