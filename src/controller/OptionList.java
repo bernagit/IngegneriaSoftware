@@ -1,4 +1,5 @@
 package controller;
+import controller.handlers.*;
 import model.user.Configuratore;
 import model.user.Fruitore;
 

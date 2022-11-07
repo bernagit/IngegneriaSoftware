@@ -1,5 +1,7 @@
-package controller;
+package controller.handlers;
 
+import controller.ExitException;
+import controller.Handler;
 import model.baratto.Appuntamento;
 import model.baratto.Baratto;
 import model.offerta.Offerta;

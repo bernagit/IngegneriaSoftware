@@ -1,13 +1,14 @@
 import controller.*;
 import controller.Handler;
+import controller.handlers.LoginConf;
+import controller.handlers.Logout;
 import model.user.Configuratore;
-import view.MyMenu;
-import view.View;
+import view.CliView;
 
 public class MainConfiguratore {
     public static void main(String[] args) {
         OptionList option = new OptionList();
-        View view = new View();
+        CliView view = new CliView();
         String titolo;
         Configuratore configuratore = null;
         do {

@@ -1,6 +1,5 @@
 import utility.DbConnect;
-import view.InputDati;
-import view.View;
+import view.CliView;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -9,7 +8,7 @@ public class Administrator {
     public static void main(String[] args) {
         DbConnect db = new DbConnect();
         db.createNewTable("Utenti");
-        View view = new View();
+        CliView view = new CliView();
         String password = getNewPassword(10);
         String utente;
         boolean userOk;
@@ -38,7 +37,7 @@ public class Administrator {
         return password.toString();
     }
 
-    public static void writePasswordToFile(String username, String password, View view) {
+    public static void writePasswordToFile(String username, String password, CliView view) {
         try (PrintWriter out = new PrintWriter(username)) {
             out.println(password);
         } catch (FileNotFoundException e) {

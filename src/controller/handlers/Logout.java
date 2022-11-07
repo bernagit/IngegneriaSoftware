@@ -1,5 +1,6 @@
-package controller;
+package controller.handlers;
 
+import controller.Handler;
 import model.user.Utente;
 import view.View;
 

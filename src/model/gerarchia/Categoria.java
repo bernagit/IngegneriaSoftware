@@ -76,23 +76,6 @@ public class Categoria {
         return figli;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append("\nNome: ").append(nome)
-                .append("\nDescrizione: ").append(descrizione)
-                .append("\nCampi:");
-        for (CampoNativo cmp : this.campi) {
-            str.append(cmp.toString());
-        }
-        if (!isFoglia()) {
-            str.append("\nFigli:");
-            for (Categoria cat : this.figli)
-                str.append("\t").append(cat.toString());
-        }
-        return str.toString();
-    }
-
     public boolean isCampoPresente(String nomeCampo) {
         if (this.campi != null)
             for (CampoNativo campo : this.campi)

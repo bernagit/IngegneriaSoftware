@@ -14,7 +14,4 @@ public class Gerarchia {
     public Categoria getRadice(){
         return this.radice;
     }
-    public String toString() {
-        return radice.toString();
-    }
 }

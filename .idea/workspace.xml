@@ -4,35 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="il forEach chiama il metodo print">
+    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="MVC for Versione 5 completata">
+      <change afterPath="$PROJECT_DIR$/src/controller/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/CliView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Ver1/controller.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver1/controller.puml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Administrator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainConfiguratore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainConfiguratore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MainFruitore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainFruitore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/AccettaBaratto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/AccettaBaratto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/BarattaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/BarattaOfferta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/InserisciGerarchia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InserisciGerarchia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/InserisciScambio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/InserisciScambio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/LoginConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/LoginConf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/LoginFruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/LoginFruit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/Logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Logout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ModificaAppuntamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ModificaAppuntamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Option.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/PubblicaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/PubblicaOfferta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaGerarchie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaGerarchie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaOfferte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaOfferteConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteProprietario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaOfferteProprietario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaScambi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VisualizzaScambi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/baratto/Appuntamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/baratto/Appuntamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/AccettaBaratto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/AccettaBaratto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/BarattaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/BarattaOfferta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Exit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/Exit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ImportaFileConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/ImportaFileConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/InserisciGerarchia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/InserisciGerarchia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/InserisciScambio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/InserisciScambio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/LoginConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/LoginConf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/LoginFruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/LoginFruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/Logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/Logout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ModificaAppuntamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/ModificaAppuntamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/OptionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/OptionList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/PubblicaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/PubblicaOfferta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaGerarchie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaGerarchie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaOfferteProprietario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteProprietario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VisualizzaScambi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaScambi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/gerarchia/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/gerarchia/Categoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/InputDati.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/InputDati.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/MyMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MyMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/CampoNativoView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/CategoriaView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/GerarchiaView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/gerarchia/Gerarchia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/gerarchia/Gerarchia.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/View.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +42,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="package-info" />
         <option value="Interface" />
       </list>
     </option>
@@ -83,14 +82,16 @@
       <recent name="controller" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainConfiguratore">
-    <configuration name="Administrator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Administrator" />
-      <module name="ProgettoIngeSw-2022" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Application.MainFruitore">
     <configuration name="MainConfiguratore" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="MainConfiguratore" />
+      <module name="ProgettoIngeSw-2022" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainFruitore" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainFruitore" />
       <module name="ProgettoIngeSw-2022" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -111,7 +112,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Administrator" />
+      <item itemvalue="Application.MainFruitore" />
       <item itemvalue="Application.MainConfiguratore" />
       <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar" />
       <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (1)" />
@@ -119,11 +120,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainFruitore" />
         <item itemvalue="Application.MainConfiguratore" />
         <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar" />
         <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (2)" />
         <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (1)" />
-        <item itemvalue="Application.Administrator" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +179,70 @@
       <option name="project" value="LOCAL" />
       <updated>1667497287880</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="cambiata la view e il modo per gestirla">
+      <created>1667575422026</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1667575422026</updated>
+    </task>
+    <task id="LOCAL-00008" summary="MVC for MainConfiguratore e VisualizzaGerarchie">
+      <created>1667576654320</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1667576654320</updated>
+    </task>
+    <task id="LOCAL-00009" summary="MVC for InserisciGerarchia">
+      <created>1667577925500</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1667577925500</updated>
+    </task>
+    <task id="LOCAL-00010" summary="MVC for InserisciScambio">
+      <created>1667756296742</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1667756296742</updated>
+    </task>
+    <task id="LOCAL-00011" summary="MVC for LoginFruit and LoginConf">
+      <created>1667756630461</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1667756630461</updated>
+    </task>
+    <task id="LOCAL-00012" summary="MVC for VisualizzaOfferte">
+      <created>1667757424918</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1667757424918</updated>
+    </task>
+    <task id="LOCAL-00013" summary="MVC for Versione 3 completata">
+      <created>1667814149710</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1667814149710</updated>
+    </task>
+    <task id="LOCAL-00014" summary="MVC for Versione 4 completata">
+      <created>1667829838490</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1667829838490</updated>
+    </task>
+    <task id="LOCAL-00015" summary="MVC for Versione 5 completata">
+      <created>1667830292919</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1667830292919</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -201,7 +265,16 @@
     <MESSAGE value="error fixing v5" />
     <MESSAGE value="Migliorata la gestione delle view, devo ancora capire bene come non crearle all'interno di ogni classe ma passarle dal main" />
     <MESSAGE value="il forEach chiama il metodo print" />
-    <option name="LAST_COMMIT_MESSAGE" value="il forEach chiama il metodo print" />
+    <MESSAGE value="cambiata la view e il modo per gestirla" />
+    <MESSAGE value="MVC for MainConfiguratore e VisualizzaGerarchie" />
+    <MESSAGE value="MVC for InserisciGerarchia" />
+    <MESSAGE value="MVC for InserisciScambio" />
+    <MESSAGE value="MVC for LoginFruit and LoginConf" />
+    <MESSAGE value="MVC for VisualizzaOfferte" />
+    <MESSAGE value="MVC for Versione 3 completata" />
+    <MESSAGE value="MVC for Versione 4 completata" />
+    <MESSAGE value="MVC for Versione 5 completata" />
+    <option name="LAST_COMMIT_MESSAGE" value="MVC for Versione 5 completata" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

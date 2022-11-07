@@ -1,5 +1,6 @@
-package controller;
+package controller.handlers;
 
+import controller.Handler;
 import model.gerarchia.*;
 import model.user.Utente;
 import utility.JsonUtil;

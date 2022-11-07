@@ -1,5 +1,7 @@
-package controller;
+package controller.handlers;
 
+import controller.ExitException;
+import controller.Handler;
 import model.baratto.Baratto;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
@@ -66,7 +68,7 @@ public class VisualizzaOfferteProprietario implements Handler {
     private void visualizzaStato(Offerta offerta, View view) {
         Baratto baratto = JsonUtil.readBarattobyOfferta(offerta);
         view.print("Offerta in scambio, Ultima risposta ricevuta da: " + baratto.getDecisore());
-        view.print(baratto.getAppuntamento());
+        view.printAppuntamento(baratto.getAppuntamento());
     }
 }
 
