@@ -1,0 +1,43 @@
+@startuml package
+
+package controller {
+    package handlers {}
+    class GenericController {}
+    interface Handler {}
+
+}
+
+package model {
+    package user {}
+    package gerarchia{}
+    package scambio {}
+    package offerta {}
+    package baratto {}
+}
+
+package view {
+    interface View{}
+    class CliView{}
+    class MyMenu{}
+    class InputDati{}
+}
+
+package db {
+    class dbConnect{}
+    class JsonMnager{}
+}
+
+package main {
+    class Administrator{}
+    class MainFruitore{}
+    class MainConfiguratore{}
+}
+
+main ..> controller 
+controller ..> model : use
+controller ..> db : save
+controller ..> view : write
+view ..> controller : read
+
+
+@enduml

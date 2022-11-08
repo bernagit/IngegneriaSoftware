@@ -63,8 +63,8 @@ Login ..> model.user.Utente: use
 Login ..> db.DbConnect: use
 InserisciGerarchia ..> model.gerarchia.Categoria: use
 VisualizzaGerarchie ..> model.gerarchia.Categoria: use
-InserisciGerarchia ..> db.JsonUtil: use
-VisualizzaGerarchie ..> db.JsonUtil: use
+InserisciGerarchia ..> db.JsonManager: use
+VisualizzaGerarchie ..> db.JsonManager: use
 
 
 @enduml

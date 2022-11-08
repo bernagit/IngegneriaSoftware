@@ -39,7 +39,7 @@ InserisciScambio --> model.scambio.Scambio
 VisualizzaScambi --> model.scambio.Scambio
 LoginFruit --> model.user.Fruitore
 LoginFruit --> db.DbConnect
-InserisciScambio --> db.JsonUtil
-VisualizzaScambi --> db.JsonUtil
+InserisciScambio --> db.JsonManager
+VisualizzaScambi --> db.JsonManager
 
 @enduml

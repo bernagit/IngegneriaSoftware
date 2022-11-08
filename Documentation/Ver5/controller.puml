@@ -16,7 +16,7 @@ class ImportaFileConf implements Action{
     -importaGerarchia(): void
 }
 
-ImportaFileConf ..> db.JsonUtil: use
+ImportaFileConf ..> db.JsonManager: use
 ImportaFileConf ..> db.InputDati: use
 
 
