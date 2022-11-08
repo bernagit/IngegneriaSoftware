@@ -1,9 +1,9 @@
 package controller.handlers;
 
 import controller.Handler;
+import db.JsonManager;
 import model.gerarchia.Categoria;
 import model.user.Utente;
-import db.JsonUtil;
 import model.gerarchia.Gerarchia;
 import view.View;
 
@@ -17,7 +17,7 @@ public class VisualizzaGerarchie implements Handler {
         return null;
     }
     private void visualizza(View view) {
-        List<Gerarchia> gerarchiaList = JsonUtil.readGerarchie();
+        List<Gerarchia> gerarchiaList = JsonManager.readGerarchie();
         if (gerarchiaList != null && gerarchiaList.size() != 0) {
             ArrayList<String> voci = new ArrayList<>();
             for (Gerarchia gerarchia : gerarchiaList)

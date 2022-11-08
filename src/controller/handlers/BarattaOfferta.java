@@ -2,12 +2,12 @@ package controller.handlers;
 
 import controller.ExitException;
 import controller.Handler;
+import db.JsonManager;
 import model.baratto.Baratto;
 import model.gerarchia.Categoria;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
-import db.JsonUtil;
 import view.View;
 
 import java.time.LocalDateTime;
@@ -22,7 +22,7 @@ public class BarattaOfferta implements Handler {
     }
 
     private void barattaOfferta(Utente utente, View view) {
-        List<Offerta> offerteAperte = JsonUtil.readOffertaByAutoreAndState(utente.getUsername(), StatoOfferta.APERTA);
+        List<Offerta> offerteAperte = JsonManager.readOffertaByAutoreAndState(utente.getUsername(), StatoOfferta.APERTA);
         view.createMenu("Scegli oggetto da barattare");
         if (offerteAperte.size() < 1) {
             view.print("Non sono presenti Offerte nello stato Aperto");
@@ -53,11 +53,11 @@ public class BarattaOfferta implements Handler {
         view.print("Baratto avviato");
         Baratto baratto = this.inserisciBaratto(offertaDaBarattare, offertaScelta);
         baratto.setDecisore(offertaDaBarattare.getAutore());
-        JsonUtil.writeBaratto(baratto);
+        JsonManager.writeBaratto(baratto);
     }
 
     private Offerta scegliOffertaAltroAutore(Utente utente, Categoria categoria, View view) {
-        List<Offerta> offerte = JsonUtil.readOfferteApertebyCategoria(utente.getUsername(), categoria);
+        List<Offerta> offerte = JsonManager.readOfferteApertebyCategoria(utente.getUsername(), categoria);
         view.createMenu("Scegli oggetto che vorresti");
         if (offerte.size() < 1) {
             view.print("Non sono presenti offerte aperte della stessa categoria");
@@ -77,9 +77,9 @@ public class BarattaOfferta implements Handler {
     private Baratto inserisciBaratto(Offerta offertaDaBarattare, Offerta offertaScelta) {
         //cambio di stato delle offerte
         offertaDaBarattare.setStatoCorrente(StatoOfferta.ACCOPPIATA);
-        JsonUtil.writeOfferta(offertaDaBarattare);
+        JsonManager.writeOfferta(offertaDaBarattare);
         offertaScelta.setStatoCorrente(StatoOfferta.SELEZIONATA);
-        JsonUtil.writeOfferta(offertaScelta);
+        JsonManager.writeOfferta(offertaScelta);
         //creo baratto
         return new Baratto(offertaDaBarattare, offertaScelta, LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).toString());
     }

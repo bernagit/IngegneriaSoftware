@@ -3,7 +3,7 @@ package controller.handlers;
 import controller.ExitException;
 import controller.Handler;
 import model.user.Utente;
-import db.JsonUtil;
+import db.JsonManager;
 import view.View;
 
 import java.nio.file.Files;
@@ -38,12 +38,12 @@ public class ImportaFileConf implements Handler {
         Path path = Path.of(strPath);
         if (strPath.endsWith(".json") && Files.exists(path)) {
             boolean sovrascrivi = false;
-            if (JsonUtil.checkScambioExists()) {
+            if (JsonManager.checkScambioExists()) {
                 sovrascrivi = view.getBoolean("Esiste già un file di configurazione, vuoi sovrascriverlo? ");
                 if (!sovrascrivi)
                     return;
             }
-            boolean result = JsonUtil.scriviFileScambio(path, sovrascrivi);
+            boolean result = JsonManager.scriviFileScambio(path, sovrascrivi);
             if (result)
                 view.print("File di configurazione importato con successo");
             else
@@ -58,13 +58,13 @@ public class ImportaFileConf implements Handler {
         Path path = Path.of(strPath);
         if (strPath.endsWith(".json") && Files.exists(path)) {
             boolean sovrascrivi = false;
-            if (JsonUtil.checkGerarchiaExists(path))
+            if (JsonManager.checkGerarchiaExists(path))
                 sovrascrivi = view.getBoolean("Esiste già un file gerarchia con questo nome, vuoi sovrascriverlo? ");
             if (!sovrascrivi) {
                 view.print("File Gerarchia non importato");
                 return;
             }
-            boolean result = JsonUtil.scriviFileGerarchia(path, sovrascrivi);
+            boolean result = JsonManager.scriviFileGerarchia(path, sovrascrivi);
             if (result)
                 view.print("Gerarchia importata con successo");
             else

@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class CliView implements View{
-    MyMenu menu;
+    Menu menu;
     public void print(String str){
         System.out.println(str);
     }
     public void createMenu(String title){
-        menu = new MyMenu(title);
+        menu = new Menu(title);
     }
     public void setVociMenu(ArrayList<String> voci) {
         menu.clearVoci();

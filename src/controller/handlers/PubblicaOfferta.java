@@ -2,6 +2,7 @@ package controller.handlers;
 
 import controller.ExitException;
 import controller.Handler;
+import db.JsonManager;
 import model.gerarchia.CampoNativo;
 import model.gerarchia.Categoria;
 import model.gerarchia.Gerarchia;
@@ -9,7 +10,6 @@ import model.offerta.Offerta;
 import model.offerta.CampoCompilato;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
-import db.JsonUtil;
 import view.View;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class PubblicaOfferta implements Handler {
     }
 
     private void inserisciOfferta(Utente utente, View view) {
-        List<Gerarchia> gerarchie = JsonUtil.readGerarchie();
+        List<Gerarchia> gerarchie = JsonManager.readGerarchie();
         ArrayList<String> vociGerarchie = new ArrayList<>();
         view.createMenu("Scelta gerarchia");
         for (Gerarchia gerarchia : gerarchie)
@@ -40,7 +40,7 @@ public class PubblicaOfferta implements Handler {
 
         boolean save = view.getBoolean("Vuoi salvare l'offerta inserita? ");
         if (save) {
-            JsonUtil.writeOfferta(offerta);
+            JsonManager.writeOfferta(offerta);
             view.print("Offerta " + offerta.getTitolo() + " salvato");
         }
     }

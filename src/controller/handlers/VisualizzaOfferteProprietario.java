@@ -2,11 +2,11 @@ package controller.handlers;
 
 import controller.ExitException;
 import controller.Handler;
+import db.JsonManager;
 import model.baratto.Baratto;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
-import db.JsonUtil;
 import view.View;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class VisualizzaOfferteProprietario implements Handler {
     }
 
     private void visualizzaEModifica(Utente utente, View view) {
-        List<Offerta> offerte = JsonUtil.readOffertaByAutore(utente.getUsername());
+        List<Offerta> offerte = JsonManager.readOffertaByAutore(utente.getUsername());
         view.createMenu("Visualizza, Modifica o Esci");
         if (offerte != null && offerte.size() >= 1) {
             int scelta;
@@ -36,7 +36,7 @@ public class VisualizzaOfferteProprietario implements Handler {
             } while (scelta != 0);
 
             for (Offerta offerta : offerte)
-                JsonUtil.writeOfferta(offerta);
+                JsonManager.writeOfferta(offerta);
 
         } else
             view.print("Non sei autore di nessuna offerta.");
@@ -66,7 +66,7 @@ public class VisualizzaOfferteProprietario implements Handler {
     }
 
     private void visualizzaStato(Offerta offerta, View view) {
-        Baratto baratto = JsonUtil.readBarattobyOfferta(offerta);
+        Baratto baratto = JsonManager.readBarattobyOfferta(offerta);
         view.print("Offerta in scambio, Ultima risposta ricevuta da: " + baratto.getDecisore());
         view.printAppuntamento(baratto.getAppuntamento());
     }

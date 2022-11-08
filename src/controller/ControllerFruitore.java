@@ -2,8 +2,8 @@ package controller;
 
 import controller.handlers.LoginFruit;
 import controller.handlers.Logout;
+import db.JsonManager;
 import model.user.Fruitore;
-import db.JsonUtil;
 import view.View;
 
 public class ControllerFruitore {
@@ -19,7 +19,7 @@ public class ControllerFruitore {
         String titolo;
         do {
             // eliminazione dei baratti Scaduti
-            JsonUtil.eliminaBarattiScaduti();
+            JsonManager.eliminaBarattiScaduti();
             view.createMenu("");
             view.setVociMenu(option.getFruitOptionList(fruitore));
             if (fruitore != null) titolo = "Utente "+fruitore.getUsername()+" loggato";

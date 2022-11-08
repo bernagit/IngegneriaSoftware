@@ -7,7 +7,7 @@ import model.gerarchia.Gerarchia;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
-import db.JsonUtil;
+import db.JsonManager;
 import view.View;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class VisualizzaOfferte implements Handler {
     }
 
     private void sceltaGerarchia(View view) {
-        List<Gerarchia> gerarchie = JsonUtil.readGerarchie();
+        List<Gerarchia> gerarchie = JsonManager.readGerarchie();
         ArrayList<String> vociGerarchie = new ArrayList<>();
         view.createMenu("Scelta gerarchia");
         for (Gerarchia gerarchia : gerarchie)
@@ -46,7 +46,7 @@ public class VisualizzaOfferte implements Handler {
     }
 
     private void visualizzaOfferteAperte(Categoria categoria, View view) {
-        List<Offerta> offerte = JsonUtil.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.APERTA);
+        List<Offerta> offerte = JsonManager.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.APERTA);
         if (offerte != null && offerte.size() >= 1) {
             for (Offerta offerta : offerte) {
                 view.printOfferta(offerta);

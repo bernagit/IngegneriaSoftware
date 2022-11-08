@@ -2,12 +2,12 @@ package controller.handlers;
 
 import controller.ExitException;
 import controller.Handler;
+import db.JsonManager;
 import model.gerarchia.Categoria;
 import model.gerarchia.Gerarchia;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.user.Utente;
-import db.JsonUtil;
 import view.View;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class VisualizzaOfferteConfig implements Handler {
     }
 
     private void sceltaGerarchia(View view) {
-        List<Gerarchia> gerarchie = JsonUtil.readGerarchie();
+        List<Gerarchia> gerarchie = JsonManager.readGerarchie();
         ArrayList<String> vociGerarchie = new ArrayList<>();
         view.createMenu("Scelta gerarchia");
         for (Gerarchia gerarchia : gerarchie)
@@ -48,8 +48,8 @@ public class VisualizzaOfferteConfig implements Handler {
 
     private void visualizzaOfferteChSc(Categoria categoria, View view) {
         //cerco offerte IN_SCAMBIO e CHIUSE
-        List<Offerta> offerte = JsonUtil.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.CHIUSA);
-        offerte.addAll(JsonUtil.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.IN_SCAMBIO));
+        List<Offerta> offerte = JsonManager.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.CHIUSA);
+        offerte.addAll(JsonManager.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.IN_SCAMBIO));
 
         if (offerte != null && offerte.size() >= 1) {
             for (Offerta offerta : offerte) {

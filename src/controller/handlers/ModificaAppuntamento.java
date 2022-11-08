@@ -7,7 +7,7 @@ import model.baratto.Baratto;
 import model.offerta.StatoOfferta;
 import model.scambio.Scambio;
 import model.user.Utente;
-import db.JsonUtil;
+import db.JsonManager;
 import view.View;
 
 import java.time.DayOfWeek;
@@ -23,9 +23,9 @@ public class ModificaAppuntamento implements Handler {
     }
 
     private void visualizzaAppuntamento(Utente utente, View view) {
-        Scambio scambio = JsonUtil.readScambio();
+        Scambio scambio = JsonManager.readScambio();
 
-        List<Baratto> barattoList = JsonUtil.readBarattoInScambio(utente.getUsername());
+        List<Baratto> barattoList = JsonManager.readBarattoInScambio(utente.getUsername());
         if ( barattoList != null && barattoList.size() == 0) {
             view.print("Non sono presenti Appuntamenti per le offerte inserite");
             return;
@@ -73,7 +73,7 @@ public class ModificaAppuntamento implements Handler {
     }
 
     private void nuovoAppuntamento(Baratto baratto, Utente utente, View view) {
-        Scambio scambio = JsonUtil.readScambio();
+        Scambio scambio = JsonManager.readScambio();
         Appuntamento appuntamento = this.cambiaAppuntamento(scambio, baratto, view);
         if (appuntamento == null) {
             view.print("Appuntamento inserito uguale a quello deciso dall'altro utente");
@@ -92,16 +92,16 @@ public class ModificaAppuntamento implements Handler {
         }
 
         //scrivo baratto
-        JsonUtil.writeBaratto(baratto);
+        JsonManager.writeBaratto(baratto);
     }
 
     private void accettaBaratto(Baratto baratto) {
         baratto.getOffertaA().setStatoCorrente(StatoOfferta.CHIUSA);
         baratto.getOffertaB().setStatoCorrente(StatoOfferta.CHIUSA);
-        JsonUtil.writeOfferta(baratto.getOffertaA());
-        JsonUtil.writeOfferta(baratto.getOffertaB());
+        JsonManager.writeOfferta(baratto.getOffertaA());
+        JsonManager.writeOfferta(baratto.getOffertaB());
         //elimino baratto
-        JsonUtil.deleteBaratto(baratto);
+        JsonManager.deleteBaratto(baratto);
     }
 
     private Appuntamento cambiaAppuntamento(Scambio scambio, Baratto baratto, View view) {

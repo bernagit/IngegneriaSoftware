@@ -2,13 +2,13 @@ package controller.handlers;
 
 import controller.ExitException;
 import controller.Handler;
+import db.JsonManager;
 import model.baratto.Appuntamento;
 import model.baratto.Baratto;
 import model.offerta.Offerta;
 import model.offerta.StatoOfferta;
 import model.scambio.Scambio;
 import model.user.Utente;
-import db.JsonUtil;
 import view.View;
 
 import java.time.DayOfWeek;
@@ -24,7 +24,7 @@ public class AccettaBaratto implements Handler {
     }
 
     private void accettaBaratto(Utente utente, View view) {
-        Scambio scambio = JsonUtil.readScambio();
+        Scambio scambio = JsonManager.readScambio();
         //selezione offerta da accettare
         Baratto baratto = selezionaBaratto(utente, scambio, view);
         if (baratto == null)
@@ -54,13 +54,13 @@ public class AccettaBaratto implements Handler {
         baratto.setOffertaB(offertaB);
         baratto.setDecisore(offertaB.getAutore());
         //salvataggio dati
-        JsonUtil.writeOfferta(offertaA);
-        JsonUtil.writeOfferta(offertaB);
-        JsonUtil.writeBaratto(baratto);
+        JsonManager.writeOfferta(offertaA);
+        JsonManager.writeOfferta(offertaB);
+        JsonManager.writeBaratto(baratto);
     }
 
     private Baratto selezionaBaratto(Utente utente, Scambio scambio, View view) {
-        List<Baratto> barattoList = JsonUtil.readBarattoByUtente(utente.getUsername());
+        List<Baratto> barattoList = JsonManager.readBarattoByUtente(utente.getUsername());
         //se non ci sono offerte
         if (barattoList.size() == 0) {
             view.print("Non sono presenti baratti da accettare");

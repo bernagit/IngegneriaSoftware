@@ -2,10 +2,10 @@ package controller.handlers;
 
 import controller.ExitException;
 import controller.Handler;
+import db.JsonManager;
 import model.gerarchia.Gerarchia;
 import model.scambio.Scambio;
 import model.user.Utente;
-import db.JsonUtil;
 import view.View;
 
 import java.util.List;
@@ -18,8 +18,8 @@ public class VisualizzaScambi implements Handler {
     }
     private void visualizza(View view) {
         //metodo per visualizzare gli scambi
-        List<Gerarchia> gerarchie = JsonUtil.readGerarchie();
-        Scambio scambio = JsonUtil.readScambio();
+        List<Gerarchia> gerarchie = JsonManager.readGerarchie();
+        Scambio scambio = JsonManager.readScambio();
         if (gerarchie != null) {
             view.print("Gerarchie:");
             for (Gerarchia gerarchia : gerarchie)

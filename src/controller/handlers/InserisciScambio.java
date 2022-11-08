@@ -2,10 +2,10 @@ package controller.handlers;
 
 import controller.ExitException;
 import controller.Handler;
+import db.JsonManager;
 import model.scambio.IntervalloOrario;
 import model.scambio.Scambio;
 import model.user.Utente;
-import db.JsonUtil;
 import view.View;
 
 import java.time.DayOfWeek;
@@ -21,7 +21,7 @@ public class InserisciScambio implements Handler {
     }
 
     private void inserisciScambio(View view) {
-        Scambio scambio = JsonUtil.readScambio();
+        Scambio scambio = JsonManager.readScambio();
         boolean modifica = true;
         //se scambio esiste chiedo di modificarlo altrimente lo creo chiedendo la città di scambio
         if (scambio != null) {
@@ -48,7 +48,7 @@ public class InserisciScambio implements Handler {
         scambio.setScadenzaProposta(scadenzaProposta);
 
         if (view.getBoolean("Salvare scambio? "))
-            JsonUtil.writeScambio(scambio);
+            JsonManager.writeScambio(scambio);
     }
 
     private List<String> inserisciLuoghi(View view) {
