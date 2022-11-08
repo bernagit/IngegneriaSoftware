@@ -1,7 +1,5 @@
 package model.scambio;
 
-import com.sun.jdi.IncompatibleThreadStateException;
-
 import java.time.LocalTime;
 
 public class IntervalloOrario {

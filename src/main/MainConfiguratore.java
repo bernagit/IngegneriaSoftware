@@ -1,3 +1,5 @@
+package main;
+
 import controller.ControllerConfiguratore;
 import view.CliView;
 import view.View;

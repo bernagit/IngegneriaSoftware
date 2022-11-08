@@ -1,3 +1,5 @@
+package main;
+
 import db.DbConnect;
 import view.CliView;
 

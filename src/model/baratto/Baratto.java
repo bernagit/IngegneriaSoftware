@@ -3,9 +3,6 @@ package model.baratto;
 import model.offerta.Offerta;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
-
 public class Baratto {
     private Offerta offertaA;
     private Offerta offertaB;

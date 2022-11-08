@@ -1,3 +1,5 @@
+package main;
+
 import controller.ControllerFruitore;
 import view.CliView;
 import view.View;
