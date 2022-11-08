@@ -1,0 +1,22 @@
+@startuml sequence-diagram
+
+
+Main -> Controller : run()
+activate Controller
+loop until exitCommand
+    Controller -> View : display()
+    activate View
+    View <- Controller : getCommand()
+    View --> Controller : command
+    Controller -> Controller : executeCommand()
+    activate Controller
+    Controller -> Model : createModel()
+    activate Model
+    Model --> Controller : object
+    Controller -> Db : save()
+    deactivate Controller
+    destroy Model
+    deactivate View
+end
+
+@enduml
