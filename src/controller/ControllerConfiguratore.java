@@ -14,7 +14,6 @@ public class ControllerConfiguratore {
     }
     public void run(){
         OptionList option = new OptionList();
-        CliView view = new CliView();
         String titolo;
         Configuratore configuratore = null;
         do {

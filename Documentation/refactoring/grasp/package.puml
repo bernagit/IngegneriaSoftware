@@ -1,0 +1,36 @@
+@startuml package
+
+package user  <<Frame>> {
+    abstract class Utente{}
+    class Configuratore extends Utente{}
+    class Fruitore extends Utente{}
+}
+package gerarchia <<Frame>>{
+    class Gerarchia{}
+    class Categoria{}
+    class CampoNativo{}
+    Categoria "1" o--> "1..n" CampoNativo
+    Gerarchia "1" o--> "1" Categoria
+    'Categoria "1" o--> "2..n" Categoria
+}
+package offerta <<Frame>> {
+    class Offerta{}
+    class CampoCompilato{}
+    Offerta "1" o--> "1..n" CampoCompilato
+    CampoCompilato o--> CampoNativo
+    Offerta --> Categoria
+    Offerta --> Utente
+}
+package baratto <<Frame>> {
+    class Baratto{}
+    class Appuntamento{}
+    Baratto "1" o--> "0..1" Appuntamento
+    Baratto --> Offerta
+}
+package scambio <<Frame>>{
+    class Scambio{}
+    class IntervalloOrario{}
+    Scambio "1" o--> "1..n" IntervalloOrario
+}
+
+@enduml
