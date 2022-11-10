@@ -4,27 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="typo and remove unnecessary lines">
+    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="fix classes names">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Ver1/controller.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver1/controller.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Ver2/controller.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver2/controller.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Documentation/Ver5/controller.puml" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/Ver5/controller.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ControllerFruitore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ControllerFruitore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/AccettaBaratto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/AccettaBaratto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/BarattaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/BarattaOfferta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/ImportaFileConf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/ImportaFileConf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/InserisciGerarchia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/InserisciGerarchia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/InserisciScambio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/InserisciScambio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/ModificaAppuntamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/ModificaAppuntamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/PubblicaOfferta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/PubblicaOfferta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/VisualizzaGerarchie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaGerarchie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferte.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferte.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteProprietario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaOfferteProprietario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/handlers/VisualizzaScambi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/handlers/VisualizzaScambi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/JsonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/JsonManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/CliView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/CliView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MyMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ControllerConfiguratore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ControllerConfiguratore.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="test" />
+        <entry key="$PROJECT_DIR$" value="c1f96c4895e92a6dc92811a49aa3cd09f50e2b5c" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,18 +41,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="controller" />
@@ -114,11 +96,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainFruitore" />
-        <item itemvalue="Application.MainConfiguratore" />
-        <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar" />
         <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (2)" />
         <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (1)" />
+        <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar" />
+        <item itemvalue="Application.MainConfiguratore" />
+        <item itemvalue="Application.MainFruitore" />
       </list>
     </recent_temporary>
   </component>
