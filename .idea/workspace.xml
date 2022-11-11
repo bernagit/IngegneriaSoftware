@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="fix classes names">
+    <list default="true" id="63de78be-8945-4b6c-9e8c-b80cb71c5ef9" name="Changes" comment="Information Expert su controller??">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/ControllerConfiguratore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ControllerConfiguratore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ControllerFruitore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ControllerFruitore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/OptionList.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,11 +98,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainFruitore" />
+        <item itemvalue="Application.MainConfiguratore" />
         <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (2)" />
         <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar (1)" />
         <item itemvalue="JAR Application.ProgettoIngeSw-2022.jar" />
-        <item itemvalue="Application.MainConfiguratore" />
-        <item itemvalue="Application.MainFruitore" />
       </list>
     </recent_temporary>
   </component>
@@ -266,7 +268,8 @@
     <MESSAGE value="MVC for Versione 5 completata" />
     <MESSAGE value="MVC review" />
     <MESSAGE value="typo and remove unnecessary lines" />
-    <option name="LAST_COMMIT_MESSAGE" value="typo and remove unnecessary lines" />
+    <MESSAGE value="Information Expert su controller??" />
+    <option name="LAST_COMMIT_MESSAGE" value="Information Expert su controller??" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
