@@ -23,15 +23,17 @@ public class ControllerConfiguratore {
             else titolo = "Programma Configuratore";
             view.setTitoloMenu(titolo);
             int scelta = view.scegliVoceMenu();
-            try {
+            if(scelta != 0) {
+                //try {
                 Handler handler = options.get(scelta).getAction();
                 if (handler instanceof LoginConf || handler instanceof Logout)
                     configuratore = (Configuratore) handler.execute(configuratore, view);
                 else
                     handler.execute(configuratore, view);
-            } catch (ExitException e) {
-                view.print(e.getMessage());
+            }
+            else{
                 exit = true;
+                view.print("Programma Terminato");
             }
         } while (!exit);
     }
@@ -46,7 +48,7 @@ public class ControllerConfiguratore {
 
     private void setOption(Configuratore conf){
         options.clear();
-        options.add(new Option("Esci", new Exit()));
+        options.add(new Option("Esci", null));
         if (conf == null){
             options.add(new Option("Login", new LoginConf()));
             options.add(new Option("Visualizza Gerarchie", new VisualizzaGerarchie()));

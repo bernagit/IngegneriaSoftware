@@ -1,6 +1,5 @@
 package controller.handlers;
 
-import controller.ExitException;
 import controller.Handler;
 import model.user.Utente;
 import db.JsonManager;
@@ -11,7 +10,7 @@ import java.nio.file.Path;
 
 public class ImportaFileConf implements Handler {
     @Override
-    public Utente execute(Utente utente, View view) throws ExitException {
+    public Utente execute(Utente utente, View view) {
         this.importaFile(view);
         return null;
     }

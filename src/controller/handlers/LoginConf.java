@@ -1,6 +1,5 @@
 package controller.handlers;
 
-import controller.ExitException;
 import controller.Handler;
 import model.user.Configuratore;
 import db.DbConnect;
@@ -9,7 +8,7 @@ import view.View;
 
 public class LoginConf implements Handler {
     @Override
-    public Utente execute(Utente utente, View view) throws ExitException {
+    public Utente execute(Utente utente, View view) {
         return doLogin(view);
     }
     DbConnect db = new DbConnect();

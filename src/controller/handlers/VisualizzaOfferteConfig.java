@@ -1,6 +1,5 @@
 package controller.handlers;
 
-import controller.ExitException;
 import controller.Handler;
 import db.JsonManager;
 import model.gerarchia.Categoria;
@@ -15,7 +14,7 @@ import java.util.List;
 
 public class VisualizzaOfferteConfig implements Handler {
     @Override
-    public Utente execute(Utente utente, View view) throws ExitException {
+    public Utente execute(Utente utente, View view) {
         this.sceltaGerarchia(view);
         return null;
     }

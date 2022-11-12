@@ -1,6 +1,5 @@
 package controller.handlers;
 
-import controller.ExitException;
 import controller.Handler;
 import db.JsonManager;
 import model.baratto.Baratto;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class BarattaOfferta implements Handler {
     @Override
-    public Utente execute(Utente utente, View view) throws ExitException {
+    public Utente execute(Utente utente, View view) {
         this.barattaOfferta(utente, view);
         return null;
     }
@@ -24,7 +23,7 @@ public class BarattaOfferta implements Handler {
     private void barattaOfferta(Utente utente, View view) {
         List<Offerta> offerteAperte = JsonManager.readOffertaByAutoreAndState(utente.getUsername(), StatoOfferta.APERTA);
         view.createMenu("Scegli oggetto da barattare");
-        if (offerteAperte.size() < 1) {
+        if (offerteAperte != null && offerteAperte.size() < 1) {
             view.print("Non sono presenti Offerte nello stato Aperto");
             return;
         }
@@ -59,7 +58,7 @@ public class BarattaOfferta implements Handler {
     private Offerta scegliOffertaAltroAutore(Utente utente, Categoria categoria, View view) {
         List<Offerta> offerte = JsonManager.readOfferteApertebyCategoria(utente.getUsername(), categoria);
         view.createMenu("Scegli oggetto che vorresti");
-        if (offerte.size() < 1) {
+        if (offerte != null && offerte.size() < 1) {
             view.print("Non sono presenti offerte aperte della stessa categoria");
         } else {
             for (Offerta offerta : offerte) {

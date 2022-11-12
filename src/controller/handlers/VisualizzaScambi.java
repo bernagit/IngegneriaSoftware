@@ -1,6 +1,5 @@
 package controller.handlers;
 
-import controller.ExitException;
 import controller.Handler;
 import db.JsonManager;
 import model.gerarchia.Gerarchia;
@@ -12,7 +11,7 @@ import java.util.List;
 
 public class VisualizzaScambi implements Handler {
     @Override
-    public Utente execute(Utente utente, View view) throws ExitException {
+    public Utente execute(Utente utente, View view) {
         this.visualizza(view);
         return null;
     }

@@ -1,6 +1,5 @@
 package controller.handlers;
 
-import controller.ExitException;
 import controller.Handler;
 import model.baratto.Appuntamento;
 import model.baratto.Baratto;
@@ -17,7 +16,7 @@ import java.util.List;
 
 public class ModificaAppuntamento implements Handler {
     @Override
-    public Utente execute(Utente utente, View view) throws ExitException {
+    public Utente execute(Utente utente, View view) {
         this.visualizzaAppuntamento(utente, view);
         return null;
     }
@@ -66,13 +65,13 @@ public class ModificaAppuntamento implements Handler {
         else{
             boolean modifica = view.getBoolean("Vuoi modificare l'appuntamento? ");
             if(modifica)
-                this.nuovoAppuntamento(baratto, utente, view);
+                this.nuovoAppuntamento(baratto, view);
         }
 
 
     }
 
-    private void nuovoAppuntamento(Baratto baratto, Utente utente, View view) {
+    private void nuovoAppuntamento(Baratto baratto, View view) {
         Scambio scambio = JsonManager.readScambio();
         Appuntamento appuntamento = this.cambiaAppuntamento(scambio, baratto, view);
         if (appuntamento == null) {

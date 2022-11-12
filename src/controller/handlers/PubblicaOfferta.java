@@ -1,14 +1,9 @@
 package controller.handlers;
 
-import controller.ExitException;
 import controller.Handler;
 import db.JsonManager;
-import model.gerarchia.CampoNativo;
-import model.gerarchia.Categoria;
-import model.gerarchia.Gerarchia;
-import model.offerta.Offerta;
-import model.offerta.CampoCompilato;
-import model.offerta.StatoOfferta;
+import model.gerarchia.*;
+import model.offerta.*;
 import model.user.Utente;
 import view.View;
 
@@ -17,7 +12,7 @@ import java.util.List;
 
 public class PubblicaOfferta implements Handler {
     @Override
-    public Utente execute(Utente utente, View view) throws ExitException {
+    public Utente execute(Utente utente, View view) {
         this.inserisciOfferta(utente, view);
         return null;
     }

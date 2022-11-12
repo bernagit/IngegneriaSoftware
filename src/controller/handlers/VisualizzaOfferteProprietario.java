@@ -1,6 +1,5 @@
 package controller.handlers;
 
-import controller.ExitException;
 import controller.Handler;
 import db.JsonManager;
 import model.baratto.Baratto;
@@ -13,7 +12,7 @@ import java.util.List;
 
 public class VisualizzaOfferteProprietario implements Handler {
     @Override
-    public Utente execute(Utente utente, View view) throws ExitException {
+    public Utente execute(Utente utente, View view) {
         this.visualizzaEModifica(utente, view);
         return null;
     }

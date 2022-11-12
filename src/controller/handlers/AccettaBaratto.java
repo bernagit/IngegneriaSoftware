@@ -1,6 +1,5 @@
 package controller.handlers;
 
-import controller.ExitException;
 import controller.Handler;
 import db.JsonManager;
 import model.baratto.Appuntamento;
@@ -18,7 +17,7 @@ import java.util.List;
 
 public class AccettaBaratto implements Handler {
     @Override
-    public Utente execute(Utente utente, View view) throws ExitException {
+    public Utente execute(Utente utente, View view) {
         this.accettaBaratto(utente, view);
         return null;
     }

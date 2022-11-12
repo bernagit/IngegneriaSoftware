@@ -24,18 +24,18 @@ public class ControllerFruitore {
             view.createMenu("");
             this.setOption(fruitore);
             view.setVociMenu(this.getVoci());
-            if (fruitore != null) titolo = "Utente "+fruitore.getUsername()+" loggato";
+            if (fruitore != null) titolo = "Utente " + fruitore.getUsername() + " loggato";
             else titolo = "Programma fruitore";
             view.setTitoloMenu(titolo);
             int scelta = view.scegliVoceMenu();
-            try {
+            if (scelta != 0) {
                 Handler handler = options.get(scelta).getAction();
                 if (handler instanceof LoginFruit || handler instanceof Logout)
                     fruitore = (Fruitore) handler.execute(fruitore, view);
                 else
                     handler.execute(fruitore, view);
-            } catch (ExitException e) {
-                view.print(e.getMessage());
+            } else {
+                view.print("Programma terminato");
                 exit = true;
             }
         } while (!exit);
@@ -49,7 +49,7 @@ public class ControllerFruitore {
     }
     private void setOption(Fruitore fruitore) {
         options.clear();
-        options.add(new Option("Esci", new Exit()));
+        options.add(new Option("Esci", null));
         if (fruitore == null){
             options.add(new Option("Login", new LoginFruit()));
         }
