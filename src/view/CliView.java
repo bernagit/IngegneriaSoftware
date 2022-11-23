@@ -110,12 +110,10 @@ public class CliView implements View{
 
         System.out.println(stringBuilder);
     }
-
     public void printAppuntamento(Appuntamento appuntamento){
-        StringBuilder str = new StringBuilder();
-        str.append("\nLuogo: ").append(appuntamento.getLuogo())
-                .append("\nOra: ").append(appuntamento.getDataOra())
-                .append("\nGiorno: ").append(appuntamento.getGiorno().name());
+        String str = "\nLuogo: " + appuntamento.getLuogo() +
+                "\nOra: " + appuntamento.getDataOra() +
+                "\nGiorno: " + appuntamento.getGiorno().name();
         System.out.println(str);
     }
 }
