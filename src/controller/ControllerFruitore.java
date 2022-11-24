@@ -7,7 +7,7 @@ import view.View;
 
 import java.util.ArrayList;
 
-public class ControllerFruitore {
+public class ControllerFruitore implements Controller{
     final private View view;
     final private ArrayList<Option> options = new ArrayList<>();
     public ControllerFruitore(View view){

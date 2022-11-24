@@ -1,0 +1,19 @@
+@startuml controller-ssd
+
+skinparam style strictuml
+
+actor ":Configuratore" as utente
+participant ":ControllerConfiguratore" as controller
+participant ":InserisciScambio" as handler
+controller -> utente : Scegli operazione
+utente -> controller : Inserisci Scambio
+controller ->  handler : execute()
+handler -> utente : inserisciDatiscambio
+utente --> handler : datiScambio
+utente -> handler : salvaScambio
+handler -> controller : fineEsecuzione
+
+
+
+
+@enduml

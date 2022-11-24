@@ -2,10 +2,11 @@ package controller;
 
 import controller.handlers.*;
 import model.user.Configuratore;
+import model.user.Utente;
 import view.View;
 import java.util.ArrayList;
 
-public class ControllerConfiguratore {
+public class ControllerConfiguratore implements Controller{
     final private View view;
     final private ArrayList<Option> options = new ArrayList<>();
     public ControllerConfiguratore(View view) {
@@ -38,7 +39,7 @@ public class ControllerConfiguratore {
         } while (!exit);
     }
 
-    private ArrayList<String> getVoci() {
+    public ArrayList<String> getVoci() {
         ArrayList<String> voci = new ArrayList<>();
         for (Option opt: options){
             voci.add(opt.getLabel());
@@ -46,7 +47,7 @@ public class ControllerConfiguratore {
         return voci;
     }
 
-    private void setOption(Configuratore conf){
+    public void setOption(Utente conf){
         options.clear();
         options.add(new Option("Esci", null));
         if (conf == null){
