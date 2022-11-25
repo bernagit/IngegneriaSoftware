@@ -60,7 +60,7 @@ class VisualizzaGerarchie implements Action{
 }
 
 Login ..> model.user.Utente: use
-Login ..> db.DbConnect: use
+Login ..> db.DbConnection: use
 InserisciGerarchia ..> model.gerarchia.Categoria: use
 VisualizzaGerarchie ..> model.gerarchia.Categoria: use
 InserisciGerarchia ..> db.JsonManager: use

@@ -5,16 +5,27 @@ import model.user.Fruitore;
 import model.user.Utente;
 import java.sql.*;
 
-public class DbConnect {
-    String url = "jdbc:sqlite:./Data.db";
-    public Connection connect() {
-        Connection conn = null;
+public class DbConnection {
+
+    private static DbConnection instance = null;
+    private Connection connection;
+    private String url = "jdbc:sqlite:./Data.db";
+
+    private DbConnection(){
         try {
-            conn = DriverManager.getConnection(url);
+            this.connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return conn;
+    }
+
+    public Connection getConnection(){
+        return connection;
+    }
+    public static DbConnection getInstance() {
+        if (instance == null)
+            instance = new DbConnection();
+        return instance;
     }
 
     public void createNewTable(String tableName) {
@@ -26,7 +37,7 @@ public class DbConnect {
                 + " usertype boolean NOT NULL\n"
                 + ");";
 
-        try (Connection conn = this.connect();
+        try (Connection conn = this.getConnection();
              Statement stmt = conn.createStatement()) {
             // create a new table
             stmt.execute(sql);
@@ -39,7 +50,7 @@ public class DbConnect {
     public Utente insertUser(String username, String password, boolean firstLogin, boolean userType) {
         String sql = "INSERT INTO utenti(username,password,firstlogin,usertype) VALUES(?,?,?,?)";
         String sql2 = "SELECT id FROM utenti WHERE username = ?";
-        try (Connection conn = this.connect();
+        try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, username);
             pstmt.setString(2, password);
@@ -61,7 +72,7 @@ public class DbConnect {
 
     private int getId(String username) {
         String sql = "SELECT id FROM utenti WHERE username = ?";
-        try (Connection conn = this.connect();
+        try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
@@ -79,7 +90,7 @@ public class DbConnect {
                 + " WHERE username = ?"
                 + " AND password = ?";
 
-        try (Connection conn = this.connect();
+        try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, usr);
             pstmt.setString(2, pwd);
@@ -111,7 +122,7 @@ public class DbConnect {
                     + "firstlogin = ? "
                     + "WHERE id = ?";
             utente.setFirstLogin(false);
-            try (Connection conn = this.connect();
+            try (Connection conn = this.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, newUser);
                 pstmt.setString(2, newPass);
@@ -129,7 +140,7 @@ public class DbConnect {
     public boolean checkNewUser(String newUser) {
         String sql = "SELECT username, firstlogin FROM utenti"
                 + " WHERE username = ?";
-        try (Connection conn = this.connect();
+        try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, newUser);
             ResultSet rs = pstmt.executeQuery();
@@ -145,7 +156,7 @@ public class DbConnect {
     public boolean checkUsername(String user) {
         String sql = "SELECT username FROM utenti"
                 + " WHERE username = ?";
-        try (Connection conn = this.connect();
+        try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, user);
             ResultSet rs = pstmt.executeQuery();

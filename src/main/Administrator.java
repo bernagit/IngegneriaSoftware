@@ -1,6 +1,6 @@
 package main;
 
-import db.DbConnect;
+import db.DbConnection;
 import view.CliView;
 
 import java.io.FileNotFoundException;
@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 
 public class Administrator {
     public static void main(String[] args) {
-        DbConnect db = new DbConnect();
+        DbConnection db = DbConnection.getInstance();
         db.createNewTable("Utenti");
         CliView view = new CliView();
         String password = getNewPassword(10);

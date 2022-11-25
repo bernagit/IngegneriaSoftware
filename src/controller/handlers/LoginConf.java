@@ -1,17 +1,19 @@
 package controller.handlers;
 
 import controller.Handler;
+import db.DbConnection;
 import model.user.Configuratore;
-import db.DbConnect;
 import model.user.Utente;
 import view.View;
+
+import java.sql.Connection;
 
 public class LoginConf implements Handler {
     @Override
     public Utente execute(Utente utente, View view) {
         return doLogin(view);
     }
-    DbConnect db = new DbConnect();
+    DbConnection db = DbConnection.getInstance();
     private Configuratore doLogin(View view) {
         String user = view.getString("Inserisci username: ");
         String pass = view.getString("Inserisci password: ");

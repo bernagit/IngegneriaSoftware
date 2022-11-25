@@ -38,7 +38,7 @@ InserisciScambio --> model.scambio.IntervalloOrario
 InserisciScambio --> model.scambio.Scambio
 VisualizzaScambi --> model.scambio.Scambio
 LoginFruit --> model.user.Fruitore
-LoginFruit --> db.DbConnect
+LoginFruit --> db.DbConnection
 InserisciScambio --> db.JsonManager
 VisualizzaScambi --> db.JsonManager
 

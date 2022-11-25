@@ -1,14 +1,14 @@
 package controller.handlers;
 
 import controller.Handler;
+import db.DbConnection;
 import model.user.Fruitore;
-import db.DbConnect;
 import model.user.Utente;
 import view.View;
 
 public class LoginFruit implements Handler {
 
-    DbConnect db = new DbConnect();
+    DbConnection db = DbConnection.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         return doLogin(view);
