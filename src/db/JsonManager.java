@@ -24,13 +24,29 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class JsonManager {
-    private final static String directoryGerarchie = "files/gerarchie/";
-    private final static Path pathScambio = Path.of("files/scambi/scambio.json");
-    private final static String directoryOfferte = "files/offerte/";
-    private final static String directoryBaratti = "files/baratti/";
 
-    public static void writeGerarchia(Gerarchia gerarchia) {
-        GsonBuilder builder = new GsonBuilder();
+    private static JsonManager instance = null;
+    private final GsonBuilder builder;
+    private final String directoryGerarchie;
+    private final Path pathScambio;
+    private final String directoryOfferte;
+    private final String directoryBaratti;
+
+    private JsonManager(){
+        this.builder = new GsonBuilder();
+        this.directoryGerarchie = "files/gerarchie/";
+        this.pathScambio = Path.of("files/scambi/scambio.json");
+        this.directoryOfferte = "files/offerte/";
+        this.directoryBaratti = "files/baratti/";
+    }
+    public static JsonManager getInstance(){
+        if(instance == null){
+            instance = new JsonManager();
+        }
+        return instance;
+    }
+
+    public void writeGerarchia(Gerarchia gerarchia) {
         Gson gson = builder.create();
         String nomeFile = directoryGerarchie + gerarchia.getNomeRadice() + ".json";
         try (
@@ -42,7 +58,7 @@ public class JsonManager {
         }
     }
 
-    private static List<Path> createListOfFile(String directory) {
+    private List<Path> createListOfFile(String directory) {
         List<Path> list = null;
 
         try (Stream<Path> files = Files.list(Paths.get(directory))) {
@@ -56,15 +72,15 @@ public class JsonManager {
         return list;
     }
 
-    public static List<Gerarchia> readGerarchie() {
+    public List<Gerarchia> readGerarchie() {
         List<Gerarchia> gerarchiaList = new ArrayList<>();
         Gerarchia gerarchia;
         try {
             Reader reader;
-            if (JsonManager.createListOfFile(directoryGerarchie) == null) {
+            if (createListOfFile(directoryGerarchie) == null) {
                 return null;
             }
-            for (Path file : JsonManager.createListOfFile(directoryGerarchie)) {
+            for (Path file : createListOfFile(directoryGerarchie)) {
                 reader = Files.newBufferedReader(file);
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
@@ -77,8 +93,8 @@ public class JsonManager {
         return gerarchiaList;
     }
 
-    public static boolean checkNomeGerarchiaRipetuto(String nome) {
-        List<Gerarchia> gerarchiaList = JsonManager.readGerarchie();
+    public boolean checkNomeGerarchiaRipetuto(String nome) {
+        List<Gerarchia> gerarchiaList = readGerarchie();
         if (gerarchiaList != null) {
             for (Gerarchia g : gerarchiaList) {
                 if (g.getNomeRadice().equalsIgnoreCase(nome)) {
@@ -89,7 +105,7 @@ public class JsonManager {
         return false;
     }
 
-    public static boolean checkGerarchiaExists(Path path) {
+    public boolean checkGerarchiaExists(Path path) {
         List<Path> list = createListOfFile(directoryGerarchie);
         for (Path p : list) {
             if (p.getFileName().equals(path.getFileName())) {
@@ -99,10 +115,10 @@ public class JsonManager {
         return false;
     }
 
-    public static boolean scriviFileGerarchia(Path path, boolean overwrite) {
+    public boolean scriviFileGerarchia(Path path, boolean overwrite) {
         try {
             Path pathFile = Path.of(directoryGerarchie + path.getFileName());
-            if (!JsonManager.tryToReadGerarchia(pathFile))
+            if (!tryToReadGerarchia(pathFile))
                 return false;
             if (overwrite)
                 Files.copy(pathFile, Path.of(pathFile + ".old"), StandardCopyOption.REPLACE_EXISTING);
@@ -113,9 +129,9 @@ public class JsonManager {
         }
     }
 
-    private static boolean tryToReadGerarchia(Path pathFile) {
+    private boolean tryToReadGerarchia(Path pathFile) {
         Gson gson = new Gson();
-        Gerarchia gerarchia = null;
+        Gerarchia gerarchia;
         try {
             Reader reader = Files.newBufferedReader(pathFile);
             // convert JSON file to Gerarchia
@@ -126,7 +142,7 @@ public class JsonManager {
         return gerarchia == null;
     }
 
-    public static Scambio readScambio() {
+    public Scambio readScambio() {
         Scambio scambio = null;
         try {
             Reader reader;
@@ -141,7 +157,7 @@ public class JsonManager {
         return scambio;
     }
 
-    public static void writeScambio(Scambio scambio) {
+    public void writeScambio(Scambio scambio) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         try (
@@ -153,13 +169,13 @@ public class JsonManager {
         }
     }
 
-    public static boolean checkScambioExists() {
+    public boolean checkScambioExists() {
         return Files.exists(pathScambio) && Files.isReadable(pathScambio);
     }
 
-    public static boolean scriviFileScambio(Path path, boolean overwrite) {
+    public boolean scriviFileScambio(Path path, boolean overwrite) {
         try {
-            if (!JsonManager.tryToReadScambio(path))
+            if (!tryToReadScambio(path))
                 return false;
             if (overwrite)
                 Files.copy(pathScambio, Path.of(pathScambio.toString() + ".old"), StandardCopyOption.REPLACE_EXISTING);
@@ -170,7 +186,7 @@ public class JsonManager {
         }
     }
 
-    private static boolean tryToReadScambio(Path pathFile) {
+    private boolean tryToReadScambio(Path pathFile) {
         Gson gson = new Gson();
         Scambio scambio = null;
         try {
@@ -183,8 +199,7 @@ public class JsonManager {
         return scambio == null;
     }
 
-    public static void writeOfferta(Offerta offerta) {
-        GsonBuilder builder = new GsonBuilder();
+    public void writeOfferta(Offerta offerta) {
         Gson gson = builder.create();
         var nomeFile = directoryOfferte + offerta.getTitolo() +
                 "_" + offerta.getAutore() +
@@ -198,15 +213,15 @@ public class JsonManager {
         }
     }
 
-    public static List<Offerta> readOfferteByCategoriaAndState(String nomeCategoria, StatoOfferta stato) {
+    public List<Offerta> readOfferteByCategoriaAndState(String nomeCategoria, StatoOfferta stato) {
         List<Offerta> offertaList = new ArrayList<>();
         Offerta offerta;
         try {
             Reader reader;
-            if (JsonManager.createListOfFile(directoryOfferte) == null) {
+            if (createListOfFile(directoryOfferte) == null) {
                 return null;
             }
-            for (Path file : JsonManager.createListOfFile(directoryOfferte)) {
+            for (Path file : createListOfFile(directoryOfferte)) {
                 reader = Files.newBufferedReader(file);
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
@@ -220,15 +235,15 @@ public class JsonManager {
         return offertaList;
     }
 
-    public static List<Offerta> readOffertaByAutore(String autore) {
+    public List<Offerta> readOffertaByAutore(String autore) {
         List<Offerta> offertaList = new ArrayList<>();
         Offerta offerta;
         try {
             Reader reader;
-            if (JsonManager.createListOfFile(directoryOfferte) == null) {
+            if (createListOfFile(directoryOfferte) == null) {
                 return null;
             }
-            for (Path file : JsonManager.createListOfFile(directoryOfferte)) {
+            for (Path file : createListOfFile(directoryOfferte)) {
                 reader = Files.newBufferedReader(file);
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
@@ -242,15 +257,15 @@ public class JsonManager {
         return offertaList;
     }
 
-    public static List<Offerta> readOffertaByAutoreAndState(String autore, StatoOfferta stato) {
+    public List<Offerta> readOffertaByAutoreAndState(String autore, StatoOfferta stato) {
         List<Offerta> offertaList = new ArrayList<>();
         Offerta offerta;
         try {
             Reader reader;
-            if (JsonManager.createListOfFile(directoryOfferte) == null) {
+            if (createListOfFile(directoryOfferte) == null) {
                 return null;
             }
-            for (Path file : JsonManager.createListOfFile(directoryOfferte)) {
+            for (Path file : createListOfFile(directoryOfferte)) {
                 reader = Files.newBufferedReader(file);
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
@@ -264,15 +279,15 @@ public class JsonManager {
         return offertaList;
     }
 
-    public static List<Offerta> readOfferteApertebyCategoria(String autore, Categoria categoria) {
+    public List<Offerta> readOfferteApertebyCategoria(String autore, Categoria categoria) {
         List<Offerta> offertaList = new ArrayList<>();
         Offerta offerta;
         try {
             Reader reader;
-            if (JsonManager.createListOfFile(directoryOfferte) == null) {
+            if (createListOfFile(directoryOfferte) == null) {
                 return null;
             }
-            for (Path file : JsonManager.createListOfFile(directoryOfferte)) {
+            for (Path file : createListOfFile(directoryOfferte)) {
                 reader = Files.newBufferedReader(file);
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
@@ -291,8 +306,7 @@ public class JsonManager {
         return offertaList;
     }
 
-    public static void writeBaratto(Baratto baratto) {
-        GsonBuilder builder = new GsonBuilder();
+    public void writeBaratto(Baratto baratto) {
         Gson gson = builder.create();
         var nomeFile = directoryBaratti +
                 baratto.getOffertaA().getAutore() + "_" +
@@ -308,15 +322,15 @@ public class JsonManager {
         }
     }
 
-    public static List<Baratto> readBarattoByUtente(String utenteB) {
+    public List<Baratto> readBarattoByUtente(String utenteB) {
         List<Baratto> barattoList = new ArrayList<>();
         Baratto baratto;
         try {
             Reader reader;
-            if (JsonManager.createListOfFile(directoryBaratti) == null) {
+            if (createListOfFile(directoryBaratti) == null) {
                 return null;
             }
-            for (Path file : JsonManager.createListOfFile(directoryBaratti)) {
+            for (Path file : createListOfFile(directoryBaratti)) {
                 reader = Files.newBufferedReader(file);
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
@@ -331,15 +345,15 @@ public class JsonManager {
         return barattoList;
     }
 
-    public static List<Baratto> readBarattoInScambio(String utente) {
+    public List<Baratto> readBarattoInScambio(String utente) {
         List<Baratto> barattoList = new ArrayList<>();
         Baratto baratto;
         try {
             Reader reader;
-            if (JsonManager.createListOfFile(directoryBaratti) == null) {
+            if (createListOfFile(directoryBaratti) == null) {
                 return null;
             }
-            for (Path file : JsonManager.createListOfFile(directoryBaratti)) {
+            for (Path file : createListOfFile(directoryBaratti)) {
                 reader = Files.newBufferedReader(file);
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
@@ -357,14 +371,14 @@ public class JsonManager {
         return barattoList;
     }
 
-    public static Baratto readBarattobyOfferta(Offerta offerta) {
+    public Baratto readBarattobyOfferta(Offerta offerta) {
         Baratto baratto;
         try {
             Reader reader;
-            if (JsonManager.createListOfFile(directoryBaratti) == null) {
+            if (createListOfFile(directoryBaratti) == null) {
                 return null;
             }
-            for (Path file : JsonManager.createListOfFile(directoryBaratti)) {
+            for (Path file : createListOfFile(directoryBaratti)) {
                 reader = Files.newBufferedReader(file);
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
@@ -379,7 +393,7 @@ public class JsonManager {
         return null;
     }
 
-    public static void deleteBaratto(Baratto baratto) {
+    public void deleteBaratto(Baratto baratto) {
         String nomeFile = directoryBaratti +
                 baratto.getOffertaA().getAutore() + "_" +
                 baratto.getOffertaB().getAutore() + "_" +
@@ -393,17 +407,17 @@ public class JsonManager {
             System.out.println("impossibile chiudere baratto");
     }
 
-    public static void eliminaBarattiScaduti() {
+    public void eliminaBarattiScaduti() {
         Baratto baratto;
         LocalDateTime oggi = LocalDateTime.now();
         LocalDateTime scadenza;
-        Scambio scambio = JsonManager.readScambio();
+        Scambio scambio = readScambio();
         try {
             Reader reader;
-            if (JsonManager.createListOfFile(directoryBaratti) == null) {
+            if (createListOfFile(directoryBaratti) == null) {
                 return;
             }
-            for (Path file : JsonManager.createListOfFile(directoryBaratti)) {
+            for (Path file : createListOfFile(directoryBaratti)) {
                 reader = Files.newBufferedReader(file);
                 Gson gson = new Gson();
                 // convert JSON file to Gerarchia
@@ -417,10 +431,9 @@ public class JsonManager {
                         a.setStatoCorrente(StatoOfferta.APERTA);
                         Offerta b = baratto.getOffertaB();
                         b.setStatoCorrente(StatoOfferta.APERTA);
-                        JsonManager.writeOfferta(a);
-                        JsonManager.writeOfferta(b);
-
-                        JsonManager.deleteBaratto(baratto);
+                        writeOfferta(a);
+                        writeOfferta(b);
+                        deleteBaratto(baratto);
                     }
                 }
             }

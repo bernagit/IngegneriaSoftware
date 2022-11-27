@@ -22,7 +22,6 @@ public class Administrator {
         } while (userOk);
         view.print("password dell'utente " + utente + ": " + password);
         writePasswordToFile(utente, password, view);
-
         db.insertUser(utente, password, true, true);
     }
 

@@ -9,9 +9,9 @@ public class DbConnection {
 
     private static DbConnection instance = null;
     private Connection connection;
-    private String url = "jdbc:sqlite:./Data.db";
 
     private DbConnection(){
+        String url = "jdbc:sqlite:./Data.db";
         try {
             this.connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
@@ -20,7 +20,9 @@ public class DbConnection {
     }
 
     public Connection getConnection(){
-        return connection;
+        if(instance == null)
+            instance = new DbConnection();
+        return this.connection;
     }
     public static DbConnection getInstance() {
         if (instance == null)
@@ -37,8 +39,8 @@ public class DbConnection {
                 + " usertype boolean NOT NULL\n"
                 + ");";
 
-        try (Connection conn = this.getConnection();
-             Statement stmt = conn.createStatement()) {
+        try{
+            Statement stmt = connection.createStatement();
             // create a new table
             stmt.execute(sql);
 
@@ -49,16 +51,16 @@ public class DbConnection {
 
     public Utente insertUser(String username, String password, boolean firstLogin, boolean userType) {
         String sql = "INSERT INTO utenti(username,password,firstlogin,usertype) VALUES(?,?,?,?)";
-        String sql2 = "SELECT id FROM utenti WHERE username = ?";
-        try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
+        //String sql2 = "SELECT id FROM utenti WHERE username = ?";
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
             //se primo login TRUE, altrimenti FALSE
-            pstmt.setBoolean(3, firstLogin);
+            stmt.setBoolean(3, firstLogin);
             //se l'utente è un configuratore TRUE, se è un fruitore FALSE
-            pstmt.setBoolean(4, userType);
-            pstmt.executeUpdate();
+            stmt.setBoolean(4, userType);
+            stmt.executeUpdate();
             int id = getId(username);
             if(userType)
                 return new Configuratore(id, username, password);
@@ -72,8 +74,8 @@ public class DbConnection {
 
     private int getId(String username) {
         String sql = "SELECT id FROM utenti WHERE username = ?";
-        try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try{
+            PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
             int id = rs.getInt("id");
@@ -90,8 +92,8 @@ public class DbConnection {
                 + " WHERE username = ?"
                 + " AND password = ?";
 
-        try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, usr);
             pstmt.setString(2, pwd);
             ResultSet rs = pstmt.executeQuery();
@@ -122,8 +124,8 @@ public class DbConnection {
                     + "firstlogin = ? "
                     + "WHERE id = ?";
             utente.setFirstLogin(false);
-            try (Connection conn = this.getConnection();
-                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            try {
+                PreparedStatement pstmt = connection.prepareStatement(sql);
                 pstmt.setString(1, newUser);
                 pstmt.setString(2, newPass);
                 pstmt.setBoolean(3, utente.getFirstLogin());
@@ -140,8 +142,8 @@ public class DbConnection {
     public boolean checkNewUser(String newUser) {
         String sql = "SELECT username, firstlogin FROM utenti"
                 + " WHERE username = ?";
-        try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, newUser);
             ResultSet rs = pstmt.executeQuery();
             boolean firstlogin = rs.getBoolean("firstlogin");
@@ -156,8 +158,8 @@ public class DbConnection {
     public boolean checkUsername(String user) {
         String sql = "SELECT username FROM utenti"
                 + " WHERE username = ?";
-        try (Connection conn = this.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try{
+            PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, user);
             ResultSet rs = pstmt.executeQuery();
             String username = rs.getString("username");

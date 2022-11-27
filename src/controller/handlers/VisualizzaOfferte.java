@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VisualizzaOfferte implements Handler {
+    private JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         this.sceltaGerarchia(view);
@@ -20,7 +21,7 @@ public class VisualizzaOfferte implements Handler {
     }
 
     private void sceltaGerarchia(View view) {
-        List<Gerarchia> gerarchie = JsonManager.readGerarchie();
+        List<Gerarchia> gerarchie = jsonManager.readGerarchie();
         ArrayList<String> vociGerarchie = new ArrayList<>();
         view.createMenu("Scelta gerarchia");
         for (Gerarchia gerarchia : gerarchie)
@@ -45,7 +46,7 @@ public class VisualizzaOfferte implements Handler {
     }
 
     private void visualizzaOfferteAperte(Categoria categoria, View view) {
-        List<Offerta> offerte = JsonManager.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.APERTA);
+        List<Offerta> offerte = jsonManager.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.APERTA);
         if (offerte != null && offerte.size() >= 1) {
             for (Offerta offerta : offerte) {
                 view.printOfferta(offerta);

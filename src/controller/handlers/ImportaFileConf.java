@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ImportaFileConf implements Handler {
+    private final JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         this.importaFile(view);
@@ -37,12 +38,12 @@ public class ImportaFileConf implements Handler {
         Path path = Path.of(strPath);
         if (strPath.endsWith(".json") && Files.exists(path)) {
             boolean sovrascrivi = false;
-            if (JsonManager.checkScambioExists()) {
+            if (jsonManager.checkScambioExists()) {
                 sovrascrivi = view.getBoolean("Esiste già un file di configurazione, vuoi sovrascriverlo? ");
                 if (!sovrascrivi)
                     return;
             }
-            boolean result = JsonManager.scriviFileScambio(path, sovrascrivi);
+            boolean result = jsonManager.scriviFileScambio(path, sovrascrivi);
             if (result)
                 view.print("File di configurazione importato con successo");
             else
@@ -57,13 +58,13 @@ public class ImportaFileConf implements Handler {
         Path path = Path.of(strPath);
         if (strPath.endsWith(".json") && Files.exists(path)) {
             boolean sovrascrivi = false;
-            if (JsonManager.checkGerarchiaExists(path))
+            if (jsonManager.checkGerarchiaExists(path))
                 sovrascrivi = view.getBoolean("Esiste già un file gerarchia con questo nome, vuoi sovrascriverlo? ");
             if (!sovrascrivi) {
                 view.print("File Gerarchia non importato");
                 return;
             }
-            boolean result = JsonManager.scriviFileGerarchia(path, sovrascrivi);
+            boolean result = jsonManager.scriviFileGerarchia(path, sovrascrivi);
             if (result)
                 view.print("Gerarchia importata con successo");
             else

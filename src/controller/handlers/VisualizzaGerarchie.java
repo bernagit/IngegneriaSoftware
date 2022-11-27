@@ -11,13 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VisualizzaGerarchie implements Handler {
+    private JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         this.visualizza(view);
         return null;
     }
     private void visualizza(View view) {
-        List<Gerarchia> gerarchiaList = JsonManager.readGerarchie();
+        List<Gerarchia> gerarchiaList = jsonManager.readGerarchie();
         if (gerarchiaList != null && gerarchiaList.size() != 0) {
             ArrayList<String> voci = new ArrayList<>();
             for (Gerarchia gerarchia : gerarchiaList)

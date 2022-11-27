@@ -9,6 +9,7 @@ import view.View;
 import java.util.ArrayList;
 
 public class InserisciGerarchia implements Handler {
+    JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         inserisciGerarchia(view);
@@ -48,7 +49,7 @@ public class InserisciGerarchia implements Handler {
         view.print("Vuoi salvare la gerarchia inserita?\n");
         boolean save = view.getBoolean("");
         if (save) {
-            JsonManager.writeGerarchia(gerarchia);
+            jsonManager.writeGerarchia(gerarchia);
             view.print("Gerarchia salvata");
         }
         else
@@ -59,7 +60,7 @@ public class InserisciGerarchia implements Handler {
         String nome;
         do{
             nome = view.getString("Inserisci il nome della categoria radice: ");
-            if(JsonManager.checkNomeGerarchiaRipetuto(nome))
+            if(jsonManager.checkNomeGerarchiaRipetuto(nome))
                 view.print("Nome categoria radice già presente, inseriscine un altro");
             else
                 nomeRipetuto = false;

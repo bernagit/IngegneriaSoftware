@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VisualizzaOfferteConfig implements Handler {
+    private JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         this.sceltaGerarchia(view);
@@ -20,7 +21,7 @@ public class VisualizzaOfferteConfig implements Handler {
     }
 
     private void sceltaGerarchia(View view) {
-        List<Gerarchia> gerarchie = JsonManager.readGerarchie();
+        List<Gerarchia> gerarchie = jsonManager.readGerarchie();
         ArrayList<String> vociGerarchie = new ArrayList<>();
         view.createMenu("Scelta gerarchia");
         for (Gerarchia gerarchia : gerarchie)
@@ -47,8 +48,8 @@ public class VisualizzaOfferteConfig implements Handler {
 
     private void visualizzaOfferteChSc(Categoria categoria, View view) {
         //cerco offerte IN_SCAMBIO e CHIUSE
-        List<Offerta> offerte = JsonManager.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.CHIUSA);
-        offerte.addAll(JsonManager.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.IN_SCAMBIO));
+        List<Offerta> offerte = jsonManager.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.CHIUSA);
+        offerte.addAll(jsonManager.readOfferteByCategoriaAndState(categoria.getNome(), StatoOfferta.IN_SCAMBIO));
 
         if (offerte != null && offerte.size() >= 1) {
             for (Offerta offerta : offerte) {

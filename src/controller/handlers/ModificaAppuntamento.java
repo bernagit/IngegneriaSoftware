@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModificaAppuntamento implements Handler {
+    private final JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         this.visualizzaAppuntamento(utente, view);
@@ -22,9 +23,9 @@ public class ModificaAppuntamento implements Handler {
     }
 
     private void visualizzaAppuntamento(Utente utente, View view) {
-        Scambio scambio = JsonManager.readScambio();
+        Scambio scambio = jsonManager.readScambio();
 
-        List<Baratto> barattoList = JsonManager.readBarattoInScambio(utente.getUsername());
+        List<Baratto> barattoList = jsonManager.readBarattoInScambio(utente.getUsername());
         if ( barattoList != null && barattoList.size() == 0) {
             view.print("Non sono presenti Appuntamenti per le offerte inserite");
             return;
@@ -72,7 +73,7 @@ public class ModificaAppuntamento implements Handler {
     }
 
     private void nuovoAppuntamento(Baratto baratto, View view) {
-        Scambio scambio = JsonManager.readScambio();
+        Scambio scambio = jsonManager.readScambio();
         Appuntamento appuntamento = this.cambiaAppuntamento(scambio, baratto, view);
         if (appuntamento == null) {
             view.print("Appuntamento inserito uguale a quello deciso dall'altro utente");
@@ -91,16 +92,16 @@ public class ModificaAppuntamento implements Handler {
         }
 
         //scrivo baratto
-        JsonManager.writeBaratto(baratto);
+        jsonManager.writeBaratto(baratto);
     }
 
     private void accettaBaratto(Baratto baratto) {
         baratto.getOffertaA().setStatoCorrente(StatoOfferta.CHIUSA);
         baratto.getOffertaB().setStatoCorrente(StatoOfferta.CHIUSA);
-        JsonManager.writeOfferta(baratto.getOffertaA());
-        JsonManager.writeOfferta(baratto.getOffertaB());
+        jsonManager.writeOfferta(baratto.getOffertaA());
+        jsonManager.writeOfferta(baratto.getOffertaB());
         //elimino baratto
-        JsonManager.deleteBaratto(baratto);
+        jsonManager.deleteBaratto(baratto);
     }
 
     private Appuntamento cambiaAppuntamento(Scambio scambio, Baratto baratto, View view) {

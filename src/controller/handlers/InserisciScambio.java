@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InserisciScambio implements Handler {
+    private JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         this.inserisciScambio(view);
@@ -20,7 +21,7 @@ public class InserisciScambio implements Handler {
     }
 
     private void inserisciScambio(View view) {
-        Scambio scambio = JsonManager.readScambio();
+        Scambio scambio = jsonManager.readScambio();
         boolean modifica = true;
         //se scambio esiste chiedo di modificarlo altrimente lo creo chiedendo la città di scambio
         if (scambio != null) {
@@ -47,7 +48,7 @@ public class InserisciScambio implements Handler {
         scambio.setScadenzaProposta(scadenzaProposta);
 
         if (view.getBoolean("Salvare scambio? "))
-            JsonManager.writeScambio(scambio);
+            jsonManager.writeScambio(scambio);
     }
 
     private List<String> inserisciLuoghi(View view) {

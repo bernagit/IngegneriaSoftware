@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PubblicaOfferta implements Handler {
+    private JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         this.inserisciOfferta(utente, view);
@@ -18,7 +19,7 @@ public class PubblicaOfferta implements Handler {
     }
 
     private void inserisciOfferta(Utente utente, View view) {
-        List<Gerarchia> gerarchie = JsonManager.readGerarchie();
+        List<Gerarchia> gerarchie = jsonManager.readGerarchie();
         ArrayList<String> vociGerarchie = new ArrayList<>();
         view.createMenu("Scelta gerarchia");
         for (Gerarchia gerarchia : gerarchie)
@@ -35,7 +36,7 @@ public class PubblicaOfferta implements Handler {
 
         boolean save = view.getBoolean("Vuoi salvare l'offerta inserita? ");
         if (save) {
-            JsonManager.writeOfferta(offerta);
+            jsonManager.writeOfferta(offerta);
             view.print("Offerta " + offerta.getTitolo() + " salvato");
         }
     }

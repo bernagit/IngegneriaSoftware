@@ -11,6 +11,7 @@ import view.View;
 import java.util.List;
 
 public class VisualizzaOfferteProprietario implements Handler {
+    private final JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         this.visualizzaEModifica(utente, view);
@@ -18,7 +19,7 @@ public class VisualizzaOfferteProprietario implements Handler {
     }
 
     private void visualizzaEModifica(Utente utente, View view) {
-        List<Offerta> offerte = JsonManager.readOffertaByAutore(utente.getUsername());
+        List<Offerta> offerte = jsonManager.readOffertaByAutore(utente.getUsername());
         view.createMenu("Visualizza, Modifica o Esci");
         if (offerte != null && offerte.size() >= 1) {
             int scelta;
@@ -35,7 +36,7 @@ public class VisualizzaOfferteProprietario implements Handler {
             } while (scelta != 0);
 
             for (Offerta offerta : offerte)
-                JsonManager.writeOfferta(offerta);
+                jsonManager.writeOfferta(offerta);
 
         } else
             view.print("Non sei autore di nessuna offerta.");
@@ -65,7 +66,7 @@ public class VisualizzaOfferteProprietario implements Handler {
     }
 
     private void visualizzaStato(Offerta offerta, View view) {
-        Baratto baratto = JsonManager.readBarattobyOfferta(offerta);
+        Baratto baratto = jsonManager.readBarattobyOfferta(offerta);
         view.print("Offerta in scambio, Ultima risposta ricevuta da: " + baratto.getDecisore());
         view.printAppuntamento(baratto.getAppuntamento());
     }

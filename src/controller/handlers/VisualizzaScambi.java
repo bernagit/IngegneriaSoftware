@@ -10,6 +10,7 @@ import view.View;
 import java.util.List;
 
 public class VisualizzaScambi implements Handler {
+    private JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         this.visualizza(view);
@@ -17,8 +18,8 @@ public class VisualizzaScambi implements Handler {
     }
     private void visualizza(View view) {
         //metodo per visualizzare gli scambi
-        List<Gerarchia> gerarchie = JsonManager.readGerarchie();
-        Scambio scambio = JsonManager.readScambio();
+        List<Gerarchia> gerarchie = jsonManager.readGerarchie();
+        Scambio scambio = jsonManager.readScambio();
         if (gerarchie != null) {
             view.print("Gerarchie:");
             for (Gerarchia gerarchia : gerarchie)

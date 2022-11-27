@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class ControllerFruitore implements Controller{
     final private View view;
+    private JsonManager jsonManager = JsonManager.getInstance();
     final private ArrayList<Option> options = new ArrayList<>();
     public ControllerFruitore(View view){
         this.view = view;
@@ -20,7 +21,7 @@ public class ControllerFruitore implements Controller{
         boolean exit = false;
         do {
             // eliminazione dei baratti Scaduti
-            JsonManager.eliminaBarattiScaduti();
+            jsonManager.eliminaBarattiScaduti();
             view.createMenu("");
             this.setOption(fruitore);
             view.setVociMenu(this.getVoci());

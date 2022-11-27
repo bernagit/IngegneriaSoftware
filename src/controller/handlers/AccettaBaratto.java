@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccettaBaratto implements Handler {
+    private JsonManager jsonManager = JsonManager.getInstance();
     @Override
     public Utente execute(Utente utente, View view) {
         this.accettaBaratto(utente, view);
@@ -23,7 +24,7 @@ public class AccettaBaratto implements Handler {
     }
 
     private void accettaBaratto(Utente utente, View view) {
-        Scambio scambio = JsonManager.readScambio();
+        Scambio scambio = jsonManager.readScambio();
         //selezione offerta da accettare
         Baratto baratto = selezionaBaratto(utente, scambio, view);
         if (baratto == null)
@@ -53,13 +54,13 @@ public class AccettaBaratto implements Handler {
         baratto.setOffertaB(offertaB);
         baratto.setDecisore(offertaB.getAutore());
         //salvataggio dati
-        JsonManager.writeOfferta(offertaA);
-        JsonManager.writeOfferta(offertaB);
-        JsonManager.writeBaratto(baratto);
+        jsonManager.writeOfferta(offertaA);
+        jsonManager.writeOfferta(offertaB);
+        jsonManager.writeBaratto(baratto);
     }
 
     private Baratto selezionaBaratto(Utente utente, Scambio scambio, View view) {
-        List<Baratto> barattoList = JsonManager.readBarattoByUtente(utente.getUsername());
+        List<Baratto> barattoList = jsonManager.readBarattoByUtente(utente.getUsername());
         //se non ci sono offerte
         if (barattoList.size() == 0) {
             view.print("Non sono presenti baratti da accettare");
