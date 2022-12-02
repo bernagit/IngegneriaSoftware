@@ -6,5 +6,4 @@ import java.util.ArrayList;
 
 public interface Controller {
     void run();
-
 }

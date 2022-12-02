@@ -1,0 +1,12 @@
+@startuml
+interface "View" as view
+class "CliView" as cli
+class "GuiView" as gui
+class "Controller" as controller
+
+cli -u-|> view
+gui -u-|> view
+controller -l-> view
+
+
+@enduml

@@ -79,8 +79,7 @@ public class Categoria {
     public boolean isCampoPresente(String nomeCampo) {
         if (this.campi != null)
             for (CampoNativo campo : this.campi)
-                //
-                if (campo.getNome().equalsIgnoreCase(nomeCampo))
+                if (campo.equals(nomeCampo))
                     return true;
         return false;
     }

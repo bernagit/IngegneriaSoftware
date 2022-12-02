@@ -6,7 +6,6 @@ import model.user.Utente;
 import java.sql.*;
 
 public class DbConnection {
-
     private static DbConnection instance = null;
     private Connection connection;
 

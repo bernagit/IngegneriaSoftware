@@ -39,7 +39,7 @@ public class ControllerConfiguratore implements Controller{
         } while (!exit);
     }
 
-    public ArrayList<String> getVoci() {
+    private ArrayList<String> getVoci() {
         ArrayList<String> voci = new ArrayList<>();
         for (Option opt: options){
             voci.add(opt.getLabel());
@@ -47,7 +47,7 @@ public class ControllerConfiguratore implements Controller{
         return voci;
     }
 
-    public void setOption(Utente conf){
+    private void setOption(Utente conf){
         options.clear();
         options.add(new Option("Esci", null));
         if (conf == null){

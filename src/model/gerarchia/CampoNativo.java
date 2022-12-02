@@ -14,4 +14,7 @@ public class CampoNativo {
         return required;
     }
 
+    public boolean equals(String nomeCampo){
+        return this.nomeCampo.equalsIgnoreCase(nomeCampo);
+    }
 }
