@@ -1,6 +1,7 @@
 package controller.handlers;
 
 import controller.Handler;
+import controller.Session;
 import model.user.Utente;
 import db.JsonManager;
 import view.View;
@@ -11,9 +12,9 @@ import java.nio.file.Path;
 public class ImportaFileConf implements Handler {
     private final JsonManager jsonManager = JsonManager.getInstance();
     @Override
-    public Utente execute(Utente utente, View view) {
+    public Session execute(Session session, View view) {
         this.importaFile(view);
-        return null;
+        return session;
     }
 
     private void importaFile(View view) {

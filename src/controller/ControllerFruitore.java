@@ -2,59 +2,59 @@ package controller;
 
 import controller.handlers.*;
 import db.JsonManager;
-import model.user.Fruitore;
 import view.View;
 
 import java.util.ArrayList;
 
-public class ControllerFruitore implements Controller{
+public class ControllerFruitore implements Controller {
     final private View view;
+    private Session session = new Session(null, State.UNLOGGED);
     private JsonManager jsonManager = JsonManager.getInstance();
     final private ArrayList<Option> options = new ArrayList<>();
-    public ControllerFruitore(View view){
+
+    public ControllerFruitore(View view) {
         this.view = view;
     }
 
-    public void run(){
-        Fruitore fruitore = null;
+    public void run() {
         String titolo;
         boolean exit = false;
         do {
             // eliminazione dei baratti Scaduti
             jsonManager.eliminaBarattiScaduti();
             view.createMenu("");
-            this.setOption(fruitore);
+            this.setOption();
             view.setVociMenu(this.getVoci());
-            if (fruitore != null) titolo = "Utente " + fruitore.getUsername() + " loggato";
-            else titolo = "Programma fruitore";
+            if (session.getState().equals(State.LOGGED))
+                titolo = "Utente " + session.getUtente().getUsername() + " loggato";
+            else
+                titolo = "Programma fruitore";
             view.setTitoloMenu(titolo);
             int scelta = view.scegliVoceMenu();
             if (scelta != 0) {
                 Handler handler = options.get(scelta).getAction();
-                if (handler instanceof LoginFruit || handler instanceof Logout)
-                    fruitore = (Fruitore) handler.execute(fruitore, view);
-                else
-                    handler.execute(fruitore, view);
+                session = handler.execute(session, view);
             } else {
                 view.print("Programma terminato");
                 exit = true;
             }
         } while (!exit);
     }
+
     private ArrayList<String> getVoci() {
         ArrayList<String> voci = new ArrayList<>();
-        for (Option opt: options){
+        for (Option opt : options) {
             voci.add(opt.getLabel());
         }
         return voci;
     }
-    private void setOption(Fruitore fruitore) {
+
+    private void setOption() {
         options.clear();
         options.add(new Option("Esci", null));
-        if (fruitore == null){
+        if (session.getState().equals(State.UNLOGGED)) {
             options.add(new Option("Login", new LoginFruit()));
-        }
-        else {
+        } else if (session.getState().equals(State.LOGGED)) {
             options.add(new Option("Logout", new Logout()));
             options.add(new Option("Visualizza Scambi", new VisualizzaScambi()));
             options.add(new Option("Pubblica Offerta", new PubblicaOfferta()));

@@ -1,6 +1,7 @@
 package controller.handlers;
 
 import controller.Handler;
+import controller.Session;
 import db.JsonManager;
 import model.baratto.Appuntamento;
 import model.baratto.Baratto;
@@ -18,9 +19,9 @@ import java.util.List;
 public class AccettaBaratto implements Handler {
     private JsonManager jsonManager = JsonManager.getInstance();
     @Override
-    public Utente execute(Utente utente, View view) {
-        this.accettaBaratto(utente, view);
-        return null;
+    public Session execute(Session session, View view) {
+        this.accettaBaratto(session.getUtente(), view);
+        return session;
     }
 
     private void accettaBaratto(Utente utente, View view) {

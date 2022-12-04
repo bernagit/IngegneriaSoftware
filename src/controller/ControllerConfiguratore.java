@@ -1,38 +1,38 @@
 package controller;
 
 import controller.handlers.*;
-import model.user.Configuratore;
-import model.user.Utente;
 import view.View;
+
 import java.util.ArrayList;
 
-public class ControllerConfiguratore implements Controller{
+public class ControllerConfiguratore implements Controller {
     final private View view;
+    private Session session = new Session(null, State.UNLOGGED);
     final private ArrayList<Option> options = new ArrayList<>();
+
     public ControllerConfiguratore(View view) {
         this.view = view;
     }
-    public void run(){
+
+    public void run() {
         String titolo;
-        Configuratore configuratore = null;
+
         boolean exit = false;
         do {
             view.createMenu("");
-            this.setOption(configuratore);
+            this.setOption();
             view.setVociMenu(this.getVoci());
-            if (configuratore != null) titolo = "Utente "+configuratore.getUsername()+ " loggato";
-            else titolo = "Programma Configuratore";
+            if (session.getState().equals(State.LOGGED))
+                titolo = "Utente " + session.getUtente().getUsername() + " loggato";
+            else
+                titolo = "Programma Configuratore";
             view.setTitoloMenu(titolo);
             int scelta = view.scegliVoceMenu();
-            if(scelta != 0) {
+            if (scelta != 0) {
                 //try {
                 Handler handler = options.get(scelta).getAction();
-                if (handler instanceof LoginConf || handler instanceof Logout)
-                    configuratore = (Configuratore) handler.execute(configuratore, view);
-                else
-                    handler.execute(configuratore, view);
-            }
-            else{
+                session = handler.execute(session, view);
+            } else {
                 exit = true;
                 view.print("Programma Terminato");
             }
@@ -41,20 +41,19 @@ public class ControllerConfiguratore implements Controller{
 
     private ArrayList<String> getVoci() {
         ArrayList<String> voci = new ArrayList<>();
-        for (Option opt: options){
+        for (Option opt : options) {
             voci.add(opt.getLabel());
         }
         return voci;
     }
 
-    private void setOption(Utente conf){
+    private void setOption() {
         options.clear();
         options.add(new Option("Esci", null));
-        if (conf == null){
+        if (session.getState().equals(State.UNLOGGED)) {
             options.add(new Option("Login", new LoginConf()));
             options.add(new Option("Visualizza Gerarchie", new VisualizzaGerarchie()));
-        }
-        else {
+        } else if (session.getState().equals(State.LOGGED)) {
             options.add(new Option("Logout", new Logout()));
             options.add(new Option("Visualizza Gerarchie", new VisualizzaGerarchie()));
             options.add(new Option("Inserisci Gerarchia", new InserisciGerarchia()));

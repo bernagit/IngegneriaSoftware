@@ -1,6 +1,7 @@
 package controller.handlers;
 
 import controller.Handler;
+import controller.Session;
 import db.JsonManager;
 import model.gerarchia.*;
 import model.offerta.*;
@@ -13,8 +14,8 @@ import java.util.List;
 public class PubblicaOfferta implements Handler {
     private JsonManager jsonManager = JsonManager.getInstance();
     @Override
-    public Utente execute(Utente utente, View view) {
-        this.inserisciOfferta(utente, view);
+    public Session execute(Session session, View view) {
+        this.inserisciOfferta(session.getUtente(), view);
         return null;
     }
 

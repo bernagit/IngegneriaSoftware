@@ -1,43 +1,47 @@
 package controller.handlers;
 
 import controller.Handler;
+import controller.Session;
+import controller.State;
 import db.DbConnection;
 import model.user.Configuratore;
 import model.user.Utente;
 import view.View;
 
-import java.sql.Connection;
-
 public class LoginConf implements Handler {
     @Override
-    public Utente execute(Utente utente, View view) {
-        return doLogin(view);
+    public Session execute(Session session, View view) {
+        return doLogin(session, view);
     }
     DbConnection db = DbConnection.getInstance();
-    private Configuratore doLogin(View view) {
+    private Session doLogin(Session session, View view) {
         String user = view.getString("Inserisci username: ");
         String pass = view.getString("Inserisci password: ");
-        Utente conf = db.checkLogin(user, pass);
+        session.setUtente(db.checkLogin(user, pass));
         //controllo correttezza login
-        if(conf != null) {
-            if (user.equals(conf.getUsername()) && pass.equals(conf.getPassword()) && conf.getUserType()) {
+        if(session.getUtente() != null) {
+            if (user.equals(session.getUtente().getUsername())
+                    && pass.equals(session.getUtente().getPassword())
+                    && session.getUtente().getUserType()) {
                 //se first Login, procedura per il first Login, altrimenti si logga normalmente
-                if (conf.getFirstLogin()) {
-                    return firstLogin(conf, view);
+                if (session.getUtente().getFirstLogin()) {
+                    return firstLogin(session, view);
                 }
-                return (Configuratore) conf;
+                session.setState(State.LOGGED);
+                return session;
             }
             view.print("Login Errato, Profilo Fruitore...");
-            return null;
+            return session;
         }
         view.print("Login Errato...");
-        return null;
+        return session;
     }
 
-    private Configuratore firstLogin(Utente utente, View view) {
+    private Session firstLogin(Session session, View view) {
         boolean credentialsChanged = false;
         String newUser;
         String newPass;
+        Utente utente = session.getUtente();
         do {
             newUser = view.getString("Inserisci nuovo username: ");
             newPass = view.getString("Inserisci nuova password: ");
@@ -53,6 +57,8 @@ public class LoginConf implements Handler {
         while (!credentialsChanged);
         utente.updateCredentials(newUser, newPass, false);
         view.print("Utente " + newUser + " modificato correttamente");
-        return (Configuratore) utente;
+        session.setUtente(utente);
+        session.setState(State.LOGGED);
+        return session;
     }
 }

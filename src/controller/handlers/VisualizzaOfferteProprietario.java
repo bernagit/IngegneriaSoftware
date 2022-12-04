@@ -1,6 +1,7 @@
 package controller.handlers;
 
 import controller.Handler;
+import controller.Session;
 import db.JsonManager;
 import model.baratto.Baratto;
 import model.offerta.Offerta;
@@ -13,9 +14,9 @@ import java.util.List;
 public class VisualizzaOfferteProprietario implements Handler {
     private final JsonManager jsonManager = JsonManager.getInstance();
     @Override
-    public Utente execute(Utente utente, View view) {
-        this.visualizzaEModifica(utente, view);
-        return null;
+    public Session execute(Session session, View view) {
+        this.visualizzaEModifica(session.getUtente(), view);
+        return session;
     }
 
     private void visualizzaEModifica(Utente utente, View view) {

@@ -1,6 +1,7 @@
 package controller.handlers;
 
 import controller.Handler;
+import controller.Session;
 import model.gerarchia.Categoria;
 import model.gerarchia.Gerarchia;
 import model.offerta.Offerta;
@@ -15,7 +16,7 @@ import java.util.List;
 public class VisualizzaOfferte implements Handler {
     private JsonManager jsonManager = JsonManager.getInstance();
     @Override
-    public Utente execute(Utente utente, View view) {
+    public Session execute(Session session, View view) {
         this.sceltaGerarchia(view);
         return null;
     }

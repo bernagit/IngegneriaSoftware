@@ -1,6 +1,8 @@
 package controller.handlers;
 
 import controller.Handler;
+import controller.Session;
+import controller.State;
 import db.DbConnection;
 import model.user.Fruitore;
 import model.user.Utente;
@@ -10,36 +12,37 @@ public class LoginFruit implements Handler {
 
     DbConnection db = DbConnection.getInstance();
     @Override
-    public Utente execute(Utente utente, View view) {
-        return doLogin(view);
+    public Session execute(Session session, View view) {
+        return doLogin(session, view);
     }
 
-    private Utente doLogin(View view) {
+    private Session doLogin(Session session, View view) {
         boolean firstLogin = view.getBoolean("Primo Login? ");
         if (firstLogin)
-            return this.firstLogin(view);
+            return this.firstLogin(session, view);
         else
-            return this.normalLogin(view);
+            return this.normalLogin(session, view);
     }
 
-    private Fruitore normalLogin(View view) {
-
+    private Session normalLogin(Session session, View view) {
         String user = view.getString("Inserisci username: ");
         String pass = view.getString("Inserisci password: ");
         Utente fruitore = db.checkLogin(user, pass);
         if (fruitore != null) {
-            if (user.equals(fruitore.getUsername()) && pass.equals(fruitore.getPassword()) && !fruitore.getUserType())
-                return (Fruitore) fruitore;
+            if (user.equals(fruitore.getUsername()) && pass.equals(fruitore.getPassword()) && !fruitore.getUserType()){
+                session.setUtente(fruitore);
+                session.setState(State.LOGGED);
+            }
             else {
                 view.print("Login Errato, profilo Configuratore...");
-                return null;
             }
+            return session;
         }
         else view.print("Login Errato, credenziali non valide");
-        return null;
+        return session;
     }
 
-    private Fruitore firstLogin(View view) {
+    private Session firstLogin(Session session, View view) {
         boolean userOk;
         String user;
         String password;
@@ -58,7 +61,9 @@ public class LoginFruit implements Handler {
             else
                 view.print("Passowrd diverse...");
         } while (!passOk);
-        return (Fruitore) db.insertUser(user, password, false, false);
-
+        Fruitore fruitore = (Fruitore) db.insertUser(user, password, false, false);
+        session.setState(State.LOGGED);
+        session.setUtente(fruitore);
+        return session;
     }
 }
