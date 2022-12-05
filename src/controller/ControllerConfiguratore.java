@@ -1,17 +1,21 @@
 package controller;
 
 import controller.handlers.*;
+import model.user.Session;
+import model.user.State;
 import view.View;
 
 import java.util.ArrayList;
 
 public class ControllerConfiguratore implements Controller {
     final private View view;
-    private Session session = new Session(null, State.UNLOGGED);
-    final private ArrayList<Option> options = new ArrayList<>();
+    private Session session;
+    final private ArrayList<Option> options;
 
     public ControllerConfiguratore(View view) {
         this.view = view;
+        options = new ArrayList<>();
+        session = new Session(null, State.UNLOGGED);
     }
 
     public void run() {

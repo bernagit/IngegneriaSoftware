@@ -1,4 +1,4 @@
-package controller;
+package model.user;
 
 public enum State {
     LOGGED,

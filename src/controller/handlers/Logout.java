@@ -1,9 +1,8 @@
 package controller.handlers;
 
 import controller.Handler;
-import controller.Session;
-import controller.State;
-import model.user.Utente;
+import model.user.Session;
+import model.user.State;
 import view.View;
 
 public class Logout implements Handler {

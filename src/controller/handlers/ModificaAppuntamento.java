@@ -1,7 +1,7 @@
 package controller.handlers;
 
 import controller.Handler;
-import controller.Session;
+import model.user.Session;
 import model.baratto.Appuntamento;
 import model.baratto.Baratto;
 import model.offerta.StatoOfferta;

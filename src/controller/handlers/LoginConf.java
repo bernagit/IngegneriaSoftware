@@ -1,10 +1,9 @@
 package controller.handlers;
 
 import controller.Handler;
-import controller.Session;
-import controller.State;
+import model.user.Session;
+import model.user.State;
 import db.DbConnection;
-import model.user.Configuratore;
 import model.user.Utente;
 import view.View;
 

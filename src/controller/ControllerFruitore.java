@@ -2,20 +2,23 @@ package controller;
 
 import controller.handlers.*;
 import db.JsonManager;
+import model.user.Session;
+import model.user.State;
 import view.View;
 
 import java.util.ArrayList;
 
 public class ControllerFruitore implements Controller {
     final private View view;
-    private Session session = new Session(null, State.UNLOGGED);
-    private JsonManager jsonManager = JsonManager.getInstance();
-    final private ArrayList<Option> options = new ArrayList<>();
-
+    private Session session;
+    private final JsonManager jsonManager;
+    final private ArrayList<Option> options;
     public ControllerFruitore(View view) {
         this.view = view;
+        options = new ArrayList<>();
+        jsonManager = JsonManager.getInstance();
+        session = new Session(null, State.UNLOGGED);
     }
-
     public void run() {
         String titolo;
         boolean exit = false;

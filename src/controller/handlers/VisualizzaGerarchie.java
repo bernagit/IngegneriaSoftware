@@ -1,10 +1,9 @@
 package controller.handlers;
 
 import controller.Handler;
-import controller.Session;
+import model.user.Session;
 import db.JsonManager;
 import model.gerarchia.Categoria;
-import model.user.Utente;
 import model.gerarchia.Gerarchia;
 import view.View;
 

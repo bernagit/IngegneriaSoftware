@@ -1,6 +1,4 @@
-package controller;
-
-import model.user.Utente;
+package model.user;
 
 public class Session {
     private Utente utente;

@@ -1,8 +1,7 @@
 package controller.handlers;
 
 import controller.Handler;
-import controller.Session;
-import model.user.Utente;
+import model.user.Session;
 import db.JsonManager;
 import view.View;
 

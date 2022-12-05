@@ -1,11 +1,10 @@
 package controller.handlers;
 
 import controller.Handler;
-import controller.Session;
+import model.user.Session;
 import db.JsonManager;
 import model.scambio.IntervalloOrario;
 import model.scambio.Scambio;
-import model.user.Utente;
 import view.View;
 
 import java.time.DayOfWeek;
