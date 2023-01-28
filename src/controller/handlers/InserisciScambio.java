@@ -17,7 +17,7 @@ public class InserisciScambio implements Handler {
     @Override
     public Session execute(Session session, View view) {
         this.inserisciScambio(view);
-        return null;
+        return session;
     }
 
     private void inserisciScambio(View view) {

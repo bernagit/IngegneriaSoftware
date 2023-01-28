@@ -5,15 +5,15 @@ skinparam style strictuml
 actor ":Configuratore" as utente
 participant ":ControllerConfiguratore" as controller
 participant ":InserisciScambio" as handler
+participant "Model" as model
+
 controller -> utente : Scegli operazione
 utente -> controller : Inserisci Scambio
 controller ->  handler : execute()
 handler -> utente : inserisciDatiscambio
 utente --> handler : datiScambio
+handler -> model : createScambio()
 utente -> handler : salvaScambio
-handler -> controller : fineEsecuzione
+handler --> controller : end
 
-
-
-
-@enduml
+@enduml 

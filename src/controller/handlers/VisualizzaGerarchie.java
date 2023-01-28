@@ -1,10 +1,10 @@
 package controller.handlers;
 
 import controller.Handler;
-import model.user.Session;
 import db.JsonManager;
 import model.gerarchia.Categoria;
 import model.gerarchia.Gerarchia;
+import model.user.Session;
 import view.View;
 
 import java.util.ArrayList;
@@ -12,11 +12,13 @@ import java.util.List;
 
 public class VisualizzaGerarchie implements Handler {
     private JsonManager jsonManager = JsonManager.getInstance();
+
     @Override
     public Session execute(Session session, View view) {
         this.visualizza(view);
-        return null;
+        return session;
     }
+
     private void visualizza(View view) {
         List<Gerarchia> gerarchiaList = jsonManager.readGerarchie();
         if (gerarchiaList != null && gerarchiaList.size() != 0) {
@@ -32,15 +34,14 @@ public class VisualizzaGerarchie implements Handler {
             boolean end = false;
             ArrayList<Categoria> sottocategorie = ger.getRadice().getFigli();
             ArrayList<Categoria> sottocategorieFoglia = new ArrayList<>();
-            do {
-                for (Categoria cat : sottocategorie) {
-                    view.printCategoria(cat);
-                    if (cat.getFigli() != null) sottocategorieFoglia.addAll(cat.getFigli());
-                    sottocategorie = sottocategorieFoglia;
-                    sottocategorieFoglia = null;
+            for (Categoria cat : sottocategorie) {
+                view.printCategoria(cat);
+                ArrayList<Categoria> catFoglia = (ArrayList<Categoria>) cat.getCategorieFoglia();
+                if (catFoglia != null && catFoglia.size() > 0) {
+                    for (Categoria foglia : catFoglia)
+                        view.printCategoria(foglia);
                 }
-                if (sottocategorie == null) end = true;
-            } while (!end);
+            }
         } else
             view.print("\nNessuna gerarchia Inserita");
     }

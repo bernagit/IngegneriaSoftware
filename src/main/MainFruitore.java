@@ -1,5 +1,6 @@
 package main;
 
+import controller.Controller;
 import controller.ControllerFruitore;
 import view.CliView;
 import view.View;
@@ -7,7 +8,7 @@ import view.View;
 public class MainFruitore {
     public static void main(String[] args) {
         View view = new CliView();
-        ControllerFruitore controller = new ControllerFruitore(view);
+        Controller controller = new ControllerFruitore(view);
         controller.run();
     }
 }

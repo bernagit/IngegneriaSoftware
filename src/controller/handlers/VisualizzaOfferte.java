@@ -17,7 +17,7 @@ public class VisualizzaOfferte implements Handler {
     @Override
     public Session execute(Session session, View view) {
         this.sceltaGerarchia(view);
-        return null;
+        return session;
     }
 
     private void sceltaGerarchia(View view) {

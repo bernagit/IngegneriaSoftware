@@ -16,7 +16,7 @@ public class PubblicaOfferta implements Handler {
     @Override
     public Session execute(Session session, View view) {
         this.inserisciOfferta(session.getUtente(), view);
-        return null;
+        return session;
     }
 
     private void inserisciOfferta(Utente utente, View view) {

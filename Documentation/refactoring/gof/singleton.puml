@@ -1,0 +1,11 @@
+@startuml singleton
+
+skinparam style strictuml
+
+participant VisualizzaGerarchia as VG
+participant JsonManager as JM
+
+VG -> JM : getInstance().leggiGerarchia()
+JM --> VG : gerarchia
+
+@enduml

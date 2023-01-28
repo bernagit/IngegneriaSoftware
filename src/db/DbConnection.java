@@ -17,12 +17,6 @@ public class DbConnection {
             System.out.println(e.getMessage());
         }
     }
-
-    public Connection getConnection(){
-        if(instance == null)
-            instance = new DbConnection();
-        return this.connection;
-    }
     public static DbConnection getInstance() {
         if (instance == null)
             instance = new DbConnection();
@@ -37,7 +31,6 @@ public class DbConnection {
                 + " firstlogin boolean NOT NULL,\n"
                 + " usertype boolean NOT NULL\n"
                 + ");";
-
         try{
             Statement stmt = connection.createStatement();
             // create a new table
@@ -47,7 +40,6 @@ public class DbConnection {
             System.out.println(e.getMessage());
         }
     }
-
     public Utente insertUser(String username, String password, boolean firstLogin, boolean userType) {
         String sql = "INSERT INTO utenti(username,password,firstlogin,usertype) VALUES(?,?,?,?)";
         //String sql2 = "SELECT id FROM utenti WHERE username = ?";

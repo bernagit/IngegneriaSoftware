@@ -103,7 +103,6 @@ public class AccettaBaratto implements Handler {
         view.print("Giorno: " + giorno.name());
 
         //mostro orari disponibili e scelgo
-        //da mettere a posto
         view.createMenu("scegli orario");
         ArrayList<String> orari = scambio.getOrariScambio();
         view.setVociMenu(orari);

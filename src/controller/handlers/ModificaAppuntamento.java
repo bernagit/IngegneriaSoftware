@@ -20,7 +20,7 @@ public class ModificaAppuntamento implements Handler {
     @Override
     public Session execute(Session session, View view) {
         this.visualizzaAppuntamento(session.getUtente(), view);
-        return null;
+        return session;
     }
 
     private void visualizzaAppuntamento(Utente utente, View view) {

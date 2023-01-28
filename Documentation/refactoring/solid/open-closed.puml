@@ -1,12 +1,10 @@
 @startuml
-interface "View" as view
-class "CliView" as cli
-class "GuiView" as gui
-class "Controller" as controller
+interface "Controller" as controller
+class "ControllerConfiguratore" as contrConfig
+class "ControllerFruitore" as contrFruitore
 
-cli -u-|> view
-gui -u-|> view
-controller -l-> view
-
+contrConfig .u.> controller
+contrFruitore .u.> controller
+controller "1" <-l* "1" Main
 
 @enduml
