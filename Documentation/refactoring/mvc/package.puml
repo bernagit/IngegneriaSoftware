@@ -27,13 +27,13 @@ package db {
     class JsonMnager{}
 }
 
-package main {
+package entrypoint {
     class Administrator{}
     class MainFruitore{}
     class MainConfiguratore{}
 }
 
-main ..> controller 
+entrypoint ..> controller
 controller ..> model : use
 controller ..> db : save
 controller ..> view : write

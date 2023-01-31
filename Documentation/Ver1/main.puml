@@ -1,13 +1,13 @@
-@startuml main
+@startuml entrypoint
 class Administrator {
-    +{static} main(args: String[]): void
+    +{static} entrypoint(args: String[]): void
     +{static} getNewPassword (pwSize: int): String
     +{static} writePasswordToFile (user: String, pass: String): void
 
 }
 
 class Main {
-    +{static} main(args: String[]): void
+    +{static} entrypoint(args: String[]): void
 }
 
 

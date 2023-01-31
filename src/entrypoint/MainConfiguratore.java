@@ -1,4 +1,4 @@
-package main;
+package entrypoint;
 
 import controller.Controller;
 import controller.ControllerConfiguratore;

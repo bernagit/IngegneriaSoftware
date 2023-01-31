@@ -1,11 +1,11 @@
-@startuml main
+@startuml entrypoint
 
 class MainConfiguratore {
-    +{static} main(args: String[]): void
+    +{static} entrypoint(args: String[]): void
 }
 
 class MainFruitore {
-    +{static} main(args: String[]): void
+    +{static} entrypoint(args: String[]): void
 }
 
 
