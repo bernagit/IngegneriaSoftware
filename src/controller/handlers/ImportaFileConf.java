@@ -57,7 +57,7 @@ public class ImportaFileConf implements Handler {
         String strPath = view.getString("Inserisci il percorso del file Gerarchia: ");
         Path path = Path.of(strPath);
         if (strPath.endsWith(".json") && Files.exists(path)) {
-            boolean sovrascrivi = false;
+            boolean sovrascrivi = true;
             if (jsonManager.checkGerarchiaExists(path))
                 sovrascrivi = view.getBoolean("Esiste già un file gerarchia con questo nome, vuoi sovrascriverlo? ");
             if (!sovrascrivi) {

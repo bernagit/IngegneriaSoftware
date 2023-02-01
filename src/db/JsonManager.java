@@ -117,12 +117,11 @@ public class JsonManager {
 
     public boolean scriviFileGerarchia(Path path, boolean overwrite) {
         try {
-            Path pathFile = Path.of(directoryGerarchie + path.getFileName());
-            if (!tryToReadGerarchia(pathFile))
+            if (!tryToReadGerarchia(path))
                 return false;
             if (overwrite)
-                Files.copy(pathFile, Path.of(pathFile + ".old"), StandardCopyOption.REPLACE_EXISTING);
-            Files.copy(path, pathFile, StandardCopyOption.REPLACE_EXISTING);
+                Files.copy(path, Path.of(directoryGerarchie + path.getFileName() + ".old"), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(path, Path.of(directoryGerarchie + path.getFileName()), StandardCopyOption.REPLACE_EXISTING);
             return true;
         } catch (IOException e) {
             return false;
