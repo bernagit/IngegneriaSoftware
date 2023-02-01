@@ -139,7 +139,7 @@ public class JsonManager {
         } catch (Exception e) {
             return false;
         }
-        return gerarchia == null;
+        return gerarchia != null;
     }
 
     public Scambio readScambio() {
@@ -196,7 +196,7 @@ public class JsonManager {
         } catch (Exception e) {
             return false;
         }
-        return scambio == null;
+        return scambio != null;
     }
 
     public void writeOfferta(Offerta offerta) {

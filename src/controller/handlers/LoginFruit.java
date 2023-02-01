@@ -1,16 +1,17 @@
 package controller.handlers;
 
 import controller.Handler;
-import model.user.Session;
-import model.user.State;
 import db.DbConnection;
 import model.user.Fruitore;
+import model.user.Session;
+import model.user.State;
 import model.user.Utente;
 import view.View;
 
 public class LoginFruit implements Handler {
 
     DbConnection db = DbConnection.getInstance();
+
     @Override
     public Session execute(Session session, View view) {
         return doLogin(session, view);
@@ -29,16 +30,14 @@ public class LoginFruit implements Handler {
         String pass = view.getString("Inserisci password: ");
         Utente fruitore = db.checkLogin(user, pass);
         if (fruitore != null) {
-            if (user.equals(fruitore.getUsername()) && pass.equals(fruitore.getPassword()) && !fruitore.getUserType()){
+            if (user.equals(fruitore.getUsername()) && pass.equals(fruitore.getPassword()) && !fruitore.getUserType()) {
                 session.setUtente(fruitore);
                 session.setState(State.LOGGED);
-            }
-            else {
+            } else {
                 view.print("Login Errato, profilo Configuratore...");
             }
             return session;
-        }
-        else view.print("Login Errato, credenziali non valide");
+        } else view.print("Login Errato, credenziali non valide");
         return session;
     }
 
@@ -61,7 +60,8 @@ public class LoginFruit implements Handler {
             else
                 view.print("Passowrd diverse...");
         } while (!passOk);
-        Fruitore fruitore = (Fruitore) db.insertUser(user, password, false, false);
+        db.insertUser(user, password, false, false);
+        Fruitore fruitore = new Fruitore(db.getId(user), user, password);
         session.setState(State.LOGGED);
         session.setUtente(fruitore);
         return session;

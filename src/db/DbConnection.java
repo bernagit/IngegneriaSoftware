@@ -41,6 +41,7 @@ public class DbConnection {
         }
     }
     public Utente insertUser(String username, String password, boolean firstLogin, boolean userType) {
+        createNewTable("Utenti");
         String sql = "INSERT INTO utenti(username,password,firstlogin,usertype) VALUES(?,?,?,?)";
         //String sql2 = "SELECT id FROM utenti WHERE username = ?";
         try{
@@ -63,7 +64,7 @@ public class DbConnection {
         }
     }
 
-    private int getId(String username) {
+    public int getId(String username) {
         String sql = "SELECT id FROM utenti WHERE username = ?";
         try{
             PreparedStatement pstmt = connection.prepareStatement(sql);
