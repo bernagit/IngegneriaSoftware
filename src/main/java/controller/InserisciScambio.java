@@ -62,7 +62,7 @@ public class InserisciScambio implements Action {
         return luoghi;
     }
 
-    private List<DayOfWeek> inserisciGiorni() {
+    public List<DayOfWeek> inserisciGiorni() {
         int day;
         boolean end = false; //controlla lo stop all'input da parte dell'utente
         List<DayOfWeek> days = new ArrayList<>();
@@ -84,7 +84,7 @@ public class InserisciScambio implements Action {
         return days;
     }
 
-    private List<IntervalloOrario> inserisciIntervalli() {
+    public List<IntervalloOrario> inserisciIntervalli() {
         boolean esci;
         List<IntervalloOrario> intervals = new ArrayList<>();
         do {
